@@ -1,4 +1,10 @@
 export default Object.freeze({
+  "errors.puppet.chooseAFigureToMakeA3dPuppet": "Choose a figure to make a 3D puppet.",
+  "errors.puppet.thisFigureIsAlreadyA3dFigure": "This figure is already a 3D figure.",
+  "errors.puppet.thisFigureUsesRigRelationshipsConvertAPlain": "This figure uses rig relationships or a mesh. Make a 3D puppet from a plain figure.",
+  "errors.puppet.theFigureHasAMissingParentOrACycle": "The figure has a missing parent or a cycle.",
+  "errors.puppet.invalidPuppetSettings": "Invalid 3D puppet settings.",
+  "errors.puppet.aPuppetNeedsArticulatedBones": "A 3D puppet needs articulated bones.",
   "errors.playbackPlanning.layerMigrationLabel": "Layer migration",
   "errors.playbackPlanning.inbetweenInsertionLabel": "Inbetween insertion",
   "errors.editorCamera.cameraValueLabel": "Camera {field}",

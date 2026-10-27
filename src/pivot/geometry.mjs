@@ -693,11 +693,15 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
         renders[i] = prior;
         return prior;
       }
-      const rigPose = rig?.evaluate(i, {start,angle,length,bend}, joints);
+      const inputBend = bend, rigPose = rig?.evaluate(i, {start,angle,length,bend}, joints);
       if (rigPose) ({start,angle,length,bend} = rigPose);
       let points,end;
       if(rigPose?.handle&&(seg._stykRig?.spatial||seg._stykRig?.weighted)){
-        end={x:Math.fround(rigPose.handle.x),y:Math.fround(rigPose.handle.y)};points=[start,end];
+        end={x:Math.fround(rigPose.handle.x),y:Math.fround(rigPose.handle.y)};
+        // A puppet keeps its drawn curves: the arc spans the projected bone in
+        // the screen plane. Other articulated figures stay straight as before.
+        if(fig._styk?.puppet&&Math.abs(inputBend)>1e-7&&Number.isFinite(length)){points=arc(start,angle,length,inputBend);bend=inputBend;if(points.length)points[points.length-1]=end;else points=[start,end];}
+        else points=[start,end];
       }else if(Math.abs(bend)<1e-7&&Number.isFinite(start.x)&&Number.isFinite(start.y)&&Number.isFinite(angle)&&Number.isFinite(length)){
         // The native endpoint is rounded once. A straight segment needs no
         // intermediate unrounded point or curve-validation array.

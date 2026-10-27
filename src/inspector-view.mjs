@@ -23,6 +23,7 @@ import {t as interfaceText} from './localization.mjs';
  */
 import {joinedDrawingSetsView} from './movieclip-drawings-view.mjs';
 import {spatialSections} from './spatial-controls.mjs';
+import {puppetSection} from './puppet-view.mjs';
 import {drawingInspector, DRAWING_TOOLS} from './drawing-view.mjs';
 import {rigSections} from './rig-controls.mjs';
 import {figureJoinAction} from './figure-join-action.mjs';
@@ -177,7 +178,7 @@ function contextDescriptor({
   if (builder && editor.selectedPolygonIndex >= 0) return fillDescriptor(editor, figure, number);
   const segment = figure.segments[joint];
   const order = new Map(builderDrawables(figure).map((item, index) => [`${item.kind}:${item.index}`, index + 1]));
-  const shared = {range, scope, drawingSets, spatial: builder ? [] : spatialSections(editor, {hotkeyLabel}), order, tool, builder, builderBranch};
+  const shared = {range, scope, drawingSets, spatial: builder ? [] : spatialSections(editor, {hotkeyLabel}), puppet: puppetSection(editor, {builder}), order, tool, builder, builderBranch};
   // Pivot origins use -1; segment endpoint indices start at zero.
   return joint >= 0 && segment
     ? jointDescriptor(editor, figure, segment, number, shared)
@@ -372,7 +373,7 @@ function fillGroup(editor, figure, object, index, order) {
  * Arrange (Layer, the Order stepper; Join… as its action) are open; the
  * connection, the used colours and fills and the drawing sets are titled.
  */
-function figureDescriptor(editor, figure, number, {range, scope, drawingSets, spatial, order, builder, polygonPage, palettePage}) {
+function figureDescriptor(editor, figure, number, {range, scope, drawingSets, spatial, puppet, order, builder, polygonPage, palettePage}) {
   const report = editor.report, frame = editor.frame, object = editor.object;
   // A joint index past the figure's segments shows the figure, without its colours.
   const whole = editor.selectedJoint < 0, palette = whole ? editor.figurePalette() : [], own = whole ? figurePalette(report, figure, object) : [];
@@ -430,6 +431,7 @@ function figureDescriptor(editor, figure, number, {range, scope, drawingSets, sp
           next: {action: 'polygons-next', icon: 'chevron-right', label: interfaceText("inspectorView.nextPolygons"), labelKey: "inspectorView.nextPolygons", disabled: start + 12 >= polygons.length}},
       ]},
       builder && transform,
+      puppet,
     ]};
 }
 
@@ -448,7 +450,7 @@ const partRename = {id: 'builder-joint-name', description: interfaceText("inspec
  * The part renames in the header, and the scope line says when edits reach
  * the whole branch (the rail's and stage header's Whole branch, or Shift).
  */
-function jointDescriptor(editor, figure, segment, number, {range, scope, drawingSets, spatial, order, tool, builder, builderBranch}) {
+function jointDescriptor(editor, figure, segment, number, {range, scope, drawingSets, spatial, puppet, order, tool, builder, builderBranch}) {
   const report = editor.report, object = editor.object, joint = editor.selectedJoint, selected = editor.selectedSegmentIds;
   const connector = segment._stykRig?.connector, single = selected.size <= 1;
   const connectorScope = editor._connectorInspector;
@@ -536,5 +538,6 @@ function jointDescriptor(editor, figure, segment, number, {range, scope, drawing
     ]},
     sections.secondColour,
     {id: 'figure', title: interfaceText("inspectorView.figure"), titleKey: "inspectorView.figure", rows: [{kind: 'grid', rows: [layerSelect(editor, {span: 2})]}]},
+    puppet,
   ]};
 }

@@ -362,7 +362,7 @@ test('a figure: its name and quick actions head Transform, Appearance and Arrang
   assert.deepEqual(descriptor.quick, {context: 'figure'});
   assert.deepEqual([...quickIds(descriptor)], ['mirror', 'layer-front', 'layer-back', 'duplicate', 'delete']);
   assert.deepEqual(sections(descriptor, 'core'), ['transform', 'appearance', 'arrange']);
-  assert.deepEqual(sections(descriptor, 'titled'), ['colours']);
+  assert.deepEqual(sections(descriptor, 'titled'), ['colours', 'puppet'], 'the 3D puppet conversion folds last');
   assert.equal(descriptor.scope, null, 'no scope line while edits reach only the current frame');
   for (const key of ['root_x', 'root_y', 'scale', 'rotation', 'figure_opacity', 'figure_z_order']) assertNumberParity(today, now, key);
   assert.equal(tag(now, {'data-property': 'scale'}).attrs['data-field'], 'scale', 'the legacy data-field stays');
@@ -414,7 +414,7 @@ test('text and image figures: Text and Transform lead; Arrange folds for text', 
   assert.equal(descriptor.target.glyph, 'text');
   assert.deepEqual(descriptor.quick, {context: 'text'});
   assert.deepEqual(sections(descriptor, 'core'), ['text', 'transform', 'appearance']);
-  assert.deepEqual(sections(descriptor, 'titled'), ['arrange', 'colours']);
+  assert.deepEqual(sections(descriptor, 'titled'), ['arrange', 'colours', 'puppet']);
   for (const key of ['root_x', 'root_y', 'scale', 'rotation']) assertNumberParity(today, now, key);
   tag(now, {'data-action': 'edit-text'});
   assertBudget(descriptor, 'text');

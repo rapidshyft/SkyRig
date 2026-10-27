@@ -1,6 +1,7 @@
 import {validationLabel} from "./validation-labels.mjs";
 import {messageError} from './localized-error.mjs';
 import {editorSpatialMethods,spatialBone,spatialSkin} from './editor-spatial.mjs';
+import {editorPuppetMethods} from './editor-puppet.mjs';
 import {resolveInstanceFigure} from './animation-style.mjs';
 import {remapSurface,surfaceHandles,protectSurfaceReferences} from './pivot/surfaces.mjs';
 import {UserActionError} from './user-action-error.mjs';
@@ -1749,7 +1750,7 @@ Object.assign(Editor.prototype, editorBuilderMethods);
 Object.assign(Editor.prototype, editorCombineMethods);
 Object.assign(Editor.prototype, editorDisconnectMethods);
 Object.assign(Editor.prototype, editorRigMethods);
-Object.assign(Editor.prototype, editorRigConstraintMethods, editorSpatialMethods);
+Object.assign(Editor.prototype, editorRigConstraintMethods, editorSpatialMethods, editorPuppetMethods);
 Object.assign(Editor.prototype, editorSelectionMethods);
 Object.assign(Editor.prototype, editorLayerMethods, editorLayerFolderMethods, editorLayerFocusMethods);
 Object.assign(Editor.prototype, editorLayerAsyncMethods);

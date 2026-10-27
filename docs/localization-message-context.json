@@ -43,19 +43,19 @@
   },
   "app.appearanceCopied": {
     "locations": [
-      "src/app.mjs:4807"
+      "src/app.mjs:4808"
     ],
     "context": "if (state.builderAppearance) notify(interfaceText(\"app.appearanceCopied\"), \"app.appearanceCopied\", {});"
   },
   "app.appearancePasted": {
     "locations": [
-      "src/app.mjs:4811"
+      "src/app.mjs:4812"
     ],
     "context": "if (pasteBuilderAppearance(editor, state.builderAppearance, {branch:usesBuilderBranch(event)})) notify(interfaceText(\"app.appearancePasted\"), \"app.appearancePas"
   },
   "app.applyingLayerChanges": {
     "locations": [
-      "src/app.mjs:6201"
+      "src/app.mjs:6202"
     ],
     "context": "localizedText($(\"layer-progress-label\"), (latest.phase === \"staging\" ? \"app.applyingLayerChanges\" : \"app.preservingAnimation\"), (latest.phase === \"staging\" ? {}"
   },
@@ -67,19 +67,19 @@
   },
   "app.autoKeyOff": {
     "locations": [
-      "src/app.mjs:5026"
+      "src/app.mjs:5027"
     ],
     "context": "status(state.settings.autoKey ? {messageKey: \"app.autoKeyOnEditsAddKeyframesAtThe\", messageParams: {}} : {messageKey: \"app.autoKeyOff\", messageParams: {}});"
   },
   "app.autoKeyOnEditsAddKeyframesAtThe": {
     "locations": [
-      "src/app.mjs:5026"
+      "src/app.mjs:5027"
     ],
     "context": "status(state.settings.autoKey ? {messageKey: \"app.autoKeyOnEditsAddKeyframesAtThe\", messageParams: {}} : {messageKey: \"app.autoKeyOff\", messageParams: {}});"
   },
   "app.autoKeyWorksInTheAdvancedTimeline": {
     "locations": [
-      "src/app.mjs:5024"
+      "src/app.mjs:5025"
     ],
     "context": "if (state.settings.timelineMode === \"simple\") return toast(interfaceText(\"app.autoKeyWorksInTheAdvancedTimeline\"), \"app.autoKeyWorksInTheAdvancedTimeline\", {});"
   },
@@ -109,8 +109,8 @@
   },
   "app.cancel": {
     "locations": [
-      "src/app.mjs:6220",
-      "src/app.mjs:6299"
+      "src/app.mjs:6221",
+      "src/app.mjs:6300"
     ],
     "context": "`<p id=\"layer-progress-label\" data-i18n=\"app.preservingAnimation\">${messageHTML(\"app.preservingAnimation\", {})}</p><progress id=\"layer-progress\" style=\"width:10"
   },
@@ -244,7 +244,7 @@
   },
   "app.clipboardOperationCancelled": {
     "locations": [
-      "src/app.mjs:6320"
+      "src/app.mjs:6321"
     ],
     "context": "status({messageKey: \"app.clipboardOperationCancelled\", messageParams: {}});"
   },
@@ -257,7 +257,7 @@
   "app.compatibilityMode": {
     "locations": [
       "src/app.mjs:2021",
-      "src/app.mjs:6805"
+      "src/app.mjs:6806"
     ],
     "context": "if (state.renderer.stats?.backend === \"Canvas 2D fallback\") localizedText($(\"renderer-label\"), \"app.compatibilityMode\");"
   },
@@ -282,14 +282,14 @@
   },
   "app.copyAnAppearanceFirst": {
     "locations": [
-      "src/app.mjs:5607"
+      "src/app.mjs:5608"
     ],
     "context": "appearance: () => Boolean(state.builderAppearance) || interfaceText(\"app.copyAnAppearanceFirst\"),"
   },
   "app.copyingFrames": {
     "locations": [
-      "src/app.mjs:6268",
-      "src/app.mjs:6300"
+      "src/app.mjs:6269",
+      "src/app.mjs:6301"
     ],
     "context": "copy: interfaceText(\"app.copyingFrames\"),"
   },
@@ -301,8 +301,8 @@
   },
   "app.cuttingFrames": {
     "locations": [
-      "src/app.mjs:6269",
-      "src/app.mjs:6300"
+      "src/app.mjs:6270",
+      "src/app.mjs:6301"
     ],
     "context": "cut: interfaceText(\"app.cuttingFrames\"),"
   },
@@ -409,7 +409,7 @@
   },
   "app.editorReadyFileServiceUnavailable": {
     "locations": [
-      "src/app.mjs:6702"
+      "src/app.mjs:6703"
     ],
     "context": "status({messageKey: \"app.editorReadyFileServiceUnavailable\", messageParams: {}}, true);"
   },
@@ -496,8 +496,8 @@
   "app.finishOrCancelThePolygonFirst": {
     "locations": [
       "src/app.mjs:2297",
-      "src/app.mjs:5214",
-      "src/app.mjs:5635"
+      "src/app.mjs:5215",
+      "src/app.mjs:5636"
     ],
     "context": "localizedAttribute(input, \"title\", \"app.finishOrCancelThePolygonFirst\", {});"
   },
@@ -510,16 +510,16 @@
   "app.finishTheFigureOrReturnToAnimateTo2": {
     "locations": [
       "src/app.mjs:4383",
-      "src/app.mjs:5247",
-      "src/app.mjs:6580",
-      "src/app.mjs:6596"
+      "src/app.mjs:5248",
+      "src/app.mjs:6581",
+      "src/app.mjs:6597"
     ],
     "context": "if (builderMode?.active) return toast(interfaceText(\"app.finishTheFigureOrReturnToAnimateTo2\"), \"app.finishTheFigureOrReturnToAnimateTo2\", {});"
   },
   "app.finishTheFigureOrReturnToAnimateTo3": {
     "locations": [
       "src/app.mjs:4403",
-      "src/app.mjs:5254"
+      "src/app.mjs:5255"
     ],
     "context": "run: () => { if (builderMode?.active) return toast(interfaceText(\"app.finishTheFigureOrReturnToAnimateTo3\"), \"app.finishTheFigureOrReturnToAnimateTo3\", {}); ope"
   },
@@ -606,7 +606,7 @@
   },
   "app.frameCopied": {
     "locations": [
-      "src/app.mjs:6316"
+      "src/app.mjs:6317"
     ],
     "context": "notify(interfaceText(\"app.frameCopied\", {count}), \"app.frameCopied\", {count});"
   },
@@ -721,7 +721,7 @@
   },
   "app.layerChangeCancelled": {
     "locations": [
-      "src/app.mjs:6238"
+      "src/app.mjs:6239"
     ],
     "context": "status({messageKey: \"app.layerChangeCancelled\", messageParams: {}});"
   },
@@ -739,13 +739,13 @@
   },
   "app.loadingThePivotConverterFirstUseOnly": {
     "locations": [
-      "src/app.mjs:6693"
+      "src/app.mjs:6694"
     ],
     "context": "if (state === \"loading\") status(stage === \"runtime\" ? {messageKey: \"app.loadingThePivotConverterFirstUseOnly\", messageParams: {}} : {messageKey: \"app.startingTh"
   },
   "app.manageCopies": {
     "locations": [
-      "src/app.mjs:6069"
+      "src/app.mjs:6070"
     ],
     "context": "...(browserRecovery || records.length > 1 ? [{ label: interfaceText(\"app.manageCopies\"), labelKey: \"app.manageCopies\", id: \"manage-recovery\", dismiss: false, ru"
   },
@@ -775,13 +775,13 @@
   },
   "app.motionPathsOff": {
     "locations": [
-      "src/app.mjs:5018"
+      "src/app.mjs:5019"
     ],
     "context": "status(state.motionPaths ? {messageKey: \"app.motionPathsOn\", messageParams: {}} : {messageKey: \"app.motionPathsOff\", messageParams: {}});"
   },
   "app.motionPathsOn": {
     "locations": [
-      "src/app.mjs:5018"
+      "src/app.mjs:5019"
     ],
     "context": "status(state.motionPaths ? {messageKey: \"app.motionPathsOn\", messageParams: {}} : {messageKey: \"app.motionPathsOff\", messageParams: {}});"
   },
@@ -841,13 +841,13 @@
   },
   "app.notNow": {
     "locations": [
-      "src/app.mjs:6068"
+      "src/app.mjs:6069"
     ],
     "context": "{ label: interfaceText(\"app.notNow\"), labelKey: \"app.notNow\", id: \"dismiss-recovery\" },"
   },
   "app.nudgeCamera": {
     "locations": [
-      "src/app.mjs:5369"
+      "src/app.mjs:5370"
     ],
     "context": "editor.beginCameraDrag({ indices: rangeFrames(), label: interfaceText(\"app.nudgeCamera\"), labelKey: \"app.nudgeCamera\" });"
   },
@@ -926,8 +926,8 @@
   },
   "app.pastingFrames": {
     "locations": [
-      "src/app.mjs:6270",
-      "src/app.mjs:6300"
+      "src/app.mjs:6271",
+      "src/app.mjs:6301"
     ],
     "context": "paste: interfaceText(\"app.pastingFrames\"),"
   },
@@ -987,14 +987,14 @@
   },
   "app.preparingCanvasAndEffects": {
     "locations": [
-      "src/app.mjs:6663"
+      "src/app.mjs:6664"
     ],
     "context": "status({messageKey: \"app.preparingCanvasAndEffects\", messageParams: {}}, false, true);"
   },
   "app.preservingAnimation": {
     "locations": [
-      "src/app.mjs:6201",
-      "src/app.mjs:6220"
+      "src/app.mjs:6202",
+      "src/app.mjs:6221"
     ],
     "context": "localizedText($(\"layer-progress-label\"), (latest.phase === \"staging\" ? \"app.applyingLayerChanges\" : \"app.preservingAnimation\"), (latest.phase === \"staging\" ? {}"
   },
@@ -1022,20 +1022,20 @@
       "src/app.mjs:2171",
       "src/app.mjs:3651",
       "src/app.mjs:3910",
-      "src/app.mjs:6676",
-      "src/app.mjs:6811"
+      "src/app.mjs:6677",
+      "src/app.mjs:6812"
     ],
     "context": "onReady(){state.editingPacket=null;status({messageKey: \"app.ready\", messageParams: {}});warmPlayback();},"
   },
   "app.reconnectCanvas": {
     "locations": [
-      "src/app.mjs:6837"
+      "src/app.mjs:6838"
     ],
     "context": "localizedMarkup($(\"renderer-error\"), `<p data-i18n=\"app.theGraphicsDeviceWasResetReconnectingYourCanvas\">${messageHTML(\"app.theGraphicsDeviceWasResetReconnectin"
   },
   "app.recoveryCopies": {
     "locations": [
-      "src/app.mjs:6061"
+      "src/app.mjs:6062"
     ],
     "context": "const messageKey = record ? \"app.recoveryOffer\" : \"app.recoveryCopies\";"
   },
@@ -1043,19 +1043,19 @@
     "locations": [
       "src/app.mjs:225",
       "src/app.mjs:4017",
-      "src/app.mjs:6037"
+      "src/app.mjs:6038"
     ],
     "context": "checkpointFailed: (error) => status({messageKey: \"app.recoveryCopyCouldNotBeWritten\", messageParams: {message: error.message}}, true),"
   },
   "app.recoveryCouldNotBeRead": {
     "locations": [
-      "src/app.mjs:6055"
+      "src/app.mjs:6056"
     ],
     "context": "}).catch(error => status({messageKey: \"app.recoveryCouldNotBeRead\", messageParams: {message: error.message}}, true));"
   },
   "app.recoveryOffer": {
     "locations": [
-      "src/app.mjs:6061"
+      "src/app.mjs:6062"
     ],
     "context": "const messageKey = record ? \"app.recoveryOffer\" : \"app.recoveryCopies\";"
   },
@@ -1074,13 +1074,13 @@
   },
   "app.restore": {
     "locations": [
-      "src/app.mjs:6070"
+      "src/app.mjs:6071"
     ],
     "context": "{ label: interfaceText(\"app.restore\"), labelKey: \"app.restore\", id: \"restore-recovery\", variant: \"outline\", dismiss: false, run: guarded(() => restore()) },"
   },
   "app.restoreUnsavedWork": {
     "locations": [
-      "src/app.mjs:6064"
+      "src/app.mjs:6065"
     ],
     "context": "slot: \"recovery\", icon: \"clock\", title: interfaceText(\"app.restoreUnsavedWork\"), titleKey: \"app.restoreUnsavedWork\", key: \"recovery\","
   },
@@ -1223,7 +1223,7 @@
   },
   "app.selectASegmentOrBranchToDelete": {
     "locations": [
-      "src/app.mjs:4847"
+      "src/app.mjs:4848"
     ],
     "context": "if (builderMode?.active) return toast(interfaceText(\"app.selectASegmentOrBranchToDelete\"), \"app.selectASegmentOrBranchToDelete\", {});"
   },
@@ -1277,7 +1277,7 @@
   },
   "app.startingThePivotConverter": {
     "locations": [
-      "src/app.mjs:6693"
+      "src/app.mjs:6694"
     ],
     "context": "if (state === \"loading\") status(stage === \"runtime\" ? {messageKey: \"app.loadingThePivotConverterFirstUseOnly\", messageParams: {}} : {messageKey: \"app.startingTh"
   },
@@ -1337,19 +1337,19 @@
   },
   "app.theCanvasCouldNotReconnectYourAnimationIs": {
     "locations": [
-      "src/app.mjs:6749"
+      "src/app.mjs:6750"
     ],
     "context": "localizedText($(\"renderer-error\").querySelector('p'), \"app.theCanvasCouldNotReconnectYourAnimationIs\", {});"
   },
   "app.theCanvasUsesCompatibilityRenderingWhichCanBe": {
     "locations": [
-      "src/app.mjs:6815"
+      "src/app.mjs:6816"
     ],
     "context": "toasts.show({ message: interfaceText(\"app.theCanvasUsesCompatibilityRenderingWhichCanBe\", {value:reason}), messageKey: \"app.theCanvasUsesCompatibilityRenderingW"
   },
   "app.theGraphicsDeviceWasResetReconnectingYourCanvas": {
     "locations": [
-      "src/app.mjs:6837"
+      "src/app.mjs:6838"
     ],
     "context": "localizedMarkup($(\"renderer-error\"), `<p data-i18n=\"app.theGraphicsDeviceWasResetReconnectingYourCanvas\">${messageHTML(\"app.theGraphicsDeviceWasResetReconnectin"
   },
@@ -1429,14 +1429,14 @@
   },
   "app.updatingFrames": {
     "locations": [
-      "src/app.mjs:6298",
-      "src/app.mjs:6300"
+      "src/app.mjs:6299",
+      "src/app.mjs:6301"
     ],
     "context": "labels[kind] || interfaceText(\"app.updatingFrames\"),"
   },
   "app.valueCanvasCompatibilityRenderingIsActive": {
     "locations": [
-      "src/app.mjs:6809"
+      "src/app.mjs:6810"
     ],
     "context": "if (compatibility) localizedAttribute($(\"renderer-label\"), 'title', 'app.valueCanvasCompatibilityRenderingIsActive', {value:reason});"
   },
@@ -1466,7 +1466,7 @@
   },
   "app.webgpuIsUnavailable": {
     "locations": [
-      "src/app.mjs:6808"
+      "src/app.mjs:6809"
     ],
     "context": "const reason = message.reasonKey ? {messageKey:message.reasonKey, messageParams:message.reasonParams} : message.reason || {messageKey:\"app.webgpuIsUnavailable\"}"
   },
@@ -3444,7 +3444,7 @@
   "builderOutliner.image": {
     "locations": [
       "src/builder-outliner.mjs:43",
-      "src/inspector-view.mjs:479"
+      "src/inspector-view.mjs:481"
     ],
     "context": "const KIND_LABEL = {line: 'builderOutliner.line', squareLine: 'builderOutliner.squareLine', circle: 'builderOutliner.circle', circleFill: 'builderOutliner.circl"
   },
@@ -3639,7 +3639,7 @@
   "builderSurfaceUi.jointNumber": {
     "locations": [
       "src/builder-surface-ui.mjs:21",
-      "src/inspector-view.mjs:466",
+      "src/inspector-view.mjs:468",
       "src/rig-controls.mjs:85",
       "src/rig-test-ui.mjs:45",
       "src/spatial-controls.mjs:78",
@@ -7337,8 +7337,8 @@
       "src/app-dialogs.mjs:98",
       "src/app-dialogs.mjs:147",
       "src/app-dialogs.mjs:328",
-      "src/app.mjs:6220",
-      "src/app.mjs:6299",
+      "src/app.mjs:6221",
+      "src/app.mjs:6300",
       "src/builder-surface-ui.mjs:23",
       "src/color-picker.mjs:155",
       "src/color-picker.mjs:157",
@@ -7463,7 +7463,7 @@
   "common.name": {
     "locations": [
       "src/background-dialog.mjs:64",
-      "src/inspector-view.mjs:300",
+      "src/inspector-view.mjs:301",
       "src/shell/layout-popover.mjs:230",
       "src/shell/layout-popover.mjs:239",
       "src/vfx-preset-ui.mjs:48",
@@ -7618,9 +7618,9 @@
   },
   "counts.fills": {
     "locations": [
-      "src/inspector-view.mjs:420",
       "src/inspector-view.mjs:421",
-      "src/inspector-view.mjs:426"
+      "src/inspector-view.mjs:422",
+      "src/inspector-view.mjs:427"
     ],
     "context": "label: interfaceText(entry.meshColors?.length ? 'inspectorView.replaceFigureColor' : entry.polygons.length ? 'inspectorView.replaceColorSegmentsAndFills' : 'ins"
   },
@@ -7654,7 +7654,7 @@
   "counts.parts": {
     "locations": [
       "src/builder-outliner.mjs:231",
-      "src/inspector-view.mjs:467"
+      "src/inspector-view.mjs:469"
     ],
     "context": "figure ? interfaceText('counts.parts', {count: figure.segments.length}) : '';"
   },
@@ -7667,9 +7667,9 @@
   "counts.segments": {
     "locations": [
       "src/asset-library.mjs:265",
-      "src/inspector-view.mjs:420",
       "src/inspector-view.mjs:421",
-      "src/inspector-view.mjs:467"
+      "src/inspector-view.mjs:422",
+      "src/inspector-view.mjs:469"
     ],
     "context": "localizedText(row.querySelector('.styk-asset-detail'), 'counts.segments', {count: record.segmentCount});"
   },
@@ -12088,20 +12088,20 @@
   },
   "errors.app.selectFiguresInOneConnectedGroup": {
     "locations": [
-      "src/app.mjs:4764"
+      "src/app.mjs:4765"
     ],
     "context": "throw messageError(new Error(''), \"errors.app.selectFiguresInOneConnectedGroup\", {});"
   },
   "errors.app.selectionChangedReopenTheColorPicker": {
     "locations": [
-      "src/app.mjs:6868",
-      "src/app.mjs:6875"
+      "src/app.mjs:6869",
+      "src/app.mjs:6876"
     ],
     "context": "if(editor.report!==report||editor.tick!==tick||[...editor.selectedUids].join(',')!==uids)throw messageError(new Error(''), \"errors.app.selectionChangedReopenThe"
   },
   "errors.app.selectionChangedReopenThePalette": {
     "locations": [
-      "src/app.mjs:6861"
+      "src/app.mjs:6862"
     ],
     "context": "if(editor.report!==report||editor.selectedUid!==uid||editor.figure!==figure||editor.tick!==tick)throw messageError(new Error(''), \"errors.app.selectionChangedRe"
   },
@@ -12131,25 +12131,25 @@
   },
   "errors.app.theGraphicsDeviceWasLost": {
     "locations": [
-      "src/app.mjs:6820"
+      "src/app.mjs:6821"
     ],
     "context": "telemetry.error(Object.assign(messageError(new Error(''), \"errors.app.theGraphicsDeviceWasLost\", {}), { name: 'GPUError', telemetryCode: 'device_lost' }), 'gpu'"
   },
   "errors.app.theRecoveryCopyChangedReopenStykanimateToSee": {
     "locations": [
-      "src/app.mjs:6092"
+      "src/app.mjs:6093"
     ],
     "context": "if (!copy || copy.savedAt !== chosen.savedAt || copy.token !== chosen.token) throw messageError(new Error(''), \"errors.app.theRecoveryCopyChangedReopenStykanima"
   },
   "errors.app.theRecoveryFileIsNoLongerAvailable": {
     "locations": [
-      "src/app.mjs:6089"
+      "src/app.mjs:6090"
     ],
     "context": "if (!copy) throw messageError(new Error(''), \"errors.app.theRecoveryFileIsNoLongerAvailable\", {});"
   },
   "errors.app.thisRecoveryCopyIsOpenInAnotherTab": {
     "locations": [
-      "src/app.mjs:6083"
+      "src/app.mjs:6084"
     ],
     "context": "if (browserRecovery && !reservation) throw messageError(new Error(''), \"errors.app.thisRecoveryCopyIsOpenInAnotherTab\", {});"
   },
@@ -14507,251 +14507,251 @@
   },
   "errors.editor.aFigureNeedsAtLeastOneSegment": {
     "locations": [
-      "src/editor.mjs:1425"
+      "src/editor.mjs:1426"
     ],
     "context": "if (!definition || !Array.isArray(definition.segments) || !definition.segments.length) throw messageError(new Error(''), \"errors.editor.aFigureNeedsAtLeastOneSe"
   },
   "errors.editor.asynchronousImportRequiresASeparateIncomingDocument": {
     "locations": [
-      "src/editor.mjs:482"
+      "src/editor.mjs:483"
     ],
     "context": "if (report === this.report) throw messageError(new Error(''), \"errors.editor.asynchronousImportRequiresASeparateIncomingDocument\", {});"
   },
   "errors.editor.backgroundColorMustBeAnArgbValue": {
     "locations": [
-      "src/editor.mjs:1682"
+      "src/editor.mjs:1683"
     ],
     "context": "if (!Number.isInteger(color) || color < 0 || color > 0xffffffff) throw messageError(new Error(''), \"errors.editor.backgroundColorMustBeAnArgbValue\", {});"
   },
   "errors.editor.canvasDimensionsMustBe1100000Pixels": {
     "locations": [
-      "src/editor.mjs:1668",
-      "src/editor.mjs:1674"
+      "src/editor.mjs:1669",
+      "src/editor.mjs:1675"
     ],
     "context": "if (![width, height].every(n => Number.isInteger(n) && n >= 1 && n <= 100000)) throw messageError(new Error(''), \"errors.editor.canvasDimensionsMustBe1100000Pix"
   },
   "errors.editor.chooseAFigureFromTheLibrary": {
     "locations": [
-      "src/editor.mjs:708"
+      "src/editor.mjs:709"
     ],
     "context": "if (!fig) throw messageError(new Error(''), \"errors.editor.chooseAFigureFromTheLibrary\", {});"
   },
   "errors.editor.chooseALineOrCircleSegment": {
     "locations": [
-      "src/editor.mjs:1551"
+      "src/editor.mjs:1552"
     ],
     "context": "if (![0,1,3,4,6].includes(code)) throw messageError(new Error(''), \"errors.editor.chooseALineOrCircleSegment\", {});"
   },
   "errors.editor.chooseAnOriginWhosePathContainsOrdinaryLines": {
     "locations": [
-      "src/editor.mjs:1500"
+      "src/editor.mjs:1501"
     ],
     "context": "throw messageError(new Error(''), \"errors.editor.chooseAnOriginWhosePathContainsOrdinaryLines\", {});"
   },
   "errors.editor.chooseAnotherFigureAndAValidJoint": {
     "locations": [
-      "src/editor.mjs:1287"
+      "src/editor.mjs:1288"
     ],
     "context": "if (!target || targetSlot === slot || ![0, ...figure.segments.map(s => s.segment_id)].includes(handleId)) throw messageError(new Error(''), \"errors.editor.choos"
   },
   "errors.editor.colorMustContainThreeRgbBytes": {
     "locations": [
-      "src/editor.mjs:1039"
+      "src/editor.mjs:1040"
     ],
     "context": "if ('color_rgb' in patch && (!Array.isArray(patch.color_rgb) || patch.color_rgb.length !== 3 || patch.color_rgb.some(n => !Number.isInteger(n) || n < 0 || n > 2"
   },
   "errors.editor.connectorPositionMustBe01SegmentLengths": {
     "locations": [
-      "src/editor.mjs:1044"
+      "src/editor.mjs:1045"
     ],
     "context": "if('length' in pose && (pose.length<0 || fig.segments[index]._stykRig?.connector && pose.length>1))throw messageError(new Error(''), \"errors.editor.connectorPos"
   },
   "errors.editor.editableGeometryWasSuperseded": {
     "locations": [
-      "src/editor.mjs:186"
+      "src/editor.mjs:187"
     ],
     "context": "if(!checkCurrent())throw messageError(new DOMException('', 'AbortError'), \"errors.editor.editableGeometryWasSuperseded\", {});"
   },
   "errors.editor.expandTheStretchDriverBeforePosingAFully": {
     "locations": [
-      "src/editor.mjs:1143"
+      "src/editor.mjs:1144"
     ],
     "context": "if(current<1e-8||chordLength<1e-8)throw messageError(new UserActionError(''), \"errors.editor.expandTheStretchDriverBeforePosingAFully\", {});"
   },
   "errors.editor.expectedADecodedImageColorOrGradientBackground": {
     "locations": [
-      "src/editor.mjs:1703"
+      "src/editor.mjs:1704"
     ],
     "context": "if (!source || ![0, 1, 2, 3, 4].includes(source.kind)) throw messageError(new Error(''), \"errors.editor.expectedADecodedImageColorOrGradientBackground\", {});"
   },
   "errors.editor.fpsMustBeAnIntegerBetween1And": {
     "locations": [
-      "src/editor.mjs:1652",
-      "src/editor.mjs:1675"
+      "src/editor.mjs:1653",
+      "src/editor.mjs:1676"
     ],
     "context": "if (!Number.isInteger(value) || value < 1 || value > 1000) throw messageError(new Error(''), \"errors.editor.fpsMustBeAnIntegerBetween1And\", {});"
   },
   "errors.editor.historyChangedBeforeUndoRedoCompleted": {
     "locations": [
-      "src/editor.mjs:460"
+      "src/editor.mjs:461"
     ],
     "context": "const check=()=>{if(signal?.aborted||report!==this.report||revision!==this.revision||source.at(-1)!==command)throw messageError(new DOMException('', 'AbortError"
   },
   "errors.editor.joiningTheseFiguresWouldCreateACycle": {
     "locations": [
-      "src/editor.mjs:1290",
+      "src/editor.mjs:1291",
       "src/range-figure-operations.mjs:392"
     ],
     "context": "if (current === slot) throw messageError(new Error(''), \"errors.editor.joiningTheseFiguresWouldCreateACycle\", {});"
   },
   "errors.editor.layerDirectionMustBeAWholeNumber": {
     "locations": [
-      "src/editor.mjs:892"
+      "src/editor.mjs:893"
     ],
     "context": "if (!Number.isInteger(direction)) throw messageError(new Error(''), \"errors.editor.layerDirectionMustBeAWholeNumber\", {});"
   },
   "errors.editor.opacityMustBeAByte": {
     "locations": [
-      "src/editor.mjs:1026"
+      "src/editor.mjs:1027"
     ],
     "context": "if ('field28' in patch && (!Number.isInteger(patch.field28) || patch.field28 < 0 || patch.field28 > 255)) throw messageError(new Error(''), \"errors.editor.opaci"
   },
   "errors.editor.openTheMovieclipToEditItsFigures": {
     "locations": [
-      "src/editor.mjs:1379"
+      "src/editor.mjs:1380"
     ],
     "context": "if(isMovieclip(definition ?? this.figure))throw messageError(new Error(''), \"errors.editor.openTheMovieclipToEditItsFigures\", {});"
   },
   "errors.editor.preparedGeometryMustBelongToTheExactInitial": {
     "locations": [
-      "src/editor.mjs:505"
+      "src/editor.mjs:506"
     ],
     "context": "throw messageError(new Error(''), \"errors.editor.preparedGeometryMustBelongToTheExactInitial\", {});"
   },
   "errors.editor.projectSettingIsNotEditableHere": {
     "locations": [
-      "src/editor.mjs:1672"
+      "src/editor.mjs:1673"
     ],
     "context": "for (const key of Object.keys(patch)) if (!['canvas_width', 'canvas_height', 'fps'].includes(key)) throw messageError(new Error(''), \"errors.editor.projectSetti"
   },
   "errors.editor.provideAnInitialScenePreparationFunction": {
     "locations": [
-      "src/editor.mjs:485"
+      "src/editor.mjs:486"
     ],
     "context": "if(options.prepareScene!==undefined&&typeof options.prepareScene!=='function')throw messageError(new Error(''), \"errors.editor.provideAnInitialScenePreparationF"
   },
   "errors.editor.scaleCannotBeNegative": {
     "locations": [
-      "src/editor.mjs:862",
-      "src/editor.mjs:870",
-      "src/editor.mjs:1025",
+      "src/editor.mjs:863",
+      "src/editor.mjs:871",
+      "src/editor.mjs:1026",
       "src/range-figure-operations.mjs:57"
     ],
     "context": "finite(factor, 'Scale'); if (factor < 0) throw messageError(new Error(''), \"errors.editor.scaleCannotBeNegative\", {});"
   },
   "errors.editor.segmentLengthAndThicknessCannotBeNegative": {
     "locations": [
-      "src/editor.mjs:1549",
-      "src/editor.mjs:1559"
+      "src/editor.mjs:1550",
+      "src/editor.mjs:1560"
     ],
     "context": "if (length < 0 || thickness < 0) throw messageError(new Error(''), \"errors.editor.segmentLengthAndThicknessCannotBeNegative\", {});"
   },
   "errors.editor.selectAValidJointForTheNewOrigin": {
     "locations": [
-      "src/editor.mjs:1488"
+      "src/editor.mjs:1489"
     ],
     "context": "if (!Number.isInteger(handleId) || !figure.segments.some(s => s.segment_id === handleId)) throw messageError(new Error(''), \"errors.editor.selectAValidJointForT"
   },
   "errors.editor.selectExistingKeyframes": {
     "locations": [
-      "src/editor.mjs:969"
+      "src/editor.mjs:970"
     ],
     "context": "if (result.some(i => !Number.isInteger(i) || i < 0 || i >= this.report.keyframes.length)) throw messageError(new Error(''), \"errors.editor.selectExistingKeyfram"
   },
   "errors.editor.selectExistingSegmentsToDelete": {
     "locations": [
-      "src/editor.mjs:1616"
+      "src/editor.mjs:1617"
     ],
     "context": "if (!ids.size || [...ids].some(id => !valid.has(id))) throw messageError(new Error(''), \"errors.editor.selectExistingSegmentsToDelete\", {});"
   },
   "errors.editor.setTheFigureOriginBeforeConfiguringRigRelationships": {
     "locations": [
-      "src/editor.mjs:1486"
+      "src/editor.mjs:1487"
     ],
     "context": "if(this.figure?.segments.some(s=>s._stykRig))throw messageError(new Error(''), \"errors.editor.setTheFigureOriginBeforeConfiguringRigRelationships\", {});"
   },
   "errors.editor.snapToleranceCannotBeNegative": {
     "locations": [
-      "src/editor.mjs:1122",
-      "src/editor.mjs:1181"
+      "src/editor.mjs:1123",
+      "src/editor.mjs:1182"
     ],
     "context": "finite(snapTolerance, 'Snap tolerance'); if (snapTolerance < 0) throw messageError(new Error(''), \"errors.editor.snapToleranceCannotBeNegative\", {});"
   },
   "errors.editor.theDocumentChangedWhileImporting": {
     "locations": [
-      "src/editor.mjs:493"
+      "src/editor.mjs:494"
     ],
     "context": "throw messageError(new DOMException('', 'AbortError'), \"errors.editor.theDocumentChangedWhileImporting\", {});"
   },
   "errors.editor.theDocumentNameMustBeText": {
     "locations": [
-      "src/editor.mjs:484",
-      "src/editor.mjs:512"
+      "src/editor.mjs:485",
+      "src/editor.mjs:513"
     ],
     "context": "if(name!==undefined&&name!==null&&typeof name!=='string')throw messageError(new Error(''), \"errors.editor.theDocumentNameMustBeText\", {});"
   },
   "errors.editor.theFigureDefinitionDoesNotExist": {
     "locations": [
-      "src/editor.mjs:1424"
+      "src/editor.mjs:1425"
     ],
     "context": "if (index < 0) throw messageError(new Error(''), \"errors.editor.theFigureDefinitionDoesNotExist\", {});"
   },
   "errors.editor.theImportedFileContainsNoFigureDefinitions": {
     "locations": [
-      "src/editor.mjs:1724"
+      "src/editor.mjs:1725"
     ],
     "context": "if (!figures.length) throw messageError(new Error(''), \"errors.editor.theImportedFileContainsNoFigureDefinitions\", {});"
   },
   "errors.editor.theSegmentParentDoesNotExist": {
     "locations": [
-      "src/editor.mjs:1561",
-      "src/editor.mjs:1563"
+      "src/editor.mjs:1562",
+      "src/editor.mjs:1564"
     ],
     "context": "if (parent !== 0 && !this.figure?.segments.some(s => s.segment_id === parent)) throw messageError(new Error(''), \"errors.editor.theSegmentParentDoesNotExist\", {"
   },
   "errors.editor.thicknessCannotBeNegative": {
     "locations": [
-      "src/editor.mjs:1058"
+      "src/editor.mjs:1059"
     ],
     "context": "if ('thickness' in definition && finite(definition.thickness, 'Thickness') < 0) throw messageError(new Error(''), \"errors.editor.thicknessCannotBeNegative\", {})"
   },
   "errors.editor.transparencyMustBeAByte": {
     "locations": [
-      "src/editor.mjs:1040"
+      "src/editor.mjs:1041"
     ],
     "context": "if ('transparency' in patch && (!Number.isInteger(patch.transparency) || patch.transparency < 0 || patch.transparency > 255)) throw messageError(new Error(''), "
   },
   "errors.editor.unknownSegmentPrimitive": {
     "locations": [
-      "src/editor.mjs:1041"
+      "src/editor.mjs:1042"
     ],
     "context": "if ('primitive_code' in patch && ![0, 1, 2, 3, 4, 5, 6].includes(patch.primitive_code)) throw messageError(new Error(''), \"errors.editor.unknownSegmentPrimitive"
   },
   "errors.editor.useGroupTransformCommandsToChangeSelectionGeometry": {
     "locations": [
-      "src/editor.mjs:1031"
+      "src/editor.mjs:1032"
     ],
     "context": "if (Object.keys(patch).some(k => !['color_override_raw', 'field28', 'image_text_flags', 'name', '_styk'].includes(k))) throw messageError(new Error(''), \"errors"
   },
   "errors.editor.useStructuralOperationsToChangeFigureIdentityOr": {
     "locations": [
-      "src/editor.mjs:1027"
+      "src/editor.mjs:1028"
     ],
     "context": "if ('unique_id' in patch || 'figure_type_id' in patch || 'object_slot' in patch || 'join' in patch) throw messageError(new Error(''), \"errors.editor.useStructur"
   },
   "errors.editor.useTheFigureBuilderToChangeJointHierarchy": {
     "locations": [
-      "src/editor.mjs:1057"
+      "src/editor.mjs:1058"
     ],
     "context": "for (const field of ['segment_id', 'parent_id']) if (field in definition) throw messageError(new Error(''), \"errors.editor.useTheFigureBuilderToChangeJointHiera"
   },
@@ -15010,7 +15010,7 @@
   "errors.editorBuilderBranch.aNativePivotFigureSupportsAtMost30": {
     "locations": [
       "src/editor-builder-branch.mjs:300",
-      "src/pivot/model.mjs:183"
+      "src/pivot/model.mjs:184"
     ],
     "context": "if (figure.segments.length + targets.indices.length > 30000) throw messageError(new Error(''), \"errors.editorBuilderBranch.aNativePivotFigureSupportsAtMost30\", "
   },
@@ -15067,7 +15067,7 @@
     "locations": [
       "src/editor-builder-branch.mjs:195",
       "src/editor-rig-constraints.mjs:44",
-      "src/editor.mjs:1565"
+      "src/editor.mjs:1566"
     ],
     "context": "if (candidate > 65535) throw messageError(new Error(''), \"errors.editorBuilderBranch.figureJointCapacityReached\", {});"
   },
@@ -15180,7 +15180,7 @@
   "errors.editorBuilderTopology.aFigureNeedsAtLeastOneSegmentDelete": {
     "locations": [
       "src/editor-builder-topology.mjs:100",
-      "src/editor.mjs:1623"
+      "src/editor.mjs:1624"
     ],
     "context": "if (figure.segments.length === 1) throw messageError(new Error(''), \"errors.editorBuilderTopology.aFigureNeedsAtLeastOneSegmentDelete\", {});"
   },
@@ -15199,8 +15199,8 @@
   "errors.editorBuilderTopology.chooseAHorizontalOrVerticalFlip": {
     "locations": [
       "src/editor-builder-topology.mjs:146",
-      "src/editor.mjs:877",
-      "src/editor.mjs:1235",
+      "src/editor.mjs:878",
+      "src/editor.mjs:1236",
       "src/range-figure-operations.mjs:60"
     ],
     "context": "if (!['horizontal', 'vertical'].includes(axis)) throw messageError(new Error(''), \"errors.editorBuilderTopology.chooseAHorizontalOrVerticalFlip\", {});"
@@ -15259,7 +15259,7 @@
     "locations": [
       "src/editor-camera.mjs:32",
       "src/editor-motion-path.mjs:40",
-      "src/pivot/model.mjs:293"
+      "src/pivot/model.mjs:295"
     ],
     "context": "if (camera.scale <= 0) throw messageError(new Error(''), \"errors.editorCamera.cameraScaleMustBePositive\", {});"
   },
@@ -15299,7 +15299,7 @@
     "locations": [
       "src/editor-camera.mjs:19",
       "src/editor-motion-path.mjs:27",
-      "src/editor.mjs:78"
+      "src/editor.mjs:79"
     ],
     "context": "if (typeof value !== 'number' || !Number.isFinite(value)) throw messageError(new Error(''), \"errors.editorCamera.mustBeFinite\", {label: label});"
   },
@@ -16554,7 +16554,7 @@
       "src/editor-layer-sheet.mjs:701",
       "src/editor-range-commands.mjs:73",
       "src/editor-range-commands.mjs:220",
-      "src/editor.mjs:705"
+      "src/editor.mjs:706"
     ],
     "context": "if(!uidMap.has(uid)){if(nextUid>0x7ffffffe)throw messageError(new Error(''), \"errors.editorLayerSheet.objectIdentityCapacityReached\", {});uidMap.set(uid,nextUid"
   },
@@ -16664,7 +16664,7 @@
   "errors.editorLoad.importCancelled": {
     "locations": [
       "src/editor-load.mjs:128",
-      "src/editor.mjs:489",
+      "src/editor.mjs:490",
       "src/import-wire.mjs:110",
       "src/import-worker.mjs:26"
     ],
@@ -16679,8 +16679,8 @@
   "errors.editorMotionPath.reduceTheFullCircleBendBeforeStretchingThis": {
     "locations": [
       "src/editor-motion-path.mjs:280",
-      "src/editor.mjs:1163",
-      "src/editor.mjs:1200"
+      "src/editor.mjs:1164",
+      "src/editor.mjs:1201"
     ],
     "context": "if (chord < 1e-8) throw messageError(new Error(''), \"errors.editorMotionPath.reduceTheFullCircleBendBeforeStretchingThis\", {});"
   },
@@ -16871,7 +16871,7 @@
   "errors.editorRangeCommands.chooseAValidCanvasPosition": {
     "locations": [
       "src/editor-range-commands.mjs:122",
-      "src/editor.mjs:1719"
+      "src/editor.mjs:1720"
     ],
     "context": "if (![dx, dy].every(Number.isFinite)) throw messageError(new Error(''), \"errors.editorRangeCommands.chooseAValidCanvasPosition\", {});"
   },
@@ -16926,7 +16926,7 @@
   "errors.editorRanges.keyframeDurationMustBe065535Frames": {
     "locations": [
       "src/editor-ranges.mjs:10",
-      "src/editor.mjs:1664"
+      "src/editor.mjs:1665"
     ],
     "context": "throw messageError(new Error(''), \"errors.editorRanges.keyframeDurationMustBe065535Frames\", {});"
   },
@@ -17011,7 +17011,7 @@
   "errors.editorRigConstraints.figureSegmentCapacityReached": {
     "locations": [
       "src/editor-rig-constraints.mjs:42",
-      "src/editor.mjs:1546"
+      "src/editor.mjs:1547"
     ],
     "context": "if(figure.segments.length>=30000)throw messageError(new Error(''), \"errors.editorRigConstraints.figureSegmentCapacityReached\", {});"
   },
@@ -17142,8 +17142,8 @@
       "src/editor-selection.mjs:48",
       "src/ik-joined.mjs:45",
       "src/ik-joined.mjs:88",
-      "src/pivot/model.mjs:106",
-      "src/pivot/model.mjs:269",
+      "src/pivot/model.mjs:107",
+      "src/pivot/model.mjs:271",
       "src/pivot/structure.mjs:82",
       "src/range-figure-operations.mjs:88"
     ],
@@ -17967,25 +17967,25 @@
   },
   "errors.geometry.chooseANonnegativeGeometryPreparationSliceDuration": {
     "locations": [
-      "src/pivot/geometry.mjs:991"
+      "src/pivot/geometry.mjs:995"
     ],
     "context": "if (!Number.isFinite(sliceMs) || sliceMs < 0) throw messageError(new Error(''), \"errors.geometry.chooseANonnegativeGeometryPreparationSliceDuration\", {});"
   },
   "errors.geometry.geometryPreparationWasCancelledOrSuperseded": {
     "locations": [
-      "src/pivot/geometry.mjs:994"
+      "src/pivot/geometry.mjs:998"
     ],
     "context": "throw messageError(new DOMException('', 'AbortError'), \"errors.geometry.geometryPreparationWasCancelledOrSuperseded\", {});"
   },
   "errors.geometry.theTemporaryDrawingCanvasIsUnavailable": {
     "locations": [
-      "src/pivot/geometry.mjs:1105"
+      "src/pivot/geometry.mjs:1109"
     ],
     "context": "if (!temp || temp.isContextLost?.()) throw Object.assign(messageError(new Error(''), \"errors.geometry.theTemporaryDrawingCanvasIsUnavailable\", {}), { telemetryC"
   },
   "errors.geometry.theTemporaryDrawingCanvasWasLostWhileRendering": {
     "locations": [
-      "src/pivot/geometry.mjs:1111"
+      "src/pivot/geometry.mjs:1115"
     ],
     "context": "if (temp.isContextLost?.()) throw Object.assign(messageError(new Error(''), \"errors.geometry.theTemporaryDrawingCanvasWasLostWhileRendering\", {}), { telemetryCo"
   },
@@ -19117,168 +19117,168 @@
   },
   "errors.model.aGestureCannotChangeFigureIdentities": {
     "locations": [
-      "src/pivot/model.mjs:99"
+      "src/pivot/model.mjs:100"
     ],
     "context": "if (slots.length !== changed.size) throw messageError(new Error(''), \"errors.model.aGestureCannotChangeFigureIdentities\", {});"
   },
   "errors.model.canvasDimensionsMustBeIntegersFrom1To": {
     "locations": [
-      "src/pivot/model.mjs:157"
+      "src/pivot/model.mjs:158"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.canvasDimensionsMustBeIntegersFrom1To\", {});"
   },
   "errors.model.exceedsTheNativeFloat32Range": {
     "locations": [
-      "src/pivot/model.mjs:40"
+      "src/pivot/model.mjs:41"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.exceedsTheNativeFloat32Range\", {label: validationLabel(label)});"
   },
   "errors.model.expectedADecodedPivot25Scene": {
     "locations": [
-      "src/pivot/model.mjs:150"
+      "src/pivot/model.mjs:151"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.expectedADecodedPivot25Scene\", {});"
   },
   "errors.model.figureHasAMissingParentOrACycle": {
     "locations": [
-      "src/pivot/model.mjs:213"
+      "src/pivot/model.mjs:214"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.figureHasAMissingParentOrACycle\", {});"
   },
   "errors.model.figureTableExceedsTheOneMillionSegmentLimit": {
     "locations": [
-      "src/pivot/model.mjs:186"
+      "src/pivot/model.mjs:187"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.figureTableExceedsTheOneMillionSegmentLimit\", {});"
   },
   "errors.model.fpsMustBeBetween1And1000": {
     "locations": [
-      "src/pivot/model.mjs:162"
+      "src/pivot/model.mjs:163"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.fpsMustBeBetween1And1000\", {});"
   },
   "errors.model.frameReferencesAMissingBackground": {
     "locations": [
-      "src/pivot/model.mjs:355"
+      "src/pivot/model.mjs:357"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.frameReferencesAMissingBackground\", {});"
   },
   "errors.model.ikCannotDriveADerivedConnectorWeightedOr": {
     "locations": [
-      "src/pivot/model.mjs:54"
+      "src/pivot/model.mjs:55"
     ],
     "context": "if(object._stykIK)for(const [id,c] of Object.entries(object._stykIK))if(c.enabled&&!rigIKAllowed(figure,figure.segments.findIndex(s=>s.segment_id===Number(id)))"
   },
   "errors.model.invalidFigureLayerOrder": {
     "locations": [
-      "src/pivot/model.mjs:287"
+      "src/pivot/model.mjs:289"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.invalidFigureLayerOrder\", {});"
   },
   "errors.model.invalidKeyframeObjectsOrDuration": {
     "locations": [
-      "src/pivot/model.mjs:238"
+      "src/pivot/model.mjs:240"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.invalidKeyframeObjectsOrDuration\", {});"
   },
   "errors.model.invalidOrRepeatedBackgroundId": {
     "locations": [
-      "src/pivot/model.mjs:337"
+      "src/pivot/model.mjs:339"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.invalidOrRepeatedBackgroundId\", {});"
   },
   "errors.model.invalidOrRepeatedFigureType": {
     "locations": [
-      "src/pivot/model.mjs:79",
-      "src/pivot/model.mjs:180"
+      "src/pivot/model.mjs:80",
+      "src/pivot/model.mjs:181"
     ],
     "context": "if (types.has(figure.figure_type_id)) throw messageError(new Error(''), \"errors.model.invalidOrRepeatedFigureType\", {});"
   },
   "errors.model.invalidOrRepeatedSegmentHandle": {
     "locations": [
-      "src/pivot/model.mjs:197"
+      "src/pivot/model.mjs:198"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.invalidOrRepeatedSegmentHandle\", {});"
   },
   "errors.model.invalidOutlineWidth": {
     "locations": [
-      "src/pivot/model.mjs:312"
+      "src/pivot/model.mjs:314"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.invalidOutlineWidth\", {});"
   },
   "errors.model.joinPointsToAMissingFigureOrHandle": {
     "locations": [
-      "src/pivot/model.mjs:110",
-      "src/pivot/model.mjs:113",
-      "src/pivot/model.mjs:259"
+      "src/pivot/model.mjs:111",
+      "src/pivot/model.mjs:114",
+      "src/pivot/model.mjs:261"
     ],
     "context": "if (!Number.isInteger(targetSlot) || !parent) throw messageError(new Error(''), \"errors.model.joinPointsToAMissingFigureOrHandle\", {});"
   },
   "errors.model.mustBeAFiniteNumber": {
     "locations": [
-      "src/pivot/model.mjs:22"
+      "src/pivot/model.mjs:23"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.mustBeAFiniteNumber\", {label: validationLabel(label)});"
   },
   "errors.model.mustBeAnIntegerFromTo": {
     "locations": [
-      "src/pivot/model.mjs:35"
+      "src/pivot/model.mjs:36"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.mustBeAnIntegerFromTo\", {label: validationLabel(label), min: min, max: max});"
   },
   "errors.model.needsThreeRgbBytes": {
     "locations": [
-      "src/pivot/model.mjs:44"
+      "src/pivot/model.mjs:45"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.needsThreeRgbBytes\", {label: validationLabel(label)});"
   },
   "errors.model.objectScaleCannotBeNegative": {
     "locations": [
-      "src/pivot/model.mjs:64"
+      "src/pivot/model.mjs:65"
     ],
     "context": "if (object.scale < 0) throw messageError(new Error(''), \"errors.model.objectScaleCannotBeNegative\", {});"
   },
   "errors.model.outlineWidthCannotBeNegative": {
     "locations": [
-      "src/pivot/model.mjs:306"
+      "src/pivot/model.mjs:308"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.outlineWidthCannotBeNegative\", {});"
   },
   "errors.model.polygonOpacityMustBeBetweenZeroAndOne": {
     "locations": [
-      "src/pivot/model.mjs:321"
+      "src/pivot/model.mjs:323"
     ],
     "context": "if(poly.color_alpha!==undefined){finite(poly.color_alpha,'Polygon opacity');if(poly.color_alpha<0||poly.color_alpha>1)throw messageError(new Error(''), \"errors."
   },
   "errors.model.poseArrayDoesNotMatchItsFigure": {
     "locations": [
-      "src/pivot/model.mjs:67"
+      "src/pivot/model.mjs:68"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.poseArrayDoesNotMatchItsFigure\", {});"
   },
   "errors.model.radialBackgroundRadiiCannotBeNegative": {
     "locations": [
-      "src/pivot/model.mjs:346"
+      "src/pivot/model.mjs:348"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.radialBackgroundRadiiCannotBeNegative\", {});"
   },
   "errors.model.sceneExceedsTheTwoMillionObjectLimit": {
     "locations": [
-      "src/pivot/model.mjs:242"
+      "src/pivot/model.mjs:244"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.sceneExceedsTheTwoMillionObjectLimit\", {});"
   },
   "errors.model.sceneMustHaveAValidFigureTableAnd": {
     "locations": [
-      "src/pivot/model.mjs:170"
+      "src/pivot/model.mjs:171"
     ],
     "context": "throw messageError(new Error(''), \"errors.model.sceneMustHaveAValidFigureTableAnd\", {});"
   },
   "errors.model.unknownFigureOrRepeatedObjectIdentity": {
     "locations": [
-      "src/pivot/model.mjs:84",
-      "src/pivot/model.mjs:95",
-      "src/pivot/model.mjs:247"
+      "src/pivot/model.mjs:85",
+      "src/pivot/model.mjs:96",
+      "src/pivot/model.mjs:249"
     ],
     "context": "if (!figure) throw messageError(new Error(''), \"errors.model.unknownFigureOrRepeatedObjectIdentity\", {});"
   },
@@ -20641,6 +20641,43 @@
       "src/property-controls.mjs:169"
     ],
     "context": "throw messageError(new Error(''), \"errors.propertyControls.thisPropertyHasNoFiniteNumericValue\", {});"
+  },
+  "errors.puppet.aPuppetNeedsArticulatedBones": {
+    "locations": [
+      "src/puppet.mjs:52"
+    ],
+    "context": "if(!figure.segments.some(spatialBone))throw messageError(new Error(''), \"errors.puppet.aPuppetNeedsArticulatedBones\", {});"
+  },
+  "errors.puppet.chooseAFigureToMakeA3dPuppet": {
+    "locations": [
+      "src/editor-puppet.mjs:12",
+      "src/puppet.mjs:25"
+    ],
+    "context": "if(!figure)throw messageError(new Error(''), \"errors.puppet.chooseAFigureToMakeA3dPuppet\", {});"
+  },
+  "errors.puppet.invalidPuppetSettings": {
+    "locations": [
+      "src/puppet.mjs:51"
+    ],
+    "context": "if(!p||typeof p!=='object'||Array.isArray(p)||Object.keys(p).some(k=>k!=='version')||p.version!==PUPPET_VERSION)throw messageError(new Error(''), \"errors.puppet"
+  },
+  "errors.puppet.theFigureHasAMissingParentOrACycle": {
+    "locations": [
+      "src/puppet.mjs:31"
+    ],
+    "context": "const s=byId.get(id);if(!s)throw messageError(new Error(''), \"errors.puppet.theFigureHasAMissingParentOrACycle\", {});"
+  },
+  "errors.puppet.thisFigureIsAlreadyA3dFigure": {
+    "locations": [
+      "src/puppet.mjs:26"
+    ],
+    "context": "if(isPuppet(figure)||hasSpatialRig(figure))throw messageError(new Error(''), \"errors.puppet.thisFigureIsAlreadyA3dFigure\", {});"
+  },
+  "errors.puppet.thisFigureUsesRigRelationshipsConvertAPlain": {
+    "locations": [
+      "src/puppet.mjs:27"
+    ],
+    "context": "if(figure._styk?.spatialMesh||figure.segments.some(s=>s._stykRig))throw messageError(new Error(''), \"errors.puppet.thisFigureUsesRigRelationshipsConvertAPlain\","
   },
   "errors.rangeFigureOperations.cannotInferRelativeFigureScalesFromAZero": {
     "locations": [
@@ -25147,7 +25184,7 @@
     "locations": [
       "src/app.mjs:1303",
       "src/export-sheet.mjs:494",
-      "src/inspector-view.mjs:282",
+      "src/inspector-view.mjs:283",
       "src/layer-timeline.mjs:777",
       "src/sheet-filmstrip.mjs:436"
     ],
@@ -26971,618 +27008,618 @@
   },
   "inspectorView.addFrame": {
     "locations": [
-      "src/inspector-view.mjs:284"
+      "src/inspector-view.mjs:285"
     ],
     "context": "actions: [{action: 'add-frame', icon: glyph('frame-plus', 'plus'), label: interfaceText(\"inspectorView.insertKeyframeF6\"), labelKey: \"inspectorView.insertKeyfra"
   },
   "inspectorView.align": {
     "locations": [
-      "src/inspector-view.mjs:323"
+      "src/inspector-view.mjs:324"
     ],
     "context": "{id: 'align', title: interfaceText(\"inspectorView.align\"), titleKey: \"inspectorView.align\", rows: [{kind: 'actions', label: interfaceText(\"inspectorView.align\")"
   },
   "inspectorView.alignBottom": {
     "locations": [
-      "src/inspector-view.mjs:314"
+      "src/inspector-view.mjs:315"
     ],
     "context": "messageTuple(['top', 'align-top', interfaceText(\"inspectorView.alignTop\")], {2: {key: \"inspectorView.alignTop\", params: {}}}), messageTuple(['center-y', 'align-"
   },
   "inspectorView.alignCenter": {
     "locations": [
-      "src/inspector-view.mjs:313"
+      "src/inspector-view.mjs:314"
     ],
     "context": "const align = [messageTuple(['left', 'align-left', interfaceText(\"inspectorView.alignLeft\")], {2: {key: \"inspectorView.alignLeft\", params: {}}}), messageTuple(["
   },
   "inspectorView.alignLeft": {
     "locations": [
-      "src/inspector-view.mjs:313"
+      "src/inspector-view.mjs:314"
     ],
     "context": "const align = [messageTuple(['left', 'align-left', interfaceText(\"inspectorView.alignLeft\")], {2: {key: \"inspectorView.alignLeft\", params: {}}}), messageTuple(["
   },
   "inspectorView.alignMiddle": {
     "locations": [
-      "src/inspector-view.mjs:314"
+      "src/inspector-view.mjs:315"
     ],
     "context": "messageTuple(['top', 'align-top', interfaceText(\"inspectorView.alignTop\")], {2: {key: \"inspectorView.alignTop\", params: {}}}), messageTuple(['center-y', 'align-"
   },
   "inspectorView.alignRight": {
     "locations": [
-      "src/inspector-view.mjs:313"
+      "src/inspector-view.mjs:314"
     ],
     "context": "const align = [messageTuple(['left', 'align-left', interfaceText(\"inspectorView.alignLeft\")], {2: {key: \"inspectorView.alignLeft\", params: {}}}), messageTuple(["
   },
   "inspectorView.alignTop": {
     "locations": [
-      "src/inspector-view.mjs:314"
+      "src/inspector-view.mjs:315"
     ],
     "context": "messageTuple(['top', 'align-top', interfaceText(\"inspectorView.alignTop\")], {2: {key: \"inspectorView.alignTop\", params: {}}}), messageTuple(['center-y', 'align-"
   },
   "inspectorView.angle": {
     "locations": [
-      "src/inspector-view.mjs:211",
-      "src/inspector-view.mjs:391",
-      "src/inspector-view.mjs:492",
-      "src/inspector-view.mjs:493"
+      "src/inspector-view.mjs:212",
+      "src/inspector-view.mjs:392",
+      "src/inspector-view.mjs:494",
+      "src/inspector-view.mjs:495"
     ],
     "context": "field(interfaceText(\"inspectorView.angle\"), 'rotation', ((o.angles[0] ?? 0) - (f.segments[0]?.angle_rad ?? 0)) * 180 / Math.PI, '°','','inspectorView.angle') +"
   },
   "inspectorView.appearance": {
     "locations": [
-      "src/inspector-view.mjs:324",
-      "src/inspector-view.mjs:401"
+      "src/inspector-view.mjs:325",
+      "src/inspector-view.mjs:402"
     ],
     "context": "{id: 'appearance', title: interfaceText(\"inspectorView.appearance\"), titleKey: \"inspectorView.appearance\", actions: [{action: 'reset-color', icon: 'reset', labe"
   },
   "inspectorView.applyCameraTransformToFigures": {
     "locations": [
-      "src/inspector-view.mjs:272"
+      "src/inspector-view.mjs:273"
     ],
     "context": "{action: 'camera-apply-figures', icon: 'check', label: interfaceText(\"inspectorView.applyCameraTransformToFigures\"), labelKey: \"inspectorView.applyCameraTransfo"
   },
   "inspectorView.applyCanvasMovesAndFigureCommandsToEvery": {
     "locations": [
-      "src/inspector-view.mjs:119"
+      "src/inspector-view.mjs:120"
     ],
     "context": "tip: interfaceText(\"inspectorView.applyCanvasMovesAndFigureCommandsToEvery\"), tipKey: \"inspectorView.applyCanvasMovesAndFigureCommandsToEvery\"},"
   },
   "inspectorView.applyToBranch": {
     "locations": [
-      "src/inspector-view.mjs:534"
+      "src/inspector-view.mjs:536"
     ],
     "context": "{kind: 'field-switch', id: 'builder-branch', label: interfaceText(\"inspectorView.applyToBranch\"), labelKey: \"inspectorView.applyToBranch\", checked: builderBranc"
   },
   "inspectorView.arrange": {
     "locations": [
-      "src/inspector-view.mjs:328",
-      "src/inspector-view.mjs:405",
-      "src/inspector-view.mjs:517"
+      "src/inspector-view.mjs:329",
+      "src/inspector-view.mjs:406",
+      "src/inspector-view.mjs:519"
     ],
     "context": "{id: 'arrange', title: interfaceText(\"inspectorView.arrange\"), titleKey: \"inspectorView.arrange\", rows: [{kind: 'grid', ratio: '3:2', rows: ["
   },
   "inspectorView.background": {
     "locations": [
-      "src/inspector-view.mjs:231"
+      "src/inspector-view.mjs:232"
     ],
     "context": "{id: 'background', title: interfaceText(\"inspectorView.background\"), titleKey: \"inspectorView.background\", actions: [{action: 'import-background', icon: 'image'"
   },
   "inspectorView.backgroundColor": {
     "locations": [
-      "src/inspector-view.mjs:233"
+      "src/inspector-view.mjs:234"
     ],
     "context": "{kind: 'color', id: 'background-color', label: interfaceText(\"inspectorView.backgroundColor\"), labelKey: \"inspectorView.backgroundColor\", value: color, caption:"
   },
   "inspectorView.backgroundImage": {
     "locations": [
-      "src/inspector-view.mjs:231"
+      "src/inspector-view.mjs:232"
     ],
     "context": "{id: 'background', title: interfaceText(\"inspectorView.background\"), titleKey: \"inspectorView.background\", actions: [{action: 'import-background', icon: 'image'"
   },
   "inspectorView.backgroundSettings": {
     "locations": [
-      "src/inspector-view.mjs:234"
+      "src/inspector-view.mjs:235"
     ],
     "context": "{kind: 'actions', items: [{action: 'background-style', icon: 'sliders', label: interfaceText(\"inspectorView.library\"), labelKey: \"inspectorView.library\", text: "
   },
   "inspectorView.bend": {
     "locations": [
-      "src/inspector-view.mjs:495"
+      "src/inspector-view.mjs:497"
     ],
     "context": "number(interfaceText(\"inspectorView.bend\"), 'joint_bend', degrees(object.bend_flag ? object.bends[joint] : segment.bend_rad || 0), '°', {labelKey: \"inspectorVie"
   },
   "inspectorView.branchFrom": {
     "locations": [
-      "src/inspector-view.mjs:468"
+      "src/inspector-view.mjs:470"
     ],
     "context": ": editor.branchSelected ? {messageKey:'inspectorView.branchFrom',messageParams:{name:ownMessage}} : ownMessage;"
   },
   "inspectorView.bringForward": {
     "locations": [
-      "src/inspector-view.mjs:101",
-      "src/inspector-view.mjs:331",
-      "src/inspector-view.mjs:411"
+      "src/inspector-view.mjs:102",
+      "src/inspector-view.mjs:332",
+      "src/inspector-view.mjs:412"
     ],
     "context": "messageTuple(['back', 'send-to-back', interfaceText(\"inspectorView.sendToBack\")], {2: {key: \"inspectorView.sendToBack\", params: {}}}), messageTuple(['down', STE"
   },
   "inspectorView.bringPartForward": {
     "locations": [
-      "src/inspector-view.mjs:521"
+      "src/inspector-view.mjs:523"
     ],
     "context": "down: {action: 'segment-order-down', label: interfaceText(\"inspectorView.sendPartBackward\"), labelKey: \"inspectorView.sendPartBackward\", icon: STEP_DOWN}, up: {"
   },
   "inspectorView.bringToFront": {
     "locations": [
-      "src/inspector-view.mjs:101"
+      "src/inspector-view.mjs:102"
     ],
     "context": "messageTuple(['back', 'send-to-back', interfaceText(\"inspectorView.sendToBack\")], {2: {key: \"inspectorView.sendToBack\", params: {}}}), messageTuple(['down', STE"
   },
   "inspectorView.camera": {
     "locations": [
-      "src/inspector-view.mjs:133",
-      "src/inspector-view.mjs:250"
+      "src/inspector-view.mjs:134",
+      "src/inspector-view.mjs:251"
     ],
     "context": "const label = {camera: interfaceText(\"inspectorView.camera\"), scene: interfaceText(\"inspectorView.scene\"), layer: interfaceText(\"inspectorView.layer\"), frame: i"
   },
   "inspectorView.cameraControls": {
     "locations": [
-      "src/inspector-view.mjs:255"
+      "src/inspector-view.mjs:256"
     ],
     "context": "{id: 'tabs', rows: [{kind: 'segmented', mode: 'tab', description: interfaceText(\"inspectorView.cameraControls\"), descriptionKey: \"inspectorView.cameraControls\","
   },
   "inspectorView.canvas": {
     "locations": [
-      "src/inspector-view.mjs:228"
+      "src/inspector-view.mjs:229"
     ],
     "context": "{id: 'canvas', title: interfaceText(\"inspectorView.canvas\"), titleKey: \"inspectorView.canvas\", rows: [{kind: 'grid', rows: ["
   },
   "inspectorView.center": {
     "locations": [
-      "src/inspector-view.mjs:318"
+      "src/inspector-view.mjs:319"
     ],
     "context": "{action: 'rotate', label: interfaceText(\"inspectorView.rotate15\"), labelKey: \"inspectorView.rotate15\", text: true, tip: interfaceText(\"inspectorView.rotateTheSe"
   },
   "inspectorView.centerCameraHorizontally": {
     "locations": [
-      "src/inspector-view.mjs:268"
+      "src/inspector-view.mjs:269"
     ],
     "context": "{action: 'camera-center-x', icon: 'align-horizontal-center', label: interfaceText(\"inspectorView.centerCameraHorizontally\"), labelKey: \"inspectorView.centerCame"
   },
   "inspectorView.centerCameraVertically": {
     "locations": [
-      "src/inspector-view.mjs:269"
+      "src/inspector-view.mjs:270"
     ],
     "context": "{action: 'camera-center-y', icon: 'align-vertical-center', label: interfaceText(\"inspectorView.centerCameraVertically\"), labelKey: \"inspectorView.centerCameraVe"
   },
   "inspectorView.centerSelection": {
     "locations": [
-      "src/inspector-view.mjs:318"
+      "src/inspector-view.mjs:319"
     ],
     "context": "{action: 'rotate', label: interfaceText(\"inspectorView.rotate15\"), labelKey: \"inspectorView.rotate15\", text: true, tip: interfaceText(\"inspectorView.rotateTheSe"
   },
   "inspectorView.centreOnSelection": {
     "locations": [
-      "src/inspector-view.mjs:267"
+      "src/inspector-view.mjs:268"
     ],
     "context": "{kind: 'actions', label: interfaceText(\"inspectorView.centreOnSelection\"), labelKey: \"inspectorView.centreOnSelection\", items: ["
   },
   "inspectorView.clearCircle": {
     "locations": [
-      "src/inspector-view.mjs:478"
+      "src/inspector-view.mjs:480"
     ],
     "context": "messageTuple(['line', interfaceText(\"inspectorView.roundLine\")], {1: {key: \"inspectorView.roundLine\", params: {}}}), messageTuple(['squareLine', interfaceText(\""
   },
   "inspectorView.color": {
     "locations": [
-      "src/inspector-view.mjs:359"
+      "src/inspector-view.mjs:360"
     ],
     "context": "{kind: 'swatch', picker: 'native', value: hex(displayedColor(editor.report, figure, object, polygon.color_rgb)), label: interfaceText(\"inspectorView.color\", {na"
   },
   "inspectorView.colour": {
     "locations": [
-      "src/inspector-view.mjs:325",
-      "src/inspector-view.mjs:402",
-      "src/inspector-view.mjs:472",
-      "src/inspector-view.mjs:502"
+      "src/inspector-view.mjs:326",
+      "src/inspector-view.mjs:403",
+      "src/inspector-view.mjs:474",
+      "src/inspector-view.mjs:504"
     ],
     "context": "{kind: 'color', id: 'figure-color', label: interfaceText(\"inspectorView.colour\"), labelKey: \"inspectorView.colour\", description: interfaceText(\"inspectorView.fi"
   },
   "inspectorView.colourPages": {
     "locations": [
-      "src/inspector-view.mjs:423"
+      "src/inspector-view.mjs:424"
     ],
     "context": "palette.length > 32 && {kind: 'pager', label: interfaceText(\"inspectorView.colourPages\"), labelKey: \"inspectorView.colourPages\", text: pageText(paletteStart, 32"
   },
   "inspectorView.colours": {
     "locations": [
-      "src/inspector-view.mjs:417"
+      "src/inspector-view.mjs:418"
     ],
     "context": "{id: 'colours', title: interfaceText(\"inspectorView.colours\"), titleKey: \"inspectorView.colours\", place: 'titled', hidden: !whole, rows: ["
   },
   "inspectorView.combineConnected": {
     "locations": [
-      "src/inspector-view.mjs:335",
-      "src/inspector-view.mjs:415"
+      "src/inspector-view.mjs:336",
+      "src/inspector-view.mjs:416"
     ],
     "context": "{action: 'combine-figures', icon: 'combine', label: interfaceText(\"inspectorView.combineConnected\"), labelKey: \"inspectorView.combineConnected\", text: true, var"
   },
   "inspectorView.connection": {
     "locations": [
-      "src/inspector-view.mjs:334",
-      "src/inspector-view.mjs:413"
+      "src/inspector-view.mjs:335",
+      "src/inspector-view.mjs:414"
     ],
     "context": "{id: 'connection', title: interfaceText(\"inspectorView.connection\"), titleKey: \"inspectorView.connection\", place: 'titled', hidden: !joined, rows: [{kind: 'acti"
   },
   "inspectorView.connector": {
     "locations": [
-      "src/inspector-view.mjs:482"
+      "src/inspector-view.mjs:484"
     ],
     "context": "connector: {id: 'connector', title: interfaceText(\"inspectorView.connector\", {segment_id: segment.segment_id}), titleKey: \"inspectorView.connector\", titleParams"
   },
   "inspectorView.connectorProperties": {
     "locations": [
-      "src/inspector-view.mjs:483"
+      "src/inspector-view.mjs:485"
     ],
     "context": "{kind: 'segmented', mode: 'pressed', description: interfaceText(\"inspectorView.connectorProperties\"), descriptionKey: \"inspectorView.connectorProperties\", value"
   },
   "inspectorView.copyCameraPose": {
     "locations": [
-      "src/inspector-view.mjs:259"
+      "src/inspector-view.mjs:260"
     ],
     "context": "{action: 'camera-copy', icon: 'duplicate', label: interfaceText(\"inspectorView.copyCameraPose\"), labelKey: \"inspectorView.copyCameraPose\"},"
   },
   "inspectorView.deleteFill": {
     "locations": [
-      "src/inspector-view.mjs:346"
+      "src/inspector-view.mjs:347"
     ],
     "context": "{icon: 'trash', label: interfaceText(\"inspectorView.deleteFill\"), labelKey: \"inspectorView.deleteFill\", data: {'delete-polygon': index}},"
   },
   "inspectorView.deletePolygon": {
     "locations": [
-      "src/inspector-view.mjs:360"
+      "src/inspector-view.mjs:361"
     ],
     "context": "{icon: 'trash', label: interfaceText(\"inspectorView.deletePolygon\", {value: index + 1}), labelKey: \"inspectorView.deletePolygon\", labelParams: {value: index + 1"
   },
   "inspectorView.doesNotTurnWithItsParent": {
     "locations": [
-      "src/inspector-view.mjs:471"
+      "src/inspector-view.mjs:473"
     ],
     "context": "const staticSwitch = {kind: 'field-switch', id: 'static-joint', label: interfaceText(\"inspectorView.static\"), labelKey: \"inspectorView.static\", checked: isStati"
   },
   "inspectorView.doubleClickToRenameTheFigureDefinition": {
     "locations": [
-      "src/inspector-view.mjs:187"
+      "src/inspector-view.mjs:188"
     ],
     "context": "const figureRename = {id: 'figure-name', description: interfaceText(\"inspectorView.figureName\"), descriptionKey: \"inspectorView.figureName\", tip: interfaceText("
   },
   "inspectorView.doubleClickToRenameThePart": {
     "locations": [
-      "src/inspector-view.mjs:437"
+      "src/inspector-view.mjs:439"
     ],
     "context": "const partRename = {id: 'builder-joint-name', description: interfaceText(\"inspectorView.partName\"), descriptionKey: \"inspectorView.partName\", maxlength: 120, ti"
   },
   "inspectorView.drawing": {
     "locations": [
-      "src/inspector-view.mjs:128",
-      "src/inspector-view.mjs:215"
+      "src/inspector-view.mjs:129",
+      "src/inspector-view.mjs:216"
     ],
     "context": "if (drawing?.active) return {label: interfaceText(\"inspectorView.drawing\"), labelKey: \"inspectorView.drawing\", selection: 'drawing'};"
   },
   "inspectorView.drawingSets": {
     "locations": [
-      "src/inspector-view.mjs:190"
+      "src/inspector-view.mjs:191"
     ],
     "context": "const drawingSetsSection = html => ({id: 'drawing-sets', title: interfaceText(\"inspectorView.drawingSets\"), titleKey: \"inspectorView.drawingSets\", place: 'title"
   },
   "inspectorView.drawOrder": {
     "locations": [
-      "src/inspector-view.mjs:519",
-      "src/inspector-view.mjs:532"
+      "src/inspector-view.mjs:521",
+      "src/inspector-view.mjs:534"
     ],
     "context": "{kind: 'stepper-field', key: 'segment_z_order', label: interfaceText(\"inspectorView.order\"), labelKey: \"inspectorView.order\", description: interfaceText(\"inspec"
   },
   "inspectorView.drawOrderAndOneStepOrder": {
     "locations": [
-      "src/inspector-view.mjs:519"
+      "src/inspector-view.mjs:521"
     ],
     "context": "{kind: 'stepper-field', key: 'segment_z_order', label: interfaceText(\"inspectorView.order\"), labelKey: \"inspectorView.order\", description: interfaceText(\"inspec"
   },
   "inspectorView.duration": {
     "locations": [
-      "src/inspector-view.mjs:290"
+      "src/inspector-view.mjs:291"
     ],
     "context": "{id: 'timing', title: interfaceText(\"inspectorView.timing\"), titleKey: \"inspectorView.timing\", rows: [{kind: 'grid', rows: [number(interfaceText(\"inspectorView."
   },
   "inspectorView.editFramesTogether": {
     "locations": [
-      "src/inspector-view.mjs:118"
+      "src/inspector-view.mjs:119"
     ],
     "context": "{kind: 'field-switch', id: 'apply-range-movement', label: interfaceText(\"inspectorView.editFramesTogether\", {length: indices.length}), labelKey: \"inspectorView."
   },
   "inspectorView.editingFrameRange": {
     "locations": [
-      "src/inspector-view.mjs:112",
-      "src/inspector-view.mjs:113"
+      "src/inspector-view.mjs:113",
+      "src/inspector-view.mjs:114"
     ],
     "context": "const label = last - first + 1 === frames.length ? interfaceText('inspectorView.editingFrameRange', {first: first + 1, last: last + 1}) : interfaceText('inspect"
   },
   "inspectorView.editingFrames": {
     "locations": [
-      "src/inspector-view.mjs:112",
-      "src/inspector-view.mjs:113"
+      "src/inspector-view.mjs:113",
+      "src/inspector-view.mjs:114"
     ],
     "context": "const label = last - first + 1 === frames.length ? interfaceText('inspectorView.editingFrameRange', {first: first + 1, last: last + 1}) : interfaceText('inspect"
   },
   "inspectorView.editingTheWholeBranch": {
     "locations": [
-      "src/inspector-view.mjs:510"
+      "src/inspector-view.mjs:512"
     ],
     "context": "? {label: interfaceText(\"inspectorView.editingTheWholeBranch\", {value: plural(branchParts, 'part')}), labelKey: \"inspectorView.editingTheWholeBranch\", labelPara"
   },
   "inspectorView.editOnlyThisFrame": {
     "locations": [
-      "src/inspector-view.mjs:113"
+      "src/inspector-view.mjs:114"
     ],
     "context": "return {label, labelKey: last - first + 1 === frames.length ? 'inspectorView.editingFrameRange' : 'inspectorView.editingFrames', labelParams: {first: first + 1,"
   },
   "inspectorView.editOnlyThisPartB": {
     "locations": [
-      "src/inspector-view.mjs:510"
+      "src/inspector-view.mjs:512"
     ],
     "context": "? {label: interfaceText(\"inspectorView.editingTheWholeBranch\", {value: plural(branchParts, 'part')}), labelKey: \"inspectorView.editingTheWholeBranch\", labelPara"
   },
   "inspectorView.editText": {
     "locations": [
-      "src/inspector-view.mjs:398"
+      "src/inspector-view.mjs:399"
     ],
     "context": "{action: 'edit-text', icon: 'text', label: interfaceText(\"inspectorView.editText\"), labelKey: \"inspectorView.editText\", text: true, variant: 'outline', tip: int"
   },
   "inspectorView.editText2": {
     "locations": [
-      "src/inspector-view.mjs:398"
+      "src/inspector-view.mjs:399"
     ],
     "context": "{action: 'edit-text', icon: 'text', label: interfaceText(\"inspectorView.editText\"), labelKey: \"inspectorView.editText\", text: true, variant: 'outline', tip: int"
   },
   "inspectorView.exposure": {
     "locations": [
-      "src/inspector-view.mjs:285"
+      "src/inspector-view.mjs:286"
     ],
     "context": "number(interfaceText(\"inspectorView.exposure\"), 'duration', (next?.tick ?? track?.end ?? editor.tick + 1) - (key?.tick ?? editor.tick), 'frames', {min: 1, max: "
   },
   "inspectorView.figure": {
     "locations": [
-      "src/inspector-view.mjs:132",
-      "src/inspector-view.mjs:170",
-      "src/inspector-view.mjs:382",
-      "src/inspector-view.mjs:394",
-      "src/inspector-view.mjs:538"
+      "src/inspector-view.mjs:133",
+      "src/inspector-view.mjs:171",
+      "src/inspector-view.mjs:383",
+      "src/inspector-view.mjs:395",
+      "src/inspector-view.mjs:540"
     ],
     "context": "return count > 1 ? {label: interfaceText(\"inspectorView.figures\"), labelKey: \"inspectorView.figures\", selection: 'figures'} : joint ? {label: interfaceText(\"ins"
   },
   "inspectorView.figureColor": {
     "locations": [
-      "src/inspector-view.mjs:325"
+      "src/inspector-view.mjs:326"
     ],
     "context": "{kind: 'color', id: 'figure-color', label: interfaceText(\"inspectorView.colour\"), labelKey: \"inspectorView.colour\", description: interfaceText(\"inspectorView.fi"
   },
   "inspectorView.figureColorPalette": {
     "locations": [
-      "src/inspector-view.mjs:418"
+      "src/inspector-view.mjs:419"
     ],
     "context": "{kind: 'swatches', label: interfaceText(\"inspectorView.figureColorPalette\"), labelKey: \"inspectorView.figureColorPalette\", hidden: !palette.length, items: palet"
   },
   "inspectorView.figureLayer": {
     "locations": [
-      "src/inspector-view.mjs:94"
+      "src/inspector-view.mjs:95"
     ],
     "context": "kind: 'select', id: 'figure-layer', label: interfaceText(\"inspectorView.layer\"), labelKey: \"inspectorView.layer\", description: interfaceText(\"inspectorView.figu"
   },
   "inspectorView.figureName": {
     "locations": [
-      "src/inspector-view.mjs:187"
+      "src/inspector-view.mjs:188"
     ],
     "context": "const figureRename = {id: 'figure-name', description: interfaceText(\"inspectorView.figureName\"), descriptionKey: \"inspectorView.figureName\", tip: interfaceText("
   },
   "inspectorView.figures": {
     "locations": [
-      "src/inspector-view.mjs:132"
+      "src/inspector-view.mjs:133"
     ],
     "context": "return count > 1 ? {label: interfaceText(\"inspectorView.figures\"), labelKey: \"inspectorView.figures\", selection: 'figures'} : joint ? {label: interfaceText(\"ins"
   },
   "inspectorView.fill": {
     "locations": [
-      "src/inspector-view.mjs:343"
+      "src/inspector-view.mjs:344"
     ],
     "context": "return {kind: 'fill', target: {name: interfaceText('inspectorView.fillNumber', {index:index + 1}), nameKey:'inspectorView.fillNumber', nameParams:{index:index +"
   },
   "inspectorView.fillColor": {
     "locations": [
-      "src/inspector-view.mjs:345"
+      "src/inspector-view.mjs:346"
     ],
     "context": "{kind: 'swatch', picker: 'native', label: interfaceText(\"inspectorView.fillColor\"), labelKey: \"inspectorView.fillColor\", value: hex(displayedColor(editor.report"
   },
   "inspectorView.filledCircle": {
     "locations": [
-      "src/inspector-view.mjs:478"
+      "src/inspector-view.mjs:480"
     ],
     "context": "messageTuple(['line', interfaceText(\"inspectorView.roundLine\")], {1: {key: \"inspectorView.roundLine\", params: {}}}), messageTuple(['squareLine', interfaceText(\""
   },
   "inspectorView.fillNumber": {
     "locations": [
-      "src/inspector-view.mjs:343"
+      "src/inspector-view.mjs:344"
     ],
     "context": "return {kind: 'fill', target: {name: interfaceText('inspectorView.fillNumber', {index:index + 1}), nameKey:'inspectorView.fillNumber', nameParams:{index:index +"
   },
   "inspectorView.fillOrder": {
     "locations": [
-      "src/inspector-view.mjs:350",
-      "src/inspector-view.mjs:366"
+      "src/inspector-view.mjs:351",
+      "src/inspector-view.mjs:367"
     ],
     "context": "orderActions('polygon', index, 'inspectorView.fillOrder'),"
   },
   "inspectorView.fillPages": {
     "locations": [
-      "src/inspector-view.mjs:428"
+      "src/inspector-view.mjs:429"
     ],
     "context": "polygons.length > 12 && {kind: 'pager', label: interfaceText(\"inspectorView.fillPages\"), labelKey: \"inspectorView.fillPages\", text: pageText(start, 12, polygons"
   },
   "inspectorView.fills": {
     "locations": [
-      "src/inspector-view.mjs:426"
+      "src/inspector-view.mjs:427"
     ],
     "context": "{kind: 'value', label: interfaceText(\"inspectorView.fills\"), labelKey: \"inspectorView.fills\", text: polygons.length ? interfaceText('counts.fills', {count: poly"
   },
   "inspectorView.fit": {
     "locations": [
-      "src/inspector-view.mjs:266"
+      "src/inspector-view.mjs:267"
     ],
     "context": "{kind: 'actions', label: interfaceText(\"inspectorView.fit\"), labelKey: \"inspectorView.fit\", items: [{action: 'camera-align-view', icon: 'fit', label: interfaceT"
   },
   "inspectorView.fitCameraToCurrentCanvasView": {
     "locations": [
-      "src/inspector-view.mjs:266"
+      "src/inspector-view.mjs:267"
     ],
     "context": "{kind: 'actions', label: interfaceText(\"inspectorView.fit\"), labelKey: \"inspectorView.fit\", items: [{action: 'camera-align-view', icon: 'fit', label: interfaceT"
   },
   "inspectorView.fitView": {
     "locations": [
-      "src/inspector-view.mjs:266"
+      "src/inspector-view.mjs:267"
     ],
     "context": "{kind: 'actions', label: interfaceText(\"inspectorView.fit\"), labelKey: \"inspectorView.fit\", items: [{action: 'camera-align-view', icon: 'fit', label: interfaceT"
   },
   "inspectorView.framing": {
     "locations": [
-      "src/inspector-view.mjs:265"
+      "src/inspector-view.mjs:266"
     ],
     "context": "{id: 'framing', title: interfaceText(\"inspectorView.framing\"), titleKey: \"inspectorView.framing\", place: 'titled', hidden: motion, rows: ["
   },
   "inspectorView.geometry": {
     "locations": [
-      "src/inspector-view.mjs:491"
+      "src/inspector-view.mjs:493"
     ],
     "context": "joint: {id: 'joint', title: builder ? interfaceText(\"inspectorView.geometry\") : interfaceText(\"inspectorView.joint\"), titleKey: (builder ? \"inspectorView.geomet"
   },
   "inspectorView.guides": {
     "locations": [
-      "src/inspector-view.mjs:251"
+      "src/inspector-view.mjs:252"
     ],
     "context": "{id: 'preview', title: interfaceText(\"inspectorView.preview\"), titleKey: \"inspectorView.preview\", actions: [{action: 'camera-guides', icon: 'grid', label: inter"
   },
   "inspectorView.height": {
     "locations": [
-      "src/inspector-view.mjs:229"
+      "src/inspector-view.mjs:230"
     ],
     "context": "number(interfaceText(\"inspectorView.width\"), 'canvas_width', report.canvas_width, 'px', {min: 1, max: 16384, labelKey: \"inspectorView.width\", labelParams: {}}),"
   },
   "inspectorView.heightPx": {
     "locations": [
-      "src/inspector-view.mjs:321"
+      "src/inspector-view.mjs:322"
     ],
     "context": "number('W', 'group_width', b.maxX - b.minX, 'px', {min: 0.01, description: interfaceText(\"inspectorView.widthPx\"), descriptionKey: \"inspectorView.widthPx\"}), nu"
   },
   "inspectorView.importBackground": {
     "locations": [
-      "src/inspector-view.mjs:231"
+      "src/inspector-view.mjs:232"
     ],
     "context": "{id: 'background', title: interfaceText(\"inspectorView.background\"), titleKey: \"inspectorView.background\", actions: [{action: 'import-background', icon: 'image'"
   },
   "inspectorView.insertKeyframeF6": {
     "locations": [
-      "src/inspector-view.mjs:284"
+      "src/inspector-view.mjs:285"
     ],
     "context": "actions: [{action: 'add-frame', icon: glyph('frame-plus', 'plus'), label: interfaceText(\"inspectorView.insertKeyframeF6\"), labelKey: \"inspectorView.insertKeyfra"
   },
   "inspectorView.join": {
     "locations": [
-      "src/inspector-view.mjs:406"
+      "src/inspector-view.mjs:407"
     ],
     "context": "{action: 'join-figure', label: parent ? interfaceText(\"inspectorView.unjoin\") : interfaceText(\"inspectorView.join\"), labelKey: (parent ? \"inspectorView.unjoin\" "
   },
   "inspectorView.joinedTo": {
     "locations": [
-      "src/inspector-view.mjs:414"
+      "src/inspector-view.mjs:415"
     ],
     "context": "{kind: 'value', label: interfaceText(\"inspectorView.joinedTo\"), labelKey: \"inspectorView.joinedTo\", text: parent ? `${parentName} · ${object.join.target_handle_"
   },
   "inspectorView.joint": {
     "locations": [
-      "src/inspector-view.mjs:132",
-      "src/inspector-view.mjs:491"
+      "src/inspector-view.mjs:133",
+      "src/inspector-view.mjs:493"
     ],
     "context": "return count > 1 ? {label: interfaceText(\"inspectorView.figures\"), labelKey: \"inspectorView.figures\", selection: 'figures'} : joint ? {label: interfaceText(\"ins"
   },
   "inspectorView.joinToFigure": {
     "locations": [
-      "src/inspector-view.mjs:385"
+      "src/inspector-view.mjs:386"
     ],
     "context": "const joinLabel = parent ? interfaceText(\"inspectorView.unjoinFigure\") : interfaceText(\"inspectorView.joinToFigure\");"
   },
   "inspectorView.keyframe": {
     "locations": [
-      "src/inspector-view.mjs:289"
+      "src/inspector-view.mjs:290"
     ],
     "context": "return {kind: 'keyframe', target: {name: interfaceText('inspectorView.keyframe', {frame: (editor.frameIndex ?? 0) + 1}), nameKey:'inspectorView.keyframe', nameP"
   },
   "inspectorView.layer": {
     "locations": [
-      "src/inspector-view.mjs:94",
-      "src/inspector-view.mjs:133",
-      "src/inspector-view.mjs:283",
-      "src/inspector-view.mjs:299"
+      "src/inspector-view.mjs:95",
+      "src/inspector-view.mjs:134",
+      "src/inspector-view.mjs:284",
+      "src/inspector-view.mjs:300"
     ],
     "context": "kind: 'select', id: 'figure-layer', label: interfaceText(\"inspectorView.layer\"), labelKey: \"inspectorView.layer\", description: interfaceText(\"inspectorView.figu"
   },
   "inspectorView.layerName": {
     "locations": [
-      "src/inspector-view.mjs:300"
+      "src/inspector-view.mjs:301"
     ],
     "context": "{kind: 'text', id: 'inspector-layer-name', label: interfaceText(\"common.name\"), labelKey: \"common.name\", description: interfaceText(\"inspectorView.layerName\"), "
   },
   "inspectorView.length": {
     "locations": [
-      "src/inspector-view.mjs:494"
+      "src/inspector-view.mjs:496"
     ],
     "context": "!connector && number(interfaceText(\"inspectorView.length\"), 'joint_length', position, 'px', {min: 0, labelKey: \"inspectorView.length\", labelParams: {}}),"
   },
   "inspectorView.library": {
     "locations": [
-      "src/inspector-view.mjs:234"
+      "src/inspector-view.mjs:235"
     ],
     "context": "{kind: 'actions', items: [{action: 'background-style', icon: 'sliders', label: interfaceText(\"inspectorView.library\"), labelKey: \"inspectorView.library\", text: "
   },
   "inspectorView.liveCameraOutput": {
     "locations": [
-      "src/inspector-view.mjs:252"
+      "src/inspector-view.mjs:253"
     ],
     "context": "{kind: 'preview', label: interfaceText(\"inspectorView.liveCameraOutput\"), labelKey: \"inspectorView.liveCameraOutput\", media: {tag: 'canvas', key: 'camera-monito"
   },
   "inspectorView.matchNextCameraPose": {
     "locations": [
-      "src/inspector-view.mjs:271"
+      "src/inspector-view.mjs:272"
     ],
     "context": "{action: 'camera-locate-next', icon: 'chevron-right', label: interfaceText(\"inspectorView.matchNextCameraPose\"), labelKey: \"inspectorView.matchNextCameraPose\", "
   },
   "inspectorView.matchPreviousCameraPose": {
     "locations": [
-      "src/inspector-view.mjs:270"
+      "src/inspector-view.mjs:271"
     ],
     "context": "{action: 'camera-locate-previous', icon: 'chevron-left', label: interfaceText(\"inspectorView.matchPreviousCameraPose\"), labelKey: \"inspectorView.matchPreviousCa"
   },
   "inspectorView.mergeTheConnectedFiguresIntoOne": {
     "locations": [
-      "src/inspector-view.mjs:415"
+      "src/inspector-view.mjs:416"
     ],
     "context": "{kind: 'actions', items: [{action: 'combine-figures', icon: 'combine', label: interfaceText(\"inspectorView.combineConnected\"), labelKey: \"inspectorView.combineC"
   },
   "inspectorView.mixed": {
     "locations": [
-      "src/inspector-view.mjs:94",
-      "src/inspector-view.mjs:402"
+      "src/inspector-view.mjs:95",
+      "src/inspector-view.mjs:403"
     ],
     "context": "kind: 'select', id: 'figure-layer', label: interfaceText(\"inspectorView.layer\"), labelKey: \"inspectorView.layer\", description: interfaceText(\"inspectorView.figu"
   },
   "inspectorView.motion": {
     "locations": [
       "src/camera-motion-timeline.mjs:24",
-      "src/inspector-view.mjs:256"
+      "src/inspector-view.mjs:257"
     ],
     "context": "return [{id:'motion',kind:'motion',name:interfaceText('inspectorView.motion'),nameKey:'inspectorView.motion',motions:clips,lanes,laneCount:packed.length,"
   },
@@ -27594,434 +27631,434 @@
   },
   "inspectorView.nextColors": {
     "locations": [
-      "src/inspector-view.mjs:425"
+      "src/inspector-view.mjs:426"
     ],
     "context": "next: {action: 'palette-next', icon: 'chevron-right', label: interfaceText(\"inspectorView.nextColors\"), labelKey: \"inspectorView.nextColors\", disabled: paletteS"
   },
   "inspectorView.nextPolygons": {
     "locations": [
-      "src/inspector-view.mjs:430"
+      "src/inspector-view.mjs:431"
     ],
     "context": "next: {action: 'polygons-next', icon: 'chevron-right', label: interfaceText(\"inspectorView.nextPolygons\"), labelKey: \"inspectorView.nextPolygons\", disabled: sta"
   },
   "inspectorView.noFills": {
     "locations": [
-      "src/inspector-view.mjs:426"
+      "src/inspector-view.mjs:427"
     ],
     "context": "{kind: 'value', label: interfaceText(\"inspectorView.fills\"), labelKey: \"inspectorView.fills\", text: polygons.length ? interfaceText('counts.fills', {count: poly"
   },
   "inspectorView.none": {
     "locations": [
-      "src/inspector-view.mjs:414"
+      "src/inspector-view.mjs:415"
     ],
     "context": "{kind: 'value', label: interfaceText(\"inspectorView.joinedTo\"), labelKey: \"inspectorView.joinedTo\", text: parent ? `${parentName} · ${object.join.target_handle_"
   },
   "inspectorView.oneStep": {
     "locations": [
-      "src/inspector-view.mjs:330"
+      "src/inspector-view.mjs:331"
     ],
     "context": "{kind: 'actions', label: interfaceText(\"inspectorView.oneStep\"), labelKey: \"inspectorView.oneStep\", items: ["
   },
   "inspectorView.opacity": {
     "locations": [
-      "src/inspector-view.mjs:212",
-      "src/inspector-view.mjs:326",
-      "src/inspector-view.mjs:348",
-      "src/inspector-view.mjs:363",
-      "src/inspector-view.mjs:403",
-      "src/inspector-view.mjs:475",
-      "src/inspector-view.mjs:476"
+      "src/inspector-view.mjs:213",
+      "src/inspector-view.mjs:327",
+      "src/inspector-view.mjs:349",
+      "src/inspector-view.mjs:364",
+      "src/inspector-view.mjs:404",
+      "src/inspector-view.mjs:477",
+      "src/inspector-view.mjs:478"
     ],
     "context": "field(interfaceText(\"inspectorView.opacity\"), 'figure_opacity', (1 - (o.field28 ?? 0) / 255) * 100, '%', 'min=\"0\" max=\"100\"','inspectorView.opacity'))}</section"
   },
   "inspectorView.order": {
     "locations": [
-      "src/inspector-view.mjs:364",
-      "src/inspector-view.mjs:409",
-      "src/inspector-view.mjs:519",
-      "src/inspector-view.mjs:532"
+      "src/inspector-view.mjs:365",
+      "src/inspector-view.mjs:410",
+      "src/inspector-view.mjs:521",
+      "src/inspector-view.mjs:534"
     ],
     "context": "{kind: 'number', key: `polygon_${index}_z_order`, label: interfaceText(\"inspectorView.order\"), labelKey: \"inspectorView.order\", precision: 0, value: order.get(`"
   },
   "inspectorView.orderAndOneStepOrder": {
     "locations": [
-      "src/inspector-view.mjs:409"
+      "src/inspector-view.mjs:410"
     ],
     "context": "{kind: 'stepper-field', key: 'figure_z_order', label: interfaceText(\"inspectorView.order\"), labelKey: \"inspectorView.order\", description: interfaceText(\"inspect"
   },
   "inspectorView.partName": {
     "locations": [
-      "src/inspector-view.mjs:437"
+      "src/inspector-view.mjs:439"
     ],
     "context": "const partRename = {id: 'builder-joint-name', description: interfaceText(\"inspectorView.partName\"), descriptionKey: \"inspectorView.partName\", maxlength: 120, ti"
   },
   "inspectorView.pasteCameraPose": {
     "locations": [
-      "src/inspector-view.mjs:260"
+      "src/inspector-view.mjs:261"
     ],
     "context": "{action: 'camera-paste', icon: 'clipboard', label: interfaceText(\"inspectorView.pasteCameraPose\"), labelKey: \"inspectorView.pasteCameraPose\", disabled: !editor."
   },
   "inspectorView.placement": {
     "locations": [
-      "src/inspector-view.mjs:172"
+      "src/inspector-view.mjs:173"
     ],
     "context": "{id: 'placement', title: interfaceText(\"inspectorView.placement\"), titleKey: \"inspectorView.placement\", place: 'titled', open: true, hidden: joint >= 0, rows: ["
   },
   "inspectorView.playback": {
     "locations": [
-      "src/inspector-view.mjs:237"
+      "src/inspector-view.mjs:238"
     ],
     "context": "{id: 'playback', title: interfaceText(\"inspectorView.playback\"), titleKey: \"inspectorView.playback\", rows: [{kind: 'grid', rows: [number(interfaceText(\"inspecto"
   },
   "inspectorView.polygon": {
     "locations": [
-      "src/inspector-view.mjs:344",
-      "src/inspector-view.mjs:356"
+      "src/inspector-view.mjs:345",
+      "src/inspector-view.mjs:357"
     ],
     "context": "{kind: 'list-row', label: interfaceText(\"inspectorView.polygon\", {value: index + 1}), labelKey: \"inspectorView.polygon\", labelParams: {value: index + 1}, lead: "
   },
   "inspectorView.position": {
     "locations": [
-      "src/inspector-view.mjs:488"
+      "src/inspector-view.mjs:490"
     ],
     "context": "{kind: 'number', id: 'rig-position', label: interfaceText(\"inspectorView.position\"), labelKey: \"inspectorView.position\", description: interfaceText(\"inspectorVi"
   },
   "inspectorView.preview": {
     "locations": [
-      "src/inspector-view.mjs:251"
+      "src/inspector-view.mjs:252"
     ],
     "context": "{id: 'preview', title: interfaceText(\"inspectorView.preview\"), titleKey: \"inspectorView.preview\", actions: [{action: 'camera-guides', icon: 'grid', label: inter"
   },
   "inspectorView.previousColors": {
     "locations": [
-      "src/inspector-view.mjs:424"
+      "src/inspector-view.mjs:425"
     ],
     "context": "previous: {action: 'palette-previous', icon: 'chevron-left', label: interfaceText(\"inspectorView.previousColors\"), labelKey: \"inspectorView.previousColors\", dis"
   },
   "inspectorView.previousPolygons": {
     "locations": [
-      "src/inspector-view.mjs:429"
+      "src/inspector-view.mjs:430"
     ],
     "context": "previous: {action: 'polygons-previous', icon: 'chevron-left', label: interfaceText(\"inspectorView.previousPolygons\"), labelKey: \"inspectorView.previousPolygons\""
   },
   "inspectorView.primaryColorOpacity": {
     "locations": [
-      "src/inspector-view.mjs:476"
+      "src/inspector-view.mjs:478"
     ],
     "context": "{min: 0, max: 100, id: 'segment-opacity', field: false, description: interfaceText(\"inspectorView.primaryColorOpacity\"), descriptionKey: \"inspectorView.primaryC"
   },
   "inspectorView.primaryOpacity": {
     "locations": [
-      "src/inspector-view.mjs:475",
-      "src/inspector-view.mjs:476"
+      "src/inspector-view.mjs:477",
+      "src/inspector-view.mjs:478"
     ],
     "context": "const alpha = number(secondary ? interfaceText(\"inspectorView.primaryOpacity\") : interfaceText(\"inspectorView.opacity\"), 'segment_opacity', opacity(segment.tran"
   },
   "inspectorView.rate": {
     "locations": [
-      "src/inspector-view.mjs:237"
+      "src/inspector-view.mjs:238"
     ],
     "context": "{id: 'playback', title: interfaceText(\"inspectorView.playback\"), titleKey: \"inspectorView.playback\", rows: [{kind: 'grid', rows: [number(interfaceText(\"inspecto"
   },
   "inspectorView.recolorAllSegments": {
     "locations": [
-      "src/inspector-view.mjs:402"
+      "src/inspector-view.mjs:403"
     ],
     "context": "{kind: 'color', id: 'figure-color', label: interfaceText(\"inspectorView.colour\"), labelKey: \"inspectorView.colour\", description: interfaceText(\"inspectorView.re"
   },
   "inspectorView.replaceColorSegments": {
     "locations": [
-      "src/inspector-view.mjs:420",
-      "src/inspector-view.mjs:421"
+      "src/inspector-view.mjs:421",
+      "src/inspector-view.mjs:422"
     ],
     "context": "label: interfaceText(entry.meshColors?.length ? 'inspectorView.replaceFigureColor' : entry.polygons.length ? 'inspectorView.replaceColorSegmentsAndFills' : 'ins"
   },
   "inspectorView.replaceColorSegmentsAndFills": {
     "locations": [
-      "src/inspector-view.mjs:420",
-      "src/inspector-view.mjs:421"
+      "src/inspector-view.mjs:421",
+      "src/inspector-view.mjs:422"
     ],
     "context": "label: interfaceText(entry.meshColors?.length ? 'inspectorView.replaceFigureColor' : entry.polygons.length ? 'inspectorView.replaceColorSegmentsAndFills' : 'ins"
   },
   "inspectorView.replaceFigureColor": {
     "locations": [
-      "src/inspector-view.mjs:420",
-      "src/inspector-view.mjs:421"
+      "src/inspector-view.mjs:421",
+      "src/inspector-view.mjs:422"
     ],
     "context": "label: interfaceText(entry.meshColors?.length ? 'inspectorView.replaceFigureColor' : entry.polygons.length ? 'inspectorView.replaceColorSegmentsAndFills' : 'ins"
   },
   "inspectorView.resetColors": {
     "locations": [
-      "src/inspector-view.mjs:324",
-      "src/inspector-view.mjs:401"
+      "src/inspector-view.mjs:325",
+      "src/inspector-view.mjs:402"
     ],
     "context": "{id: 'appearance', title: interfaceText(\"inspectorView.appearance\"), titleKey: \"inspectorView.appearance\", actions: [{action: 'reset-color', icon: 'reset', labe"
   },
   "inspectorView.rotate15": {
     "locations": [
-      "src/inspector-view.mjs:318"
+      "src/inspector-view.mjs:319"
     ],
     "context": "{action: 'rotate', label: interfaceText(\"inspectorView.rotate15\"), labelKey: \"inspectorView.rotate15\", text: true, tip: interfaceText(\"inspectorView.rotateTheSe"
   },
   "inspectorView.rotateTheSelection15": {
     "locations": [
-      "src/inspector-view.mjs:318"
+      "src/inspector-view.mjs:319"
     ],
     "context": "{action: 'rotate', label: interfaceText(\"inspectorView.rotate15\"), labelKey: \"inspectorView.rotate15\", text: true, tip: interfaceText(\"inspectorView.rotateTheSe"
   },
   "inspectorView.rotation": {
     "locations": [
-      "src/inspector-view.mjs:263"
+      "src/inspector-view.mjs:264"
     ],
     "context": "number(interfaceText(\"inspectorView.zoom\"), 'camera_scale', (c.scale || 1) * 100, '%', {min: 0.01, description: interfaceText(\"inspectorView.scale2\"), descripti"
   },
   "inspectorView.roundLine": {
     "locations": [
-      "src/inspector-view.mjs:478"
+      "src/inspector-view.mjs:480"
     ],
     "context": "messageTuple(['line', interfaceText(\"inspectorView.roundLine\")], {1: {key: \"inspectorView.roundLine\", params: {}}}), messageTuple(['squareLine', interfaceText(\""
   },
   "inspectorView.s": {
     "locations": [
-      "src/inspector-view.mjs:227"
+      "src/inspector-view.mjs:228"
     ],
     "context": "{id: 'summary', rows: [{kind: 'meta', text: interfaceText(\"inspectorView.s\", {value: plural(figures, 'figure'), value2: plural(frames, 'frame'), value3: num(fra"
   },
   "inspectorView.scale": {
     "locations": [
-      "src/inspector-view.mjs:173",
-      "src/inspector-view.mjs:210",
-      "src/inspector-view.mjs:392"
+      "src/inspector-view.mjs:174",
+      "src/inspector-view.mjs:211",
+      "src/inspector-view.mjs:393"
     ],
     "context": "number('X', 'root_x', object.root_x, 'px'), number('Y', 'root_y', object.root_y, 'px'), number(interfaceText(\"inspectorView.scale\"), 'scale', object.scale * 100"
   },
   "inspectorView.scale2": {
     "locations": [
-      "src/inspector-view.mjs:263"
+      "src/inspector-view.mjs:264"
     ],
     "context": "number(interfaceText(\"inspectorView.zoom\"), 'camera_scale', (c.scale || 1) * 100, '%', {min: 0.01, description: interfaceText(\"inspectorView.scale2\"), descripti"
   },
   "inspectorView.scene": {
     "locations": [
-      "src/inspector-view.mjs:133",
-      "src/inspector-view.mjs:226"
+      "src/inspector-view.mjs:134",
+      "src/inspector-view.mjs:227"
     ],
     "context": "const label = {camera: interfaceText(\"inspectorView.camera\"), scene: interfaceText(\"inspectorView.scene\"), layer: interfaceText(\"inspectorView.layer\"), frame: i"
   },
   "inspectorView.secondaryColor": {
     "locations": [
-      "src/inspector-view.mjs:500",
-      "src/inspector-view.mjs:502"
+      "src/inspector-view.mjs:502",
+      "src/inspector-view.mjs:504"
     ],
     "context": "switch: {id: 'segment-gradient-enabled', label: interfaceText(\"inspectorView.secondaryColor\"), labelKey: \"inspectorView.secondaryColor\", checked: secondary, con"
   },
   "inspectorView.secondaryColorOpacity": {
     "locations": [
-      "src/inspector-view.mjs:503"
+      "src/inspector-view.mjs:505"
     ],
     "context": "number(interfaceText(\"inspectorView.secondaryOpacity\"), 'segment_gradient_opacity', (1 - (segment.secondary.a ?? 0) / 255) * 100, '%', {min: 0, max: 100, descri"
   },
   "inspectorView.secondaryOpacity": {
     "locations": [
-      "src/inspector-view.mjs:503"
+      "src/inspector-view.mjs:505"
     ],
     "context": "number(interfaceText(\"inspectorView.secondaryOpacity\"), 'segment_gradient_opacity', (1 - (segment.secondary.a ?? 0) / 255) * 100, '%', {min: 0, max: 100, descri"
   },
   "inspectorView.secondColour": {
     "locations": [
-      "src/inspector-view.mjs:499"
+      "src/inspector-view.mjs:501"
     ],
     "context": "secondColour: {id: 'second-colour', title: interfaceText(\"inspectorView.secondColour\"), titleKey: \"inspectorView.secondColour\", place: 'titled', open: secondary"
   },
   "inspectorView.segment": {
     "locations": [
-      "src/inspector-view.mjs:484"
+      "src/inspector-view.mjs:486"
     ],
     "context": "{value: 'segment', label: interfaceText(\"inspectorView.segment\"), labelKey: \"inspectorView.segment\", data: {'connector-part': 'segment'}}, {value: 'slider', lab"
   },
   "inspectorView.segmentColor": {
     "locations": [
-      "src/inspector-view.mjs:472"
+      "src/inspector-view.mjs:474"
     ],
     "context": "const colour = {kind: 'color', picker: 'paint', id: 'segment-color', label: interfaceText(\"inspectorView.colour\"), labelKey: \"inspectorView.colour\", description"
   },
   "inspectorView.segmentShape": {
     "locations": [
-      "src/inspector-view.mjs:477"
+      "src/inspector-view.mjs:479"
     ],
     "context": "const shapeSelect = {kind: 'select', id: 'segment-shape', label: interfaceText(\"inspectorView.shape\"), labelKey: \"inspectorView.shape\", description: interfaceTe"
   },
   "inspectorView.selectedFigures": {
     "locations": [
-      "src/inspector-view.mjs:133",
-      "src/inspector-view.mjs:315"
+      "src/inspector-view.mjs:134",
+      "src/inspector-view.mjs:316"
     ],
     "context": "const label = {camera: interfaceText(\"inspectorView.camera\"), scene: interfaceText(\"inspectorView.scene\"), layer: interfaceText(\"inspectorView.layer\"), frame: i"
   },
   "inspectorView.selection": {
     "locations": [
-      "src/inspector-view.mjs:317"
+      "src/inspector-view.mjs:318"
     ],
     "context": "{id: 'selection', title: interfaceText(\"inspectorView.selection\"), titleKey: \"inspectorView.selection\", actions: ["
   },
   "inspectorView.sendBackward": {
     "locations": [
-      "src/inspector-view.mjs:101",
-      "src/inspector-view.mjs:331",
-      "src/inspector-view.mjs:411"
+      "src/inspector-view.mjs:102",
+      "src/inspector-view.mjs:332",
+      "src/inspector-view.mjs:412"
     ],
     "context": "messageTuple(['back', 'send-to-back', interfaceText(\"inspectorView.sendToBack\")], {2: {key: \"inspectorView.sendToBack\", params: {}}}), messageTuple(['down', STE"
   },
   "inspectorView.sendPartBackward": {
     "locations": [
-      "src/inspector-view.mjs:521"
+      "src/inspector-view.mjs:523"
     ],
     "context": "down: {action: 'segment-order-down', label: interfaceText(\"inspectorView.sendPartBackward\"), labelKey: \"inspectorView.sendPartBackward\", icon: STEP_DOWN}, up: {"
   },
   "inspectorView.sendToBack": {
     "locations": [
-      "src/inspector-view.mjs:101"
+      "src/inspector-view.mjs:102"
     ],
     "context": "messageTuple(['back', 'send-to-back', interfaceText(\"inspectorView.sendToBack\")], {2: {key: \"inspectorView.sendToBack\", params: {}}}), messageTuple(['down', STE"
   },
   "inspectorView.shape": {
     "locations": [
-      "src/inspector-view.mjs:477"
+      "src/inspector-view.mjs:479"
     ],
     "context": "const shapeSelect = {kind: 'select', id: 'segment-shape', label: interfaceText(\"inspectorView.shape\"), labelKey: \"inspectorView.shape\", description: interfaceTe"
   },
   "inspectorView.showCompositionGuides": {
     "locations": [
-      "src/inspector-view.mjs:251"
+      "src/inspector-view.mjs:252"
     ],
     "context": "{id: 'preview', title: interfaceText(\"inspectorView.preview\"), titleKey: \"inspectorView.preview\", actions: [{action: 'camera-guides', icon: 'grid', label: inter"
   },
   "inspectorView.slidePosition": {
     "locations": [
-      "src/inspector-view.mjs:488"
+      "src/inspector-view.mjs:490"
     ],
     "context": "{kind: 'number', id: 'rig-position', label: interfaceText(\"inspectorView.position\"), labelKey: \"inspectorView.position\", description: interfaceText(\"inspectorVi"
   },
   "inspectorView.slider": {
     "locations": [
-      "src/inspector-view.mjs:484",
-      "src/inspector-view.mjs:487"
+      "src/inspector-view.mjs:486",
+      "src/inspector-view.mjs:489"
     ],
     "context": "{value: 'segment', label: interfaceText(\"inspectorView.segment\"), labelKey: \"inspectorView.segment\", data: {'connector-part': 'segment'}}, {value: 'slider', lab"
   },
   "inspectorView.squareLine": {
     "locations": [
-      "src/inspector-view.mjs:478"
+      "src/inspector-view.mjs:480"
     ],
     "context": "messageTuple(['line', interfaceText(\"inspectorView.roundLine\")], {1: {key: \"inspectorView.roundLine\", params: {}}}), messageTuple(['squareLine', interfaceText(\""
   },
   "inspectorView.static": {
     "locations": [
-      "src/inspector-view.mjs:471"
+      "src/inspector-view.mjs:473"
     ],
     "context": "const staticSwitch = {kind: 'field-switch', id: 'static-joint', label: interfaceText(\"inspectorView.static\"), labelKey: \"inspectorView.static\", checked: isStati"
   },
   "inspectorView.stop": {
     "locations": [
-      "src/inspector-view.mjs:113",
-      "src/inspector-view.mjs:510"
+      "src/inspector-view.mjs:114",
+      "src/inspector-view.mjs:512"
     ],
     "context": "return {label, labelKey: last - first + 1 === frames.length ? 'inspectorView.editingFrameRange' : 'inspectorView.editingFrames', labelParams: {first: first + 1,"
   },
   "inspectorView.style": {
     "locations": [
-      "src/inspector-view.mjs:514",
-      "src/inspector-view.mjs:529"
+      "src/inspector-view.mjs:516",
+      "src/inspector-view.mjs:531"
     ],
     "context": "{id: 'style', title: interfaceText(\"inspectorView.style\"), titleKey: \"inspectorView.style\", hidden: slider, rows: [{kind: 'grid', rows: [{...colour, span: 2}, w"
   },
   "inspectorView.text": {
     "locations": [
       "src/asset-library.mjs:23",
-      "src/inspector-view.mjs:397",
-      "src/inspector-view.mjs:479"
+      "src/inspector-view.mjs:398",
+      "src/inspector-view.mjs:481"
     ],
     "context": "const kindMessage=kind=>({messageKey:{Movieclip:'assetLibrary.movieclip',Text:'inspectorView.text',Image:'assetLibrary.image',Figure:'assetLibrary.figure'}[kind"
   },
   "inspectorView.timing": {
     "locations": [
-      "src/inspector-view.mjs:133",
-      "src/inspector-view.mjs:290"
+      "src/inspector-view.mjs:134",
+      "src/inspector-view.mjs:291"
     ],
     "context": "const label = {camera: interfaceText(\"inspectorView.camera\"), scene: interfaceText(\"inspectorView.scene\"), layer: interfaceText(\"inspectorView.layer\"), frame: i"
   },
   "inspectorView.transform": {
     "locations": [
-      "src/inspector-view.mjs:256",
-      "src/inspector-view.mjs:258",
-      "src/inspector-view.mjs:389"
+      "src/inspector-view.mjs:257",
+      "src/inspector-view.mjs:259",
+      "src/inspector-view.mjs:390"
     ],
     "context": "{value: 'transform', label: interfaceText(\"inspectorView.transform\"), labelKey: \"inspectorView.transform\", data: {'camera-tab': 'transform'}}, {value: 'motion',"
   },
   "inspectorView.transformDrawing": {
     "locations": [
-      "src/inspector-view.mjs:209"
+      "src/inspector-view.mjs:210"
     ],
     "context": "const pose = drawing.tool === 'transform' && o ? `<section class=\"inspector-section\"><div class=\"inspector-title\"><span data-i18n=\"inspectorView.transformDrawin"
   },
   "inspectorView.unjoin": {
     "locations": [
-      "src/inspector-view.mjs:406"
+      "src/inspector-view.mjs:407"
     ],
     "context": "{action: 'join-figure', label: parent ? interfaceText(\"inspectorView.unjoin\") : interfaceText(\"inspectorView.join\"), labelKey: (parent ? \"inspectorView.unjoin\" "
   },
   "inspectorView.unjoinFigure": {
     "locations": [
-      "src/inspector-view.mjs:385"
+      "src/inspector-view.mjs:386"
     ],
     "context": "const joinLabel = parent ? interfaceText(\"inspectorView.unjoinFigure\") : interfaceText(\"inspectorView.joinToFigure\");"
   },
   "inspectorView.valueValue1Gradient": {
     "locations": [
-      "src/inspector-view.mjs:473"
+      "src/inspector-view.mjs:475"
     ],
     "context": "paint: paintCSS(paint), caption: solid ? undefined : interfaceText('inspectorView.valueValue1Gradient', {value: {messageKey: 'colorPicker.' + paint.type}, value"
   },
   "inspectorView.white": {
     "locations": [
-      "src/inspector-view.mjs:224"
+      "src/inspector-view.mjs:225"
     ],
     "context": "const name = background?.name || interfaceText(\"inspectorView.white\"), figures = editor.frame.objects.length, frames = editor.totalTicks ?? report.keyframes.len"
   },
   "inspectorView.whiteCircle": {
     "locations": [
-      "src/inspector-view.mjs:478"
+      "src/inspector-view.mjs:480"
     ],
     "context": "messageTuple(['line', interfaceText(\"inspectorView.roundLine\")], {1: {key: \"inspectorView.roundLine\", params: {}}}), messageTuple(['squareLine', interfaceText(\""
   },
   "inspectorView.width": {
     "locations": [
-      "src/inspector-view.mjs:229",
-      "src/inspector-view.mjs:474"
+      "src/inspector-view.mjs:230",
+      "src/inspector-view.mjs:476"
     ],
     "context": "number(interfaceText(\"inspectorView.width\"), 'canvas_width', report.canvas_width, 'px', {min: 1, max: 16384, labelKey: \"inspectorView.width\", labelParams: {}}),"
   },
   "inspectorView.widthPx": {
     "locations": [
-      "src/inspector-view.mjs:321"
+      "src/inspector-view.mjs:322"
     ],
     "context": "number('W', 'group_width', b.maxX - b.minX, 'px', {min: 0.01, description: interfaceText(\"inspectorView.widthPx\"), descriptionKey: \"inspectorView.widthPx\"}), nu"
   },
   "inspectorView.zIndex": {
     "locations": [
-      "src/inspector-view.mjs:409"
+      "src/inspector-view.mjs:410"
     ],
     "context": "{kind: 'stepper-field', key: 'figure_z_order', label: interfaceText(\"inspectorView.order\"), labelKey: \"inspectorView.order\", description: interfaceText(\"inspect"
   },
   "inspectorView.zoom": {
     "locations": [
-      "src/inspector-view.mjs:263"
+      "src/inspector-view.mjs:264"
     ],
     "context": "number(interfaceText(\"inspectorView.zoom\"), 'camera_scale', (c.scale || 1) * 100, '%', {min: 0.01, description: interfaceText(\"inspectorView.scale2\"), descripti"
   },
   "inspectorView.zoom2": {
     "locations": [
-      "src/inspector-view.mjs:253"
+      "src/inspector-view.mjs:254"
     ],
     "context": "caption: [`${editor.report.canvas_width} × ${editor.report.canvas_height}`, {text: interfaceText(\"inspectorView.zoom2\", {value: num(100 / c.scale)}), textKey: \""
   },
@@ -30338,7 +30375,7 @@
   },
   "overlays.palette.figureIn": {
     "locations": [
-      "src/app.mjs:5667"
+      "src/app.mjs:5668"
     ],
     "context": "meta: kitText(kitT, isMovieclip(figure) ? \"overlays.palette.movieclipIn\" : \"overlays.palette.figureIn\", { layer }), metaKey: isMovieclip(figure) ? \"overlays.pal"
   },
@@ -30363,13 +30400,13 @@
   },
   "overlays.palette.layer": {
     "locations": [
-      "src/app.mjs:5656"
+      "src/app.mjs:5657"
     ],
     "context": "if (match) rows.push({ id: `layer:${layer.id}`, label: layer.name, icon: \"layers\", meta: kitText(kitT, \"overlays.palette.layer\"), metaKey: \"overlays.palette.lay"
   },
   "overlays.palette.movieclipIn": {
     "locations": [
-      "src/app.mjs:5667"
+      "src/app.mjs:5668"
     ],
     "context": "meta: kitText(kitT, isMovieclip(figure) ? \"overlays.palette.movieclipIn\" : \"overlays.palette.figureIn\", { layer }), metaKey: isMovieclip(figure) ? \"overlays.pal"
   },
@@ -30389,7 +30426,7 @@
   },
   "overlays.palette.project": {
     "locations": [
-      "src/app.mjs:5650"
+      "src/app.mjs:5651"
     ],
     "context": "get label() { return kitText(kitT, \"overlays.palette.project\"); },"
   },
@@ -30401,13 +30438,13 @@
   },
   "overlays.palette.settingIn": {
     "locations": [
-      "src/app.mjs:5684"
+      "src/app.mjs:5685"
     ],
     "context": ".map(({ entry, match }) => ({ id: entry.setting, label: entry.label, icon: \"settings\", meta: kitText(kitT, \"overlays.palette.settingIn\", { tab: entry.tabLabel }"
   },
   "overlays.palette.settings": {
     "locations": [
-      "src/app.mjs:5678"
+      "src/app.mjs:5679"
     ],
     "context": "get label() { return kitText(kitT, \"overlays.palette.settings\"); },"
   },
@@ -30793,7 +30830,7 @@
   "projectTabs.openProjects": {
     "locations": [
       "src/app.mjs:4303",
-      "src/app.mjs:5139",
+      "src/app.mjs:5140",
       "src/shell/project-switcher.mjs:59",
       "src/shell/project-switcher.mjs:64"
     ],
@@ -30822,6 +30859,24 @@
       "src/property-controls.mjs:373"
     ],
     "context": "localizedAttribute(input,'validation-message',Number.isFinite(value)?'propertyControls.enterValueBetween':'propertyControls.enterAFiniteNumber',Number.isFinite("
+  },
+  "puppet.make": {
+    "locations": [
+      "src/puppet-view.mjs:10"
+    ],
+    "context": "{kind:'actions',items:[{action:'make-puppet',icon:'depth',label:interfaceText(\"puppet.make\"),labelKey:\"puppet.make\",text:true,variant:'outline'}]},"
+  },
+  "puppet.makeHint": {
+    "locations": [
+      "src/puppet-view.mjs:9"
+    ],
+    "context": "{kind:'markup',html:`<div class=\"inspector-meta\" data-i18n=\"puppet.makeHint\">${messageHTML(\"puppet.makeHint\",{})}</div>`},"
+  },
+  "puppet.title": {
+    "locations": [
+      "src/puppet-view.mjs:8"
+    ],
+    "context": "return {id:'puppet',title:interfaceText(\"puppet.title\"),titleKey:\"puppet.title\",place:'titled',open:true,hidden:!available,rows:["
   },
   "quick.back": {
     "locations": [
@@ -31222,7 +31277,7 @@
   "rendererStatus.deviceLost": {
     "locations": [
       "src/app.mjs:2022",
-      "src/app.mjs:6806"
+      "src/app.mjs:6807"
     ],
     "context": "else if (state.renderer.stats?.backend === \"WebGPU device lost\") localizedText($(\"renderer-label\"), \"rendererStatus.deviceLost\");"
   },
@@ -31240,7 +31295,7 @@
   },
   "rendererStatus.reconnectionFailed": {
     "locations": [
-      "src/app.mjs:6780"
+      "src/app.mjs:6781"
     ],
     "context": "fallbackReason: `Graphics reconnection failed: ${error.message}`, fallbackReasonKey:'rendererStatus.reconnectionFailed',"
   },

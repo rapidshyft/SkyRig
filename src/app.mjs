@@ -4758,6 +4758,7 @@ const actions = {
   "attach-figure": toggleFigureJoin,
   "detach-figure": () => {if (selectedFigureJoinAction()?.kind === 'unjoin') toggleFigureJoin();},
   "disconnect-segment": disconnectSegment,
+  "make-puppet": () => { finishCurrentEdit(); editor.makePuppet(); },
   "combine-figures": () => {
     const roots = editor.resolveTranslationSelection().rootUids;
     if (roots.length !== 1)
