@@ -132,7 +132,7 @@ export function getPivotHandles(geometry, {
   const settingsKey = [topologyEpoch,spatialMode,showUnselected,showStatic,showDetailed,attaching,allowStaticManipulation,selectStatic,viewScale,autoSize,minDiameter,maxDiameter,builder,selectedJoint,selectedBranch,[...(selectedHandleIds??[])].join(',')].join('|');
   if(descriptorCache && descriptorCache.key!==settingsKey){descriptorCache.key=settingsKey;descriptorCache.objects=new WeakMap();}
   for (const g of objects) {
-    if (!g) continue;
+    if (!g || geometry.hiddenSlots?.has(g.slot)) continue;
     const uid = g.obj.unique_id;
     if (hiddenUids?.has(uid) || lockedUids?.has(uid)) continue;
     if (attaching && joinTargetUids && !joinTargetUids.has(uid)) continue;

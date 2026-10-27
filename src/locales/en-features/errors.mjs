@@ -5,6 +5,8 @@ export default Object.freeze({
   "errors.puppet.theFigureHasAMissingParentOrACycle": "The figure has a missing parent or a cycle.",
   "errors.puppet.invalidPuppetSettings": "Invalid 3D puppet settings.",
   "errors.puppet.aPuppetNeedsArticulatedBones": "A 3D puppet needs articulated bones.",
+  "errors.puppet.chooseAViewForThePiece": "Choose Front, Three-quarter, Side or Back for the piece.",
+  "errors.puppet.selectAPieceJoinedToA3dPuppet": "Select a piece joined to a 3D puppet’s bone.",
   "errors.playbackPlanning.layerMigrationLabel": "Layer migration",
   "errors.playbackPlanning.inbetweenInsertionLabel": "Inbetween insertion",
   "errors.editorCamera.cameraValueLabel": "Camera {field}",

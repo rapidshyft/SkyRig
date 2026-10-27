@@ -75,8 +75,10 @@ export function* buildMovieclipGeometrySteps(fig,obj,root,slot,api) {
     // A puppet piece without a rotation-driven bank follows its bone instead.
     piece=drawing?null:api.piece??null,
     scale=Number(obj.scale??1)*(drawing?joint.spatialFrame.stretch*depthScale:piece?.scale??1),inheritedFlip=drawing&&parent.obj.image_text_flags?-1:1,
-    angle=Number(obj.angles?.[0]??0)+(drawing?drawing.roll*inheritedFlip+figureAngle:piece?.rotation??0),
-    a=Math.cos(angle)*scale,b=Math.sin(angle)*scale,flip=(obj.image_text_flags?-1:1)*inheritedFlip;
+    turned=Number(obj.angles?.[0]??0)+(drawing?drawing.roll*inheritedFlip+figureAngle:piece?.rotation??0),
+    // A mirrored view drawing reflects across its bone: reflect the angle and flip.
+    angle=piece?.mirror?2*piece.axis-turned:turned,
+    a=Math.cos(angle)*scale,b=Math.sin(angle)*scale,flip=(obj.image_text_flags?-1:1)*inheritedFlip*(piece?.mirror?-1:1);
   if(drawing)root={...joint.start};
   const point=p=>({x:root.x+a*(p.x-asset.pivot.x)-b*(p.y-asset.pivot.y)*flip,y:root.y+b*(p.x-asset.pivot.x)+a*(p.y-asset.pivot.y)*flip});
   const end={x:root.x+40*Math.cos(angle)*scale,y:root.y+40*Math.sin(angle)*scale};

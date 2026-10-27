@@ -18,6 +18,7 @@ What's new in each version of StykAnimate.
 - Five short interactive tutorials that guide you step by step through the canvas, posing, the timeline and the panels.
 - Right-click a joint and choose Disconnect segment to turn that part of a figure into a figure of its own.
 - In the browser editor, turn a figure into a 3D cut-out puppet: its parts turn and tilt in depth, pieces joined to it draw back to front, and its optional perspective makes them grow as they come closer.
+- Give a puppet piece front, three-quarter, side and back drawings; the turn of its bone picks the one to show and mirrors it for the other side.
 
 ### Changed
 

@@ -6,6 +6,7 @@ import {errorText, presentError} from './error-presentation.mjs';
 import {t as interfaceText} from './localization.mjs';
 
 import {installSpatialControls,drawSpatialGizmo,spatialGizmoDrag,updateSpatialGizmo,spatialControlMode} from './spatial-controls.mjs';
+import {installPuppetControls} from './puppet-view.mjs';
 import {rigDetailsShown} from './rig-control-details.mjs';
 import {drawingBarrier,drawingResourcesFor} from './drawing-resources.mjs';
 import {drawingMetadata} from './drawing-model.mjs';
@@ -4521,6 +4522,7 @@ overlay.addEventListener(
   }),
 );
 const spatialControls=installSpatialControls({editor,root:$("inspector"),refresh:()=>{queueUI();requestRender();},guard:guarded});
+installPuppetControls({editor,root:$("inspector"),refresh:()=>{queueUI();requestRender();},guard:guarded});
 const rigHost=()=>({editor,showDialog,closeDialog,resources,finish:()=>{pause();finishCurrentEdit();},builderActive:()=>Boolean(builderMode?.active),
   addToAnimate:document=>{
     pause();finishCurrentEdit();

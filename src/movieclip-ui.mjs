@@ -6,6 +6,7 @@ import {messageError} from './localized-error.mjs';
 import {t as interfaceText} from './localization.mjs';
 
 import {drawingSetsView} from './movieclip-drawings-view.mjs';
+import {puppetSection} from './puppet-view.mjs';
 import {drawingBarrier} from './drawing-resources.mjs';
 import {playbackSettings,movieclipAsset,movieclipTime} from './movieclips.mjs';
 import {renderInspector} from './inspector-kit.mjs';
@@ -80,6 +81,7 @@ export function movieclipSections(editor,{number=(label,key,value,unit='',extra=
       {action:'movieclip-export',label:interfaceText("movieclipUi.exportMovieclip"), labelKey: "movieclipUi.exportMovieclip",text:true,variant:'outline',tip:interfaceText("movieclipUi.exportTheClipStykmov"), tipKey: "movieclipUi.exportTheClipStykmov"},
     ]}]},
     {id:'drawing-sets',title:interfaceText("movieclipUi.drawingSets"), titleKey: "movieclipUi.drawingSets",place:'titled',open:Boolean(sets),hidden:!sets,rows:[{kind:'markup',html:sets}]},
+    puppetSection(editor),
   ];
 }
 /** A movieclip instance's inspector HTML, without the Edit together switch and Layer select that inspector-view.mjs adds. */

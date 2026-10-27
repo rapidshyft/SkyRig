@@ -20,7 +20,11 @@ export function puppetConvertible(figure){
 }
 /** A new definition whose segments are spatial bones at the figure's rest pose.
  * Every existing segment keeps its ID, artwork and channels; two zero-length
- * static controls per bone carry its turn and tilt angles. */
+ * static controls per bone carry its turn and tilt angles. A leading zero-angle
+ * "Figure" control carries the whole-figure rotation the articulated evaluator
+ * reads from the first segment (so Flip mirrors the puppet), and a zero-length
+ * "Body" root bone parents every top-level part so Rotate figure turns all of
+ * them together. */
 export function puppetDefinition(figure){
  if(!figure||isMovieclip(figure)||figure._styk?.drawing)throw messageError(new Error(''), "errors.puppet.chooseAFigureToMakeA3dPuppet", {});
  if(isPuppet(figure)||hasSpatialRig(figure))throw messageError(new Error(''), "errors.puppet.thisFigureIsAlreadyA3dFigure", {});
@@ -34,17 +38,42 @@ export function puppetDefinition(figure){
  };
  let nextId=segments.reduce((max,s)=>Math.max(max,Number(s.segment_id)),0);
  const control=(name,suffix)=>({segment_id:++nextId,parent_id:0,length:0,angle_rad:0,thickness:0,bend_rad:0,primitive_code:0,aux_code:1,flags:256,
-  segment_type:'line',segment_kind:'line',color_rgb:[0,0,0],transparency:0,visible:false,z_order:nextId,name:`${name} ${suffix}`});
- const converted=[],controls=[];
+  segment_type:'line',segment_kind:'line',color_rgb:[0,0,0],transparency:0,visible:false,z_order:nextId,name:suffix?`${name} ${suffix}`:name});
+ const rotation=control('Figure',''),body=control('Body',''),bodyTurn=control('Body','turn'),bodyTilt=control('Body','tilt');
+ body.aux_code=0;body.flags=0;body._stykRig={spatial:{parent:0,origin:[0,0,0],tip:[0,0,0],turn:bodyTurn.segment_id,pitch:bodyTilt.segment_id}};
+ const converted=[rotation,body],controls=[bodyTurn,bodyTilt];
  for(const s of segments){
   if(!boneSegment(s)){converted.push(structuredClone(s));continue;}
   const parent=Number(s.parent_id),origin=endOf(parent),tip=endOf(s.segment_id),name=s.name||`Part ${s.segment_id}`;
   const turn=control(name,'turn'),pitch=control(name,'tilt');controls.push(turn,pitch);
-  converted.push({...structuredClone(s),_stykRig:{spatial:{parent,origin:[origin[0],origin[1],0],tip:[tip[0],tip[1],0],turn:turn.segment_id,pitch:pitch.segment_id}}});
+  converted.push({...structuredClone(s),...(parent?{}:{parent_id:body.segment_id}),_stykRig:{spatial:{parent:parent||body.segment_id,origin:[origin[0],origin[1],0],tip:[tip[0],tip[1],0],turn:turn.segment_id,pitch:pitch.segment_id}}});
  }
  const result={...figure,segments:[...converted,...controls],_styk:{...figure._styk,puppet:{version:PUPPET_VERSION}}};
  result.segment_count=result.segments.length;
  return result;
+}
+/** View drawings. A piece tagged with a view shows only while its bone turns
+ * through that sector; the other side of the turn mirrors the three-quarter and
+ * side drawings, so one set of four drawings covers a full turn. */
+export const PUPPET_VIEWS=Object.freeze(['front','threeQuarter','side','back']);
+const SECTOR_DEGREES=[22.5,67.5,135];
+const PREFERENCE={front:['front','threeQuarter','side','back'],threeQuarter:['threeQuarter','front','side','back'],side:['side','threeQuarter','back','front'],back:['back','side','threeQuarter','front']};
+/** The sector a heading (radians, positive to the viewer's right) falls in. */
+export function puppetViewSector(heading){
+  const degrees=Math.abs(heading)*180/Math.PI;
+  return degrees<SECTOR_DEGREES[0]?'front':degrees<SECTOR_DEGREES[1]?'threeQuarter':degrees<SECTOR_DEGREES[2]?'side':'back';
+}
+/** The view shown from the tags present on one bone, nearest the sector. */
+export function puppetViewShown(sector,available){
+  return PREFERENCE[sector].find(view=>available.has(view))??null;
+}
+/** Whether a drawing of `view` is mirrored at this heading: the far side of a
+ * turn reuses the three-quarter and side drawings reflected. */
+export const puppetViewMirrored=(view,heading)=>heading<0&&(view==='threeQuarter'||view==='side');
+export const puppetPieceView=object=>object?._stykPuppetView;
+export function validatePuppetView(object){
+  const view=object._stykPuppetView;
+  if(view!==undefined&&!PUPPET_VIEWS.includes(view))throw messageError(new Error(''), "errors.puppet.chooseAViewForThePiece", {});
 }
 export function validatePuppet(figure){
  const p=figure._styk?.puppet;

@@ -21,7 +21,28 @@ The conversion is available for plain figures: movieclips, drawings, figures
 with connectors, Smart Stretch, weighted joints or a mesh, and figures that are
 already 3D are not offered. A rigid bone ends at its straight tip, so a curved
 segment keeps its curve between the bone's joints; its end joint moves to the
-straight tip when the figure is converted.
+straight tip when the figure is converted. The puppet gains a zero-length
+**Body** root that every top-level part hangs from, so **Rotate figure** turns
+the whole character, legs included, and **Flip** mirrors it.
+
+## View drawings
+
+Draw a piece once per view and join each drawing to the same joint. Select a
+drawing and choose its **View** in the 3D puppet piece section of Properties:
+**Front**, **Three-quarter**, **Side** or **Back**; **Always shown** (the
+default) keeps a piece visible at every angle. The turn of the bone then picks
+the drawing: front within 22.5° of facing the viewer, three-quarter to 67.5°,
+side to 135° and back beyond that. Draw the three-quarter and side views
+turned to the viewer's right; when the bone turns left they are shown
+mirrored across the bone, so four drawings cover a full turn. Front and back
+never mirror. A view that is not drawn borrows the nearest one that is, so a
+piece with only a front and a side drawing still shows something from behind.
+A bone seen end-on has no heading and shows the front.
+
+Hidden view drawings are left out of the scene and of handle picking on that
+frame; selecting one in the timeline still edits it. Dragging a mirrored
+drawing turns and bends it the way it is shown. The view tag is set on every
+frame the piece appears in, as one undo step.
 
 ## Draw order follows depth
 
@@ -61,15 +82,29 @@ joins on other 3D figures.
 `figure._styk.puppet = {version: 1}` marks the definition. Each original
 segment carries `_stykRig.spatial = {parent, origin, tip, turn, pitch}` in rest
 figure coordinates with `z = 0`, and two hidden static zero-length controls per
-bone (`<name> turn`, `<name> tilt`) hold the turn and tilt angle channels.
+bone (`<name> turn`, `<name> tilt`) hold the turn and tilt angle channels. The
+first segment is a zero-angle `Figure` control: the articulated evaluator reads
+the whole-figure rotation from the first segment, which is what lets Flip
+store mirrored angles. The second is the `Body` root bone (origin and tip at
+the figure origin) that top-level parts are reparented to. A piece's view is
+the object field `_stykPuppetView` (`front`, `threeQuarter`, `side`, `back`),
+validated with the scene and saved with the pose like other object fields.
+`puppetViewSector`, `puppetViewShown` and `puppetViewMirrored` in
+`src/puppet.mjs` are the pure selection rules; `puppetHeading` reads a bone's
+turn from its evaluated frame (reflected for a flipped puppet).
 Bones evaluate `depth` and `originDepth` (`src/rig-spatial.mjs`); a puppet's
 segments and fills take `z = depth × 65536 + native order` and joined pieces
 are regrouped by `puppetDrawOrder` in `src/puppet-geometry.mjs`, which publishes
 `geometry.drawOrder` for onion skins, handle picking and materialization.
 `puppetPiece` derives a joined piece's rotation and scale (stretch × depth
-projection of its joint, from the puppet's `_stykSpatial.camera`) from its bone;
-figure and movieclip pieces apply it in their own geometry builders and expose
-it as `geometry.piece`.
+projection of its joint, from the puppet's `_stykSpatial.camera`) from its bone,
+plus its heading and whether its view drawing is mirrored across the bone;
+figure and movieclip pieces apply it in their own geometry builders (reflected
+angles, negated bends and a flipped image flag on a derived render object)
+and expose it as `geometry.piece`. `puppetDrawOrder` also decides which tagged
+pieces of each bone are shown and publishes the rest as
+`geometry.hiddenSlots`. `setPuppetView` in `src/editor-puppet.mjs` tags the
+selected piece on every frame through the existing all-frames pose edit.
 `src/puppet.mjs` owns the conversion and validation; `src/editor-puppet.mjs`
 exposes `makePuppet` through the ordinary topology history, so instances keep
 their poses and Undo is one step. `src/puppet-view.mjs` renders the Properties
@@ -92,3 +127,9 @@ and that plain joins and non-puppet figures keep their authored order. With
 perspective it checks the default of zero, the exact scale of far and near
 pieces, that turning it off restores the flat drawing, that stretch drags reach
 the pointer, and that plain joins on other 3D figures keep the restriction.
+For view drawings it covers the sector, fallback and mirroring rules, that a
+turn shows one drawing and hides the others on the same joint, that the far
+side reflects angles and the image flag without touching the scene object,
+that a flipped puppet faces the other way with its joints mirrored exactly,
+that Rotate figure turns legs and arms together, and that view tags survive
+undo, redo, validation and native round trips.

@@ -1154,9 +1154,11 @@ export class Editor extends EventTarget {
     ({x,y}=authoredRigTarget(shape,x,y,stretch?undefined:{angle:this.object.angles[this.selectedJoint],
       length:(this.object.len_flag?this.object.lengths[this.selectedJoint]:seg.length)*Number(this.object.scale??1)}));
     const angle = Math.atan2(y - shape.start.y, x - shape.start.x) - shape.bend / 2;
+    // A mirrored puppet piece shows its angles reflected, so a drag turns the channel the other way.
+    const mirrored = this.geometry.objects.get(this.selectedSlot)?.piece?.mirror ? -1 : 1;
     return this._objectEdit('Pose joint', obj => {
       const defaults = this._poseSnapState();
-      this._rotateJoint(shortest(angle - (shape.rigSpace ? obj.angles[this.selectedJoint] : shape.angle)), true, {isolate});
+      this._rotateJoint(shortest(angle - (shape.rigSpace ? obj.angles[this.selectedJoint] : shape.angle)) * mirrored, true, {isolate});
       if (stretch && Math.abs(obj.scale) > 1e-8) {
         if (!obj.len_flag) obj.lengths = this.figure.segments.map(s => s.length);
         obj.len_flag = 1; const bend = shape.bend;
@@ -1188,8 +1190,8 @@ export class Editor extends EventTarget {
     if (!segment || (isStatic(segment) && !rigBend) || ![0, 6].includes(segment.primitive_code ?? (segment.flags ?? 0) & 255)) return false;
     const shape = this.geometry.objects.get(this.selectedSlot)?.segments[this.selectedJoint]; if (!shape) return false;
     if (shape.connector) return this._bendConnector(x, y, shape);
-    const distance = Math.hypot(x - shape.start.x, y - shape.start.y);
-    let bend = distance < 1e-8 ? shape.bend : 2 * shortest(Math.atan2(y - shape.start.y, x - shape.start.x) - shape.angle);
+    const distance = Math.hypot(x - shape.start.x, y - shape.start.y), mirrored = this.geometry.objects.get(this.selectedSlot)?.piece?.mirror ? -1 : 1;
+    let bend = (distance < 1e-8 ? shape.bend : 2 * shortest(Math.atan2(y - shape.start.y, x - shape.start.x) - shape.angle)) * mirrored;
     return this._objectEdit('Bend joint', object => {
       const defaults = this._poseSnapState(), scale = Math.abs(object.scale);
       const chord = value => Math.abs(value) < 1e-7 ? 1 : Math.abs(2 * Math.sin(value / 2) / value);

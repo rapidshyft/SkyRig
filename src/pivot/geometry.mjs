@@ -643,7 +643,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       if (p) root = { ...p };
       else warnings.push(`Unresolved join at object ${slot}`);
       const bone = puppetBone(parent, obj);
-      if (bone) piece = puppetPiece(bone, parent);
+      if (bone) piece = puppetPiece(bone, parent, obj);
     }
     if (isMovieclip(fig)) {
       const geometry = yield* buildMovieclipGeometrySteps(fig,obj,root,slot,{timeline,evaluatedFrame,buildGeometry,buildGeometrySteps,joinedParent,piece,objectColor,previous:incremental?.previous?.objects.get(slot)});
@@ -660,6 +660,9 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       {segments, ids} = plan;
     const scale = Number(obj.scale ?? 1) * (piece?.scale ?? 1),
       opacity = 1 - Number(obj.field28 ?? obj.transparency ?? 0) / 255, puppet = Boolean(fig._styk?.puppet);
+    // A mirrored view drawing reflects across its bone: angles reflect, bends
+    // and the image flag flip. The scene object itself is unchanged.
+    const renderObject = piece?.mirror ? {...obj, image_text_flags: Number(!obj.image_text_flags)} : obj;
     const rig = rigPlan ? createRigEvaluation(fig, obj, root, rigPlan) : null;
     const pose = geometryPose(fig, obj, root, rig, previous, poseAllowed, report.version, plan);
     function segmentAt(i, active) {
@@ -684,6 +687,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
           ? (obj.bends?.[i] ?? 0)
           : (rt?.bend_rad ?? seg.bend_rad ?? 0),
       );
+      if (piece?.mirror) { angle = 2 * piece.axis - angle; bend = -bend; }
       let length =
         Number(
           ik?.lengths?.[i] ?? (obj.len_flag
@@ -767,7 +771,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       const render = {
         type: seg.segment_type === 'circle' || seg.segment_type === 'image' || seg.segment_type === 'text' ? seg.segment_type : 'line',
         seg,
-        obj,
+        obj: renderObject,
         fig,
         asset,
         version: report.version,
@@ -852,7 +856,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       const render={
         type: "poly",
         poly,
-        obj,
+        obj: renderObject,
         fig,
         slot,
         index: i,
@@ -982,16 +986,16 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
     yield {phase: 'geometry', stage: 'drawables', completed: ++collected, total: order.length};
   }
   return publishedGeometry(cache,orderedObjects,incremental?.previous?.token,
-    incremental?.dirtySlots ? new Set(incremental.dirtySlots) : null,warnings,arranged===resolved?null:arranged.map(([slot])=>slot));
+    incremental?.dirtySlots ? new Set(incremental.dirtySlots) : null,warnings,arranged===resolved?null:arranged.map(([slot])=>slot),arranged.hidden);
 }
 
 // Build the lazy view in its own scope. A getter defined inside the generator
 // captures its shared context, including incremental.previous, and keeps every
 // earlier pose alive even though the returned fields only mention its token.
-function publishedGeometry(objects,orderedObjects,previousToken,changedSlots,warnings,drawOrder=null) {
+function publishedGeometry(objects,orderedObjects,previousToken,changedSlots,warnings,drawOrder=null,hiddenSlots=null) {
   let drawables;
   return { objects, orderedObjects, token: {}, previousToken, changedSlots,
-    get drawables() { return drawables ??= orderedObjects.flatMap(g => g.drawables); }, warnings, ...(drawOrder?{drawOrder}:{}) };
+    get drawables() { return drawables ??= orderedObjects.flatMap(g => g.drawables); }, warnings, ...(drawOrder?{drawOrder}:{}), ...(hiddenSlots?{hiddenSlots}:{}) };
 }
 /** Mean bone depth of a puppet fill's corners; corners without depth count as the figure plane. */
 function meanDepth(points) {

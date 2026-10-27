@@ -7,7 +7,7 @@ import {validateSticknodesShape,validateSticknodesObject} from '../sticknodes/va
 import {normalizePaint} from '../paint.mjs';
 import {validatePlayback} from '../movieclips.mjs';
 import {validateSpatialMesh} from '../spatial-mesh.mjs';
-import {validatePuppet} from '../puppet.mjs';
+import {validatePuppet,validatePuppetView} from '../puppet.mjs';
 import {validateContinuations,continuations} from '../movieclip-presence.mjs';
 import {validateIK} from '../ik.mjs';
 import {validatePoseChoice,validateFigurePoseChoices} from '../rig-pose-choices.mjs';
@@ -56,6 +56,7 @@ function validateObjectPose(report, object, figure, origin = true) {
   validateAnimationStyle(object,figure);
   validateVfxOwner(object);
   if (object._stykZIndex !== undefined) validateFigureZIndex(object._stykZIndex);
+  if (object._stykPuppetView !== undefined) validatePuppetView(object);
   if(origin&&(object._stykAnimationOrigin!==undefined||figure._styk?.animationOrigin))validateOriginObject(object,figure);
   for (const key of ['root_x', 'root_y', 'scale']) float32(object[key], `Object ${key}`);
   integer(object.unique_id, 0, 0xffffffff, 'Object identity');

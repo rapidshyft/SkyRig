@@ -110,7 +110,7 @@ export function spatialViewInterpolation(f){
     const yaw=horizontal>1e-9?Math.atan2(fx,fz):0;
     const interval=count=>{const phase=(yaw/(2*Math.PI)*count+count)%count,index=Math.floor(phase),u=phase-index;return {index,next:(index+1)%count,blend:u*u*(3-2*u)};};
     const confidence=Math.max(0,Math.min(1,(horizontal-.05)/.2));
-    v=f.viewInterpolation={four:interval(4),eight:interval(8),cos:Math.cos(yaw),sin:Math.sin(yaw),strength:confidence*confidence*(3-2*confidence)};
+    v=f.viewInterpolation={four:interval(4),eight:interval(8),yaw,cos:Math.cos(yaw),sin:Math.sin(yaw),strength:confidence*confidence*(3-2*confidence)};
   }
   return v;
 }

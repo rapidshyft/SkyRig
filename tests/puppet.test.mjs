@@ -8,6 +8,8 @@ import {buildContainerV2,decodeDocument} from '../src/native-container.mjs';
 import {movieclipFigure} from '../src/movieclips.mjs';
 const rad=d=>d*Math.PI/180;
 const near=(a,b,t=.01)=>assert.ok(Math.abs(a-b)<t,`${a} != ${b}`);
+const at=(e,id)=>e.figure.segments.findIndex(s=>s.segment_id===id);
+const part=(g,id)=>g.segments.find(s=>s.seg.segment_id===id);
 function flatDocument(){
  const figure=defaultFigure(1);figure.name='Stick';
  const object=createObject(figure,1,300,260);
@@ -19,8 +21,9 @@ test('a puppet definition keeps every joint at its rest and posed position',()=>
  object.angles[3]+=rad(40);object.angles[5]-=rad(25);
  const before=joints(buildGeometry(d,d.keyframes[0]).objects.get(0));
  const puppet=puppetDefinition(figure);
- assert.ok(isPuppet(puppet));assert.equal(puppet.segments.length,figure.segments.length*3);
- for(const s of figure.segments)assert.deepEqual(puppet.segments.find(p=>p.segment_id===s.segment_id)._stykRig.spatial.parent,s.parent_id);
+ assert.ok(isPuppet(puppet));assert.equal(puppet.segments.length,figure.segments.length*3+4);
+ const body=puppet.segments[1];assert.equal(puppet.segments[0].name,'Figure');assert.equal(body.name,'Body');assert.deepEqual(body._stykRig.spatial.tip,[0,0,0]);
+ for(const s of figure.segments)assert.deepEqual(puppet.segments.find(p=>p.segment_id===s.segment_id)._stykRig.spatial.parent,s.parent_id||body.segment_id);
  assert.doesNotThrow(()=>validatePuppet(puppet));
  const e=new Editor({demo:false});e.load(d);e.select(1,-1);
  assert.ok(e.canMakePuppet());e.makePuppet();
@@ -53,7 +56,7 @@ test('curved segments keep their arcs on a puppet',()=>{
  const d=flatDocument();d.keyframes[0].objects[0].bend_flag=1;d.keyframes[0].objects[0].bends=d.figure_types[0].segments.map(()=>0);d.keyframes[0].objects[0].bends[3]=rad(60);
  const flat=buildGeometry(d,d.keyframes[0]).objects.get(0).segments[3];
  const e=new Editor({demo:false});e.load(d);e.select(1,-1);e.makePuppet();
- const bent=e.geometry.objects.get(0).segments[3];
+ const bent=part(e.geometry.objects.get(0),4);
  // A rigid bone ends at its straight tip; the curve bulges between the joints.
  assert.ok(bent.points.length>2&&Math.abs(bent.bend-rad(60))<1e-9&&Math.abs(flat.bend-rad(60))<1e-9);
  near(bent.points[0].x,flat.points[0].x);near(bent.points[0].y,flat.points[0].y);
@@ -91,7 +94,7 @@ test('a flat puppet keeps its authored draw order and a turned one sorts parts a
  assert.deepEqual(slots(e.geometry),[0,1,2]);
  const flat=e.geometry.objects.get(0).drawables.map(s=>s.seg.segment_id);
  assert.deepEqual(flat,flatDocument().figure_types[0].segments.map(s=>s.segment_id),'equal depth draws in the native order');
- e.select(1,0);e.setSpatialPose({turn:rad(90)});
+ e.select(1,at(e,1));e.setSpatialPose({turn:rad(90)});
  const g=e.geometry,body=g.objects.get(0),depthOf=id=>body.segments.find(s=>s.seg.segment_id===id).puppetDepth;
  assert.ok(depthOf(3)<-10&&depthOf(5)>10,'the arms turn to opposite depths');
  assert.ok(depthOf(4)<depthOf(3)&&depthOf(6)>depthOf(5));
@@ -119,7 +122,7 @@ test('pieces turn with the projected bone and scale with its stretch, for figure
  const inner={...emptyDocument(),figure_types:[defaultFigure(1)],keyframes:[createFrame([createObject(defaultFigure(1),1,0,0)])]};
  const clip=movieclipFigure(4,'Clip piece',inner,{duration:1,pivot:{x:0,y:0}});
  e.load({...e.serialize(),figure_types:[...e.report.figure_types,clip],keyframes:[createFrame([...e.frame.objects.map(o=>structuredClone(o)),createObject(clip,4,0,0,{join:{target_object_slot:0,target_unique_id:1,target_handle_id:4},_stykMovieclip:{mode:'single',offset:0}})])]});
- e.select(1,0);
+ e.select(1,at(e,1));
  const before=e.geometry.objects.get(1);near(before.piece.rotation,0,1e-9);near(before.piece.scale,1,1e-9);
  e.setSpatialPose({turn:rad(90)});
  const g=e.geometry,body=g.objects.get(0),arm=body.segments.find(s=>s.seg.segment_id===3),forearm=body.segments.find(s=>s.seg.segment_id===4);
@@ -130,14 +133,14 @@ test('pieces turn with the projected bone and scale with its stretch, for figure
  assert.deepEqual([pieceFigure.root.x,pieceFigure.root.y],[arm.end.x,arm.end.y],'a piece hangs from the joint of its bone');
  const pieceClip=g.objects.get(3);
  near(pieceClip.piece.rotation,forearm.rigRotation,1e-9);near(pieceClip.segments[0].angle,forearm.rigRotation,1e-9);
- e.select(1,2);e.setSpatialProportions({length:1.5});
+ e.select(1,at(e,3));e.setSpatialProportions({length:1.5});
  near(e.geometry.objects.get(1).piece.scale,1.5,1e-6);near(e.geometry.objects.get(1).segments[0].length,45,1e-6);
  const fresh=buildGeometry(e.report,e.evaluatedFrame);
  for(const slot of [1,3])assert.deepEqual(fresh.objects.get(slot).segments[0].points,e.geometry.objects.get(slot).segments[0].points);
 });
 import {spatialPerspectiveAvailable} from '../src/spatial-projection.mjs';
 test('perspective is off by default and scales pieces by the depth of their joint when enabled',()=>{
- const e=puppetWithPieces();e.select(1,0);
+ const e=puppetWithPieces();e.select(1,at(e,1));
  const flat=e.geometry.objects.get(1).segments[0].points.map(p=>[p.x,p.y]);
  assert.ok(spatialPerspectiveAvailable(e.frame.objects,e.object,e.report.figure_types),'a puppet with joined pieces offers perspective');
  near(e.getSpatialCamera().strength,0,1e-12);
@@ -162,7 +165,83 @@ test('plain joins to other 3D figures keep the perspective restriction',()=>{
  const d=flatDocument(),e=new Editor({demo:false});
  const figure=puppetDefinition(d.figure_types[0]);delete figure._styk.puppet;
  const extra=piece(2,2,3);
- e.load({...d,figure_types:[figure,extra.figure],keyframes:[createFrame([createObject(figure,1,300,260),extra.object])]});e.select(1,0);
+ e.load({...d,figure_types:[figure,extra.figure],keyframes:[createFrame([createObject(figure,1,300,260),extra.object])]});e.select(1,at(e,1));
  assert.equal(spatialPerspectiveAvailable(e.frame.objects,e.object,e.report.figure_types),false);
  assert.throws(()=>e.setSpatialCamera({strength:.5}),/single spatial figure/);
+});
+import {puppetViewSector,puppetViewShown,puppetViewMirrored,PUPPET_VIEWS} from '../src/puppet.mjs';
+test('view sectors, fallbacks and mirroring are pure functions of the heading',()=>{
+ const at=d=>puppetViewSector(rad(d));
+ for(const d of [0,10,-22,22])assert.equal(at(d),'front');
+ for(const d of [23,45,-67,67])assert.equal(at(d),'threeQuarter');
+ for(const d of [68,90,-120,134])assert.equal(at(d),'side');
+ for(const d of [135,160,-180,180])assert.equal(at(d),'back');
+ assert.equal(puppetViewShown('side',new Set(['front'])),'front');
+ assert.equal(puppetViewShown('side',new Set(['front','threeQuarter'])),'threeQuarter');
+ assert.equal(puppetViewShown('back',new Set(['front','side'])),'side');
+ assert.equal(puppetViewShown('front',new Set()),null);
+ assert.equal(puppetViewMirrored('side',rad(-90)),true);assert.equal(puppetViewMirrored('side',rad(90)),false);
+ assert.equal(puppetViewMirrored('front',rad(-10)),false);assert.equal(puppetViewMirrored('back',rad(-170)),false);
+ assert.deepEqual([...PUPPET_VIEWS],['front','threeQuarter','side','back']);
+});
+function puppetWithViews(){
+ const d=flatDocument(),front=piece(2,2,1),side=piece(3,3,1),always=piece(4,4,1);
+ d.figure_types.push(front.figure,side.figure,always.figure);
+ front.object._stykPuppetView='front';side.object._stykPuppetView='side';
+ d.keyframes=[createFrame([d.keyframes[0].objects[0],front.object,side.object,always.object])];
+ const e=new Editor({demo:false});e.load(d);e.select(1,-1);e.makePuppet();e.select(1,at(e,1));
+ return e;
+}
+test('the turn of a bone picks the view drawing, hides the others and mirrors the far side',async()=>{
+ const e=puppetWithViews(),slots=()=>e.geometry.orderedObjects.map(o=>o.slot);
+ assert.deepEqual(slots(),[0,1,3],'facing front: the front drawing and the untagged piece show');
+ assert.deepEqual([...e.geometry.hiddenSlots],[2]);
+ e.setSpatialPose({turn:rad(80)});
+ assert.deepEqual(slots(),[0,2,3],'pieces on a bone at the figure plane keep their place around the puppet');assert.ok(!e.geometry.objects.get(2).piece.mirror);
+ near(e.geometry.objects.get(2).piece.heading,rad(80),1e-9);
+ const right=e.geometry.objects.get(2).segments[0];
+ e.setSpatialPose({turn:rad(-80)});
+ assert.deepEqual(slots(),[0,2,3]);const left=e.geometry.objects.get(2);assert.equal(left.piece.mirror,true);
+ near(left.piece.axis,part(e.geometry.objects.get(0),1).angle,1e-9);
+ assert.equal(left.segments[0].obj.image_text_flags,1,'a mirrored drawing flips its image flag');
+ assert.ok(!e.frame.objects[2].image_text_flags,'the scene object is unchanged');
+ near(left.segments[0].angle,2*left.piece.axis-right.angle,1e-9);
+ e.setSpatialPose({turn:rad(170)});
+ assert.deepEqual(slots(),[0,2,3],'no back drawing: the side drawing stands in');
+ e.setSpatialPose({turn:rad(40)});assert.deepEqual(slots(),[0,1,3],'no three-quarter drawing: front stands in');
+ const fresh=buildGeometry(e.report,e.evaluatedFrame);assert.deepEqual(fresh.orderedObjects.map(o=>o.slot),slots());
+ const decoded=(await decodeDocument(await buildContainerV2(e.serialize(),'styk'),'styk')).document;
+ assert.equal(decoded.keyframes[0].objects[2]._stykPuppetView,'side');
+ assert.deepEqual(buildGeometry(decoded,evaluatedFrame(decoded,0,0,0)).orderedObjects.map(o=>o.slot),slots());
+});
+test('a flipped puppet faces the other way and view tags are edited on every frame with undo',()=>{
+ const e=puppetWithViews();
+ e.setSpatialPose({turn:rad(80)});const heading=e.geometry.objects.get(2).piece.heading,joints=g=>[...g.joints].map(([id,p])=>[id,p.x,p.y]);
+ const before=joints(e.geometry.objects.get(0)),root=e.geometry.objects.get(0).root;
+ e.select(1,-1);e.mirrorSelection();
+ assert.equal(e.frame.objects[0].image_text_flags,1);
+ const after=joints(e.geometry.objects.get(0));
+ for(let i=0;i<before.length;i++){near(after[i][1],2*root.x-before[i][1],.01);near(after[i][2],before[i][2],.01);}
+ near(e.geometry.objects.get(2).piece.heading,-heading,1e-9);
+ e.select(1,-1);e.mirrorSelection();near(e.geometry.objects.get(2).piece.heading,heading,1e-9);
+ e.select(4,0);assert.equal(e.getPuppetView(),null);
+ assert.ok(e.setPuppetView('back'));assert.equal(e.frame.objects[3]._stykPuppetView,'back');
+ assert.equal(e.setPuppetView('back'),false);
+ assert.throws(()=>e.setPuppetView('up'),/Front, Three-quarter/);
+ e.undo();assert.equal(e.frame.objects[3]._stykPuppetView,undefined);e.redo();assert.equal(e.getPuppetView(),'back');
+ e.setPuppetView(null);assert.equal(e.getPuppetView(),null);
+ e.select(1,at(e,1));assert.equal(e.getPuppetView(),undefined,'the puppet itself has no view');
+ assert.throws(()=>e.setPuppetView('front'),/joined to a 3D puppet/);
+ assert.throws(()=>validateScene({...e.serialize(),keyframes:[{...e.frame,objects:e.frame.objects.map((o,i)=>i===1?{...o,_stykPuppetView:'up'}:o)}]}),/Front/);
+});
+
+test('Rotate figure turns every part of a puppet together, legs included',()=>{
+ const e=puppetWithPieces();const body=e.figure.segments.findIndex(s=>s.name==='Body');e.select(1,body);
+ assert.ok(e.getSpatialPose());e.setSpatialPose({turn:rad(90)},{wholeFigure:true});
+ const g=e.geometry.objects.get(0),depth=id=>g.joints.get(id).depth;
+ assert.ok(Math.abs(depth(7))>20&&Math.abs(depth(9))>20&&Math.abs(depth(3))>20,'legs and arms all leave the figure plane');
+ assert.deepEqual(e.geometry.orderedObjects.map(o=>o.slot),[1,0,2]);
+ e.setSpatialPose({bend:rad(30)});
+ near(e.getSpatialPose().bend,rad(30),1e-9);
+ const spin=e.geometry.objects.get(0);for(const id of [1,7,9])assert.ok(Math.abs(spin.joints.get(id).x-g.joints.get(id).x)>1||Math.abs(spin.joints.get(id).y-g.joints.get(id).y)>1,'a root bend rotates the whole figure on screen');
 });
