@@ -114,6 +114,18 @@ Native `.styk`/`.stkz` save the articulated bones and the marker like any other
 spatial figure. Pivot `.piv`/`.stk` export rejects the rig relationships with
 the existing message.
 
+## Screenshots
+
+Taken by `tests/puppet.browser.mjs` in the browser editor
+(`STYK_PUPPET_SHOTS=docs/3d npm run test:puppet:browser` against
+`npm run serve -- --port 47851`).
+
+| | |
+| --- | --- |
+| ![Make 3D puppet in Properties](3d/01-make-puppet.png) | ![A piece's View selector](3d/02-piece-view.png) |
+| ![Turned to the side: the side head drawing, far arm behind](3d/03-side-view.png) | ![Turned the other way: the side drawing mirrored](3d/04-mirrored-side.png) |
+| ![Perspective: a forearm reaching toward the camera grows](3d/05-perspective.png) | |
+
 ## Verification
 
 `tests/puppet.test.mjs` checks that conversion keeps every joint at its rest and
@@ -133,3 +145,10 @@ side reflects angles and the image flag without touching the scene object,
 that a flipped puppet faces the other way with its joints mirrored exactly,
 that Rotate figure turns legs and arms together, and that view tags survive
 undo, redo, validation and native round trips.
+
+`tests/puppet.browser.mjs` (`npm run test:puppet:browser`, with the dev server
+on port 47851) drives the real Properties controls on the demo puppet from
+`tests/helpers/puppet-demo.mjs`: Make 3D puppet and its one-step Undo, the
+piece View selector, depth order and mirroring at both turns, the Perspective
+slider, panel layout and console errors. `npm run test:puppet` runs the unit
+tests alone.

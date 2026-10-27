@@ -255,6 +255,7 @@ Differences from the desktop codec, all deliberate:
 | | Web |
 | --- | --- |
 | Editing, animating, drawing, timeline, undo, IK, effects | Same code as the desktop app |
+| 3D cut-out puppets (Make 3D puppet, piece views, [docs/3D-PUPPETS.md](3D-PUPPETS.md)) | Browser only; puppet files still open and play everywhere |
 | Rendering | WebGPU, or the Canvas 2D compatibility renderer |
 | `.styk` / `.stkz` / `.stykmov` save and open | Yes (a download on save, the file dialog on open) |
 | Pivot `.piv` / `.stk` import and export | Yes, in-browser codec; an unchanged import re-exports byte for byte |
