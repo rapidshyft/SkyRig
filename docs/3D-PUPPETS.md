@@ -42,6 +42,20 @@ joined to the figure origin and nested joins keep their place. Pieces keep their
 drawn size when a bone points at the camera; use the view drawings for
 strongly foreshortened poses.
 
+## Perspective
+
+**Perspective** in the puppet's Properties is optional and starts at zero, so
+existing animations and freshly converted figures look exactly as before.
+Raise its strength and the puppet's parts and pieces grow as they come toward
+the camera and shrink as they go away: a piece scales around the joint it hangs
+from by the depth of that joint, with the same projection as the figure's own
+bones (docs/RIG-CONSTRAINTS.md, "Perspective and artistic proportions"). A
+lower **Distance** foreshortens more; **Center on figure** keeps a planted
+character from sliding. Stretching a piece by dragging still reaches the
+pointer. The restriction that joined figures keep their own orthographic
+projection no longer applies to a puppet's pieces; it still applies to plain
+joins on other 3D figures.
+
 ## Data
 
 `figure._styk.puppet = {version: 1}` marks the definition. Each original
@@ -52,7 +66,8 @@ Bones evaluate `depth` and `originDepth` (`src/rig-spatial.mjs`); a puppet's
 segments and fills take `z = depth × 65536 + native order` and joined pieces
 are regrouped by `puppetDrawOrder` in `src/puppet-geometry.mjs`, which publishes
 `geometry.drawOrder` for onion skins, handle picking and materialization.
-`puppetPiece` derives a joined piece's rotation and scale from its bone;
+`puppetPiece` derives a joined piece's rotation and scale (stretch × depth
+projection of its joint, from the puppet's `_stykSpatial.camera`) from its bone;
 figure and movieclip pieces apply it in their own geometry builders and expose
 it as `geometry.piece`.
 `src/puppet.mjs` owns the conversion and validation; `src/editor-puppet.mjs`
@@ -73,4 +88,7 @@ round trips keep the marker and geometry, and that movieclips, rigged figures
 and already-3D figures are refused. It also turns a puppet with two joined
 pieces and checks that far parts and pieces draw first, near ones last, that a
 flat pose keeps the native order, that incremental and fresh evaluation agree,
-and that plain joins and non-puppet figures keep their authored order.
+and that plain joins and non-puppet figures keep their authored order. With
+perspective it checks the default of zero, the exact scale of far and near
+pieces, that turning it off restores the flat drawing, that stretch drags reach
+the pointer, and that plain joins on other 3D figures keep the restriction.

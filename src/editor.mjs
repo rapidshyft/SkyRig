@@ -1162,7 +1162,8 @@ export class Editor extends EventTarget {
         obj.len_flag = 1; const bend = shape.bend;
         const chord = Math.abs(bend) < 1e-7 ? 1 : Math.abs(2 * Math.sin(bend / 2) / bend);
         if (chord < 1e-8) throw messageError(new Error(''), "errors.editorMotionPath.reduceTheFullCircleBendBeforeStretchingThis", {});
-        const reached = Math.hypot(x - shape.start.x, y - shape.start.y) / (Math.abs(obj.scale) * chord);
+        // A puppet piece is displayed through its bone's derived scale.
+        const reached = Math.hypot(x - shape.start.x, y - shape.start.y) / (Math.abs(obj.scale) * chord * (this.geometry.objects.get(this.selectedSlot)?.piece?.scale ?? 1));
         let length = reached;
         if (snap && defaults.lengthEnabled && Math.abs(length - defaults.length) * Math.abs(obj.scale) * chord <= snapTolerance) length = defaults.length;
         // The rest of a limb displayed beyond its reach keeps the length shown.

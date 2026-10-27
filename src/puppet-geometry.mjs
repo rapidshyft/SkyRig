@@ -2,6 +2,7 @@
  * bones of the same pose; nothing is stored in the document or kept between
  * poses. Ordinary figures and older files keep their painter order. */
 import {isPuppet} from './puppet.mjs';
+import {projection} from './spatial-projection.mjs';
 // Depth dominates; the native drawing order breaks ties at equal depth, so a
 // flat pose draws exactly as the figure did before it became a puppet.
 export const DEPTH_ORDER_SCALE=65536;
@@ -16,10 +17,13 @@ export function puppetBone(parent,object){
   return bone?.puppetDepth===undefined?null:bone;
 }
 /** How a joined piece follows its bone: it turns with the bone's projected
- * rotation about the joint it hangs from and scales with the bone's stretch.
- * The piece's own angle, length and scale channels stay relative offsets. */
-export function puppetPiece(bone){
-  return {rotation:bone.rigRotation??0,scale:bone.spatialFrame?.stretch??1,depth:bone.puppetDepth};
+ * rotation about the joint it hangs from, scales with the bone's stretch and,
+ * when the puppet has perspective, with the depth of that joint. The piece's
+ * own angle, length and scale channels stay relative offsets. */
+export function puppetPiece(bone,parent){
+  const camera=projection(parent.obj,parent.root),raw=bone.end.rawPoint;
+  const depthScale=camera&&raw?1/Math.max(.05,1-camera.k*raw[2]):1;
+  return {rotation:bone.rigRotation??0,scale:(bone.spatialFrame?.stretch??1)*depthScale,depth:bone.puppetDepth};
 }
 /** Resolved [slot, geometry] pairs in painter order, with each puppet and the
  * pieces joined to its bones sorted back to front where the first of them was.

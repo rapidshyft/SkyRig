@@ -643,7 +643,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       if (p) root = { ...p };
       else warnings.push(`Unresolved join at object ${slot}`);
       const bone = puppetBone(parent, obj);
-      if (bone) piece = puppetPiece(bone);
+      if (bone) piece = puppetPiece(bone, parent);
     }
     if (isMovieclip(fig)) {
       const geometry = yield* buildMovieclipGeometrySteps(fig,obj,root,slot,{timeline,evaluatedFrame,buildGeometry,buildGeometrySteps,joinedParent,piece,objectColor,previous:incremental?.previous?.objects.get(slot)});

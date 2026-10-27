@@ -135,3 +135,34 @@ test('pieces turn with the projected bone and scale with its stretch, for figure
  const fresh=buildGeometry(e.report,e.evaluatedFrame);
  for(const slot of [1,3])assert.deepEqual(fresh.objects.get(slot).segments[0].points,e.geometry.objects.get(slot).segments[0].points);
 });
+import {spatialPerspectiveAvailable} from '../src/spatial-projection.mjs';
+test('perspective is off by default and scales pieces by the depth of their joint when enabled',()=>{
+ const e=puppetWithPieces();e.select(1,0);
+ const flat=e.geometry.objects.get(1).segments[0].points.map(p=>[p.x,p.y]);
+ assert.ok(spatialPerspectiveAvailable(e.frame.objects,e.object,e.report.figure_types),'a puppet with joined pieces offers perspective');
+ near(e.getSpatialCamera().strength,0,1e-12);
+ e.setSpatialPose({turn:rad(90)});
+ const orthographic=e.geometry.objects.get(1);near(orthographic.piece.scale,1,1e-9);
+ e.setSpatialCamera({strength:.8,distance:600});validateScene(e.serialize());
+ const g=e.geometry,arm=g.objects.get(0).segments.find(s=>s.seg.segment_id===3),piece=g.objects.get(1);
+ assert.ok(arm.end.rawPoint&&arm.end.rawPoint[2]<-10,'the far arm has a projected joint behind the figure plane');
+ near(piece.piece.scale,1/(1-.8*arm.end.rawPoint[2]/600),1e-9);
+ assert.ok(piece.piece.scale<1,'a far piece shrinks');assert.ok(g.objects.get(2).piece.scale>1,'a near piece grows');
+ near(piece.segments[0].length,30*piece.piece.scale,1e-6);
+ assert.deepEqual([piece.root.x,piece.root.y],[arm.end.x,arm.end.y]);
+ e.setSpatialCamera({strength:0});e.setSpatialPose({turn:0});
+ assert.deepEqual(e.geometry.objects.get(1).segments[0].points.map(p=>[p.x,p.y]),flat,'perspective off restores the flat drawing exactly');
+ // Stretching a piece under perspective reaches the pointer, not a scaled copy of it.
+ e.setSpatialPose({turn:rad(90)});e.setSpatialCamera({strength:.8,distance:600});
+ const near1=e.geometry.objects.get(2);e.select(3,0);
+ const target={x:near1.root.x+60,y:near1.root.y};e.poseJoint(target.x,target.y,{stretch:true,snap:false});
+ const posed=e.geometry.objects.get(2).segments[0].end;near(posed.x,target.x,.01);near(posed.y,target.y,.01);
+});
+test('plain joins to other 3D figures keep the perspective restriction',()=>{
+ const d=flatDocument(),e=new Editor({demo:false});
+ const figure=puppetDefinition(d.figure_types[0]);delete figure._styk.puppet;
+ const extra=piece(2,2,3);
+ e.load({...d,figure_types:[figure,extra.figure],keyframes:[createFrame([createObject(figure,1,300,260),extra.object])]});e.select(1,0);
+ assert.equal(spatialPerspectiveAvailable(e.frame.objects,e.object,e.report.figure_types),false);
+ assert.throws(()=>e.setSpatialCamera({strength:.5}),/single spatial figure/);
+});

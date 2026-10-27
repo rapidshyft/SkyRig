@@ -287,8 +287,10 @@ geometry, not saved document state; direct posing, workers, seeking, reverse
 playback and explicit materialization share it. The Form selector appears above
 body controls. Existing manually selected drawing banks remain unchanged.
 Rotation-driven drawings support the spatial parent's perspective: their anchor
-and scale use its depth projection. Other joined drawings retain their existing
-orthographic restriction. Body rotation, articulation and IK are unchanged.
+and scale use its depth projection, as do the pieces joined to a cut-out
+puppet's bones (docs/3D-PUPPETS.md). Other joined drawings retain their
+existing orthographic restriction. Body rotation, articulation and IK are
+unchanged.
 
 Whole-character orientation uses **Rotate figure** in the Character rig inspector.
 It rotates the root spatial articulation and carries existing spatial targets,
@@ -347,11 +349,13 @@ Camera changes invalidate projection; width/taper changes invalidate only their
 rig dependencies. Perspective root movement must rebuild projection and cannot
 reuse a uniform artwork translation. No renderer or playback clock is added.
 
-Perspective currently applies to a single spatial figure. Separately joined
-figures/drawing banks retain their existing orthographic projection; enabling
-perspective on them or joining an active perspective figure is rejected before
-publication. This avoids mixing projected attachment roots with unprojected IK.
-Part proportions remain available on ordinary joined spatial constructions.
+Perspective currently applies to a single spatial figure, with its
+rotation-driven drawing banks, attached meshes and, for a cut-out puppet, every
+piece joined to its bones. Other separately joined figures/drawing banks retain
+their existing orthographic projection; enabling perspective on them or joining
+an active perspective figure is rejected before publication. This avoids mixing
+projected attachment roots with unprojected IK. Part proportions remain
+available on ordinary joined spatial constructions.
 
 ## Editable 3D constructions
 

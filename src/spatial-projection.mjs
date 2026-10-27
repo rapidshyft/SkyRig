@@ -5,10 +5,15 @@ export const cameraDefaults = Object.freeze({strength: 0, distance: 600});
 export const shapeDefaults = Object.freeze({width: 1, taper: 0});
 export const spatialCamera = object => ({...cameraDefaults, centerX:object?.root_x??0, centerY:object?.root_y??0, ...object?._stykSpatial?.camera});
 export const spatialShape = (object, id) => ({...shapeDefaults, ...object?._stykSpatial?.shape?.[id]});
+/** Joined objects that project with their parent's perspective: rotation-driven
+ * drawing banks and attached meshes on any spatial bone, and every piece joined
+ * to a cut-out puppet's bone (docs/3D-PUPPETS.md). */
 function projectedDrawing(objects,object,figures){
-  const parent=objects[object.join?.target_object_slot],figure=id=>figures?.find(f=>f.figure_type_id===id);
+  const parent=objects[object.join?.target_object_slot],figure=id=>figures?.find(f=>f.figure_type_id===id),parentFigure=figure(parent?.figure_type_id);
+  if(!parentFigure?.segments.some(s=>s.segment_id===object.join.target_handle_id&&s._stykRig?.spatial?.origin))return false;
+  if(parentFigure._styk?.puppet)return true;
   const asset=figure(object.figure_type_id)?._styk?.movieclip;
-  return Boolean((asset?.drawingRotation||asset?.spatialMeshes)&&figure(parent?.figure_type_id)?.segments.some(s=>s.segment_id===object.join.target_handle_id&&s._stykRig?.spatial?.origin));
+  return Boolean(asset?.drawingRotation||asset?.spatialMeshes);
 }
 export const spatialPerspectiveAvailable = (objects, object, figures) => !object?.join && !objects.some(o=>o.join?.target_object_slot===object?.object_slot&&!projectedDrawing(objects,o,figures));
 export function validateSpatialJoins(frame,figures){

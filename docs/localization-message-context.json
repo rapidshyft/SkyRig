@@ -14507,7 +14507,7 @@
   },
   "errors.editor.aFigureNeedsAtLeastOneSegment": {
     "locations": [
-      "src/editor.mjs:1426"
+      "src/editor.mjs:1427"
     ],
     "context": "if (!definition || !Array.isArray(definition.segments) || !definition.segments.length) throw messageError(new Error(''), \"errors.editor.aFigureNeedsAtLeastOneSe"
   },
@@ -14519,14 +14519,14 @@
   },
   "errors.editor.backgroundColorMustBeAnArgbValue": {
     "locations": [
-      "src/editor.mjs:1683"
+      "src/editor.mjs:1684"
     ],
     "context": "if (!Number.isInteger(color) || color < 0 || color > 0xffffffff) throw messageError(new Error(''), \"errors.editor.backgroundColorMustBeAnArgbValue\", {});"
   },
   "errors.editor.canvasDimensionsMustBe1100000Pixels": {
     "locations": [
-      "src/editor.mjs:1669",
-      "src/editor.mjs:1675"
+      "src/editor.mjs:1670",
+      "src/editor.mjs:1676"
     ],
     "context": "if (![width, height].every(n => Number.isInteger(n) && n >= 1 && n <= 100000)) throw messageError(new Error(''), \"errors.editor.canvasDimensionsMustBe1100000Pix"
   },
@@ -14538,19 +14538,19 @@
   },
   "errors.editor.chooseALineOrCircleSegment": {
     "locations": [
-      "src/editor.mjs:1552"
+      "src/editor.mjs:1553"
     ],
     "context": "if (![0,1,3,4,6].includes(code)) throw messageError(new Error(''), \"errors.editor.chooseALineOrCircleSegment\", {});"
   },
   "errors.editor.chooseAnOriginWhosePathContainsOrdinaryLines": {
     "locations": [
-      "src/editor.mjs:1501"
+      "src/editor.mjs:1502"
     ],
     "context": "throw messageError(new Error(''), \"errors.editor.chooseAnOriginWhosePathContainsOrdinaryLines\", {});"
   },
   "errors.editor.chooseAnotherFigureAndAValidJoint": {
     "locations": [
-      "src/editor.mjs:1288"
+      "src/editor.mjs:1289"
     ],
     "context": "if (!target || targetSlot === slot || ![0, ...figure.segments.map(s => s.segment_id)].includes(handleId)) throw messageError(new Error(''), \"errors.editor.choos"
   },
@@ -14580,14 +14580,14 @@
   },
   "errors.editor.expectedADecodedImageColorOrGradientBackground": {
     "locations": [
-      "src/editor.mjs:1704"
+      "src/editor.mjs:1705"
     ],
     "context": "if (!source || ![0, 1, 2, 3, 4].includes(source.kind)) throw messageError(new Error(''), \"errors.editor.expectedADecodedImageColorOrGradientBackground\", {});"
   },
   "errors.editor.fpsMustBeAnIntegerBetween1And": {
     "locations": [
-      "src/editor.mjs:1653",
-      "src/editor.mjs:1676"
+      "src/editor.mjs:1654",
+      "src/editor.mjs:1677"
     ],
     "context": "if (!Number.isInteger(value) || value < 1 || value > 1000) throw messageError(new Error(''), \"errors.editor.fpsMustBeAnIntegerBetween1And\", {});"
   },
@@ -14599,7 +14599,7 @@
   },
   "errors.editor.joiningTheseFiguresWouldCreateACycle": {
     "locations": [
-      "src/editor.mjs:1291",
+      "src/editor.mjs:1292",
       "src/range-figure-operations.mjs:392"
     ],
     "context": "if (current === slot) throw messageError(new Error(''), \"errors.editor.joiningTheseFiguresWouldCreateACycle\", {});"
@@ -14618,7 +14618,7 @@
   },
   "errors.editor.openTheMovieclipToEditItsFigures": {
     "locations": [
-      "src/editor.mjs:1380"
+      "src/editor.mjs:1381"
     ],
     "context": "if(isMovieclip(definition ?? this.figure))throw messageError(new Error(''), \"errors.editor.openTheMovieclipToEditItsFigures\", {});"
   },
@@ -14630,7 +14630,7 @@
   },
   "errors.editor.projectSettingIsNotEditableHere": {
     "locations": [
-      "src/editor.mjs:1673"
+      "src/editor.mjs:1674"
     ],
     "context": "for (const key of Object.keys(patch)) if (!['canvas_width', 'canvas_height', 'fps'].includes(key)) throw messageError(new Error(''), \"errors.editor.projectSetti"
   },
@@ -14651,14 +14651,14 @@
   },
   "errors.editor.segmentLengthAndThicknessCannotBeNegative": {
     "locations": [
-      "src/editor.mjs:1550",
-      "src/editor.mjs:1560"
+      "src/editor.mjs:1551",
+      "src/editor.mjs:1561"
     ],
     "context": "if (length < 0 || thickness < 0) throw messageError(new Error(''), \"errors.editor.segmentLengthAndThicknessCannotBeNegative\", {});"
   },
   "errors.editor.selectAValidJointForTheNewOrigin": {
     "locations": [
-      "src/editor.mjs:1489"
+      "src/editor.mjs:1490"
     ],
     "context": "if (!Number.isInteger(handleId) || !figure.segments.some(s => s.segment_id === handleId)) throw messageError(new Error(''), \"errors.editor.selectAValidJointForT"
   },
@@ -14670,20 +14670,20 @@
   },
   "errors.editor.selectExistingSegmentsToDelete": {
     "locations": [
-      "src/editor.mjs:1617"
+      "src/editor.mjs:1618"
     ],
     "context": "if (!ids.size || [...ids].some(id => !valid.has(id))) throw messageError(new Error(''), \"errors.editor.selectExistingSegmentsToDelete\", {});"
   },
   "errors.editor.setTheFigureOriginBeforeConfiguringRigRelationships": {
     "locations": [
-      "src/editor.mjs:1487"
+      "src/editor.mjs:1488"
     ],
     "context": "if(this.figure?.segments.some(s=>s._stykRig))throw messageError(new Error(''), \"errors.editor.setTheFigureOriginBeforeConfiguringRigRelationships\", {});"
   },
   "errors.editor.snapToleranceCannotBeNegative": {
     "locations": [
       "src/editor.mjs:1123",
-      "src/editor.mjs:1182"
+      "src/editor.mjs:1183"
     ],
     "context": "finite(snapTolerance, 'Snap tolerance'); if (snapTolerance < 0) throw messageError(new Error(''), \"errors.editor.snapToleranceCannotBeNegative\", {});"
   },
@@ -14702,20 +14702,20 @@
   },
   "errors.editor.theFigureDefinitionDoesNotExist": {
     "locations": [
-      "src/editor.mjs:1425"
+      "src/editor.mjs:1426"
     ],
     "context": "if (index < 0) throw messageError(new Error(''), \"errors.editor.theFigureDefinitionDoesNotExist\", {});"
   },
   "errors.editor.theImportedFileContainsNoFigureDefinitions": {
     "locations": [
-      "src/editor.mjs:1725"
+      "src/editor.mjs:1726"
     ],
     "context": "if (!figures.length) throw messageError(new Error(''), \"errors.editor.theImportedFileContainsNoFigureDefinitions\", {});"
   },
   "errors.editor.theSegmentParentDoesNotExist": {
     "locations": [
-      "src/editor.mjs:1562",
-      "src/editor.mjs:1564"
+      "src/editor.mjs:1563",
+      "src/editor.mjs:1565"
     ],
     "context": "if (parent !== 0 && !this.figure?.segments.some(s => s.segment_id === parent)) throw messageError(new Error(''), \"errors.editor.theSegmentParentDoesNotExist\", {"
   },
@@ -15067,7 +15067,7 @@
     "locations": [
       "src/editor-builder-branch.mjs:195",
       "src/editor-rig-constraints.mjs:44",
-      "src/editor.mjs:1566"
+      "src/editor.mjs:1567"
     ],
     "context": "if (candidate > 65535) throw messageError(new Error(''), \"errors.editorBuilderBranch.figureJointCapacityReached\", {});"
   },
@@ -15180,7 +15180,7 @@
   "errors.editorBuilderTopology.aFigureNeedsAtLeastOneSegmentDelete": {
     "locations": [
       "src/editor-builder-topology.mjs:100",
-      "src/editor.mjs:1624"
+      "src/editor.mjs:1625"
     ],
     "context": "if (figure.segments.length === 1) throw messageError(new Error(''), \"errors.editorBuilderTopology.aFigureNeedsAtLeastOneSegmentDelete\", {});"
   },
@@ -15200,7 +15200,7 @@
     "locations": [
       "src/editor-builder-topology.mjs:146",
       "src/editor.mjs:878",
-      "src/editor.mjs:1236",
+      "src/editor.mjs:1237",
       "src/range-figure-operations.mjs:60"
     ],
     "context": "if (!['horizontal', 'vertical'].includes(axis)) throw messageError(new Error(''), \"errors.editorBuilderTopology.chooseAHorizontalOrVerticalFlip\", {});"
@@ -16680,7 +16680,7 @@
     "locations": [
       "src/editor-motion-path.mjs:280",
       "src/editor.mjs:1164",
-      "src/editor.mjs:1201"
+      "src/editor.mjs:1202"
     ],
     "context": "if (chord < 1e-8) throw messageError(new Error(''), \"errors.editorMotionPath.reduceTheFullCircleBendBeforeStretchingThis\", {});"
   },
@@ -16871,7 +16871,7 @@
   "errors.editorRangeCommands.chooseAValidCanvasPosition": {
     "locations": [
       "src/editor-range-commands.mjs:122",
-      "src/editor.mjs:1720"
+      "src/editor.mjs:1721"
     ],
     "context": "if (![dx, dy].every(Number.isFinite)) throw messageError(new Error(''), \"errors.editorRangeCommands.chooseAValidCanvasPosition\", {});"
   },
@@ -16926,7 +16926,7 @@
   "errors.editorRanges.keyframeDurationMustBe065535Frames": {
     "locations": [
       "src/editor-ranges.mjs:10",
-      "src/editor.mjs:1665"
+      "src/editor.mjs:1666"
     ],
     "context": "throw messageError(new Error(''), \"errors.editorRanges.keyframeDurationMustBe065535Frames\", {});"
   },
@@ -17011,7 +17011,7 @@
   "errors.editorRigConstraints.figureSegmentCapacityReached": {
     "locations": [
       "src/editor-rig-constraints.mjs:42",
-      "src/editor.mjs:1547"
+      "src/editor.mjs:1548"
     ],
     "context": "if(figure.segments.length>=30000)throw messageError(new Error(''), \"errors.editorRigConstraints.figureSegmentCapacityReached\", {});"
   },
@@ -21563,31 +21563,31 @@
   },
   "errors.spatialProjection.invalidSpatialPoseSettings": {
     "locations": [
-      "src/spatial-projection.mjs:56"
+      "src/spatial-projection.mjs:61"
     ],
     "context": "if(!record(state)||Object.keys(state).some(k=>!['camera','shape'].includes(k)))throw messageError(new Error(''), \"errors.spatialProjection.invalidSpatialPoseSet"
   },
   "errors.spatialProjection.invalidSpatialProportions": {
     "locations": [
-      "src/spatial-projection.mjs:59"
+      "src/spatial-projection.mjs:64"
     ],
     "context": "if(!record(state.shape)||Object.keys(state.shape).length>figure.segments.length)throw messageError(new Error(''), \"errors.spatialProjection.invalidSpatialPropor"
   },
   "errors.spatialProjection.perspectiveNeedsStrength01AndDistance10": {
     "locations": [
-      "src/spatial-projection.mjs:57"
+      "src/spatial-projection.mjs:62"
     ],
     "context": "if(state.camera!==undefined){const c=state.camera;if(!record(c)||Object.keys(c).some(k=>!['strength','distance','centerX','centerY'].includes(k))||!number(c.str"
   },
   "errors.spatialProjection.perspectiveRequiresASingleSpatialFigureOrA": {
     "locations": [
-      "src/spatial-projection.mjs:15"
+      "src/spatial-projection.mjs:20"
     ],
     "context": "for(const o of frame.objects)if(o.join&&(o._stykSpatial?.camera?.strength||frame.objects[o.join.target_object_slot]?._stykSpatial?.camera?.strength&&!projectedD"
   },
   "errors.spatialProjection.spatialProportionsNeedAnExistingBoneWidth0": {
     "locations": [
-      "src/spatial-projection.mjs:61"
+      "src/spatial-projection.mjs:66"
     ],
     "context": "for(const[id,s]of Object.entries(state.shape))if(String(Number(id))!==id||!bones.has(Number(id))||!record(s)||Object.keys(s).some(k=>!['width','taper'].includes"
   },
