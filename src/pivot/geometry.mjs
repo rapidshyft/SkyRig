@@ -5,6 +5,7 @@ import {depthSurface,paintDepthSurfaces,releaseSurfaceRaster} from '../surface-r
 import {spatialMeshPlan,evaluateSpatialMeshSteps,spatialMeshDrawables} from '../spatial-mesh.mjs';
 import {orderPoseDrawables} from './geometry-order.mjs';
 import {primitiveOutsideRasterClip} from './raster-clip.mjs';
+import {depthOrder,puppetDrawOrder,puppetBone,puppetPiece} from '../puppet-geometry.mjs';
 import {paintDrawingTiles} from '../drawing-raster.mjs';
 import {vfxRenderFrame,frameWithVfxTime} from '../vfx-clips.mjs';
 import {frameWithCameraTime} from '../camera-motion.mjs';
@@ -627,7 +628,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       warnings.push(`Cyclic join at object ${slot}`);
       return null;
     }
-    let root = { x: Number(obj.root_x ?? 0), y: Number(obj.root_y ?? 0) },joinedParent;
+    let root = { x: Number(obj.root_x ?? 0), y: Number(obj.root_y ?? 0) },joinedParent,piece=null;
     if (obj.join) {
       const parentSlot=Number(obj.join.target_object_slot);
       // Topological traversal normally resolved this parent already. Only an
@@ -641,9 +642,11 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       joinedParent=parent;
       if (p) root = { ...p };
       else warnings.push(`Unresolved join at object ${slot}`);
+      const bone = puppetBone(parent, obj);
+      if (bone) piece = puppetPiece(bone);
     }
     if (isMovieclip(fig)) {
-      const geometry = yield* buildMovieclipGeometrySteps(fig,obj,root,slot,{timeline,evaluatedFrame,buildGeometry,buildGeometrySteps,joinedParent,objectColor,previous:incremental?.previous?.objects.get(slot)});
+      const geometry = yield* buildMovieclipGeometrySteps(fig,obj,root,slot,{timeline,evaluatedFrame,buildGeometry,buildGeometrySteps,joinedParent,piece,objectColor,previous:incremental?.previous?.objects.get(slot)});
       cache.set(slot,geometry); return geometry;
     }
     const previous = incremental?.previous?.objects.get(slot), poseAllowed = incremental?.poseSlots?.has(slot);
@@ -655,8 +658,8 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
     const joints = new Map([[0, root]]),
       renders = [],
       {segments, ids} = plan;
-    const scale = Number(obj.scale ?? 1),
-      opacity = 1 - Number(obj.field28 ?? obj.transparency ?? 0) / 255;
+    const scale = Number(obj.scale ?? 1) * (piece?.scale ?? 1),
+      opacity = 1 - Number(obj.field28 ?? obj.transparency ?? 0) / 255, puppet = Boolean(fig._styk?.puppet);
     const rig = rigPlan ? createRigEvaluation(fig, obj, root, rigPlan) : null;
     const pose = geometryPose(fig, obj, root, rig, previous, poseAllowed, report.version, plan);
     function segmentAt(i, active) {
@@ -675,7 +678,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       const rt = obj.runtime_segments?.[i];
       let angle = Number(
         ik?.angles[i] ?? obj.angles?.[i] ?? rt?.angle_rad ?? seg.angle_rad ?? 0,
-      );
+      ) + (piece?.rotation ?? 0);
       let bend = Number(
         obj.bend_flag
           ? (obj.bends?.[i] ?? 0)
@@ -716,6 +719,9 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       const handle = rigPose?.handle&&!(seg._stykRig?.spatial||seg._stykRig?.weighted) ? {x:Math.fround(rigPose.handle.x),y:Math.fround(rigPose.handle.y)} : end;
       if(rigPose?.depthOffset)handle.depthOffset=rigPose.depthOffset;
       if(rigPose?.handle?.rawPoint)handle.rawPoint=rigPose.handle.rawPoint;
+      // A puppet orders its parts and joined pieces by the depth of its bones.
+      const puppetDepth=puppet&&rigPose?.depth!==undefined?(rigPose.originDepth+rigPose.depth)/2:undefined;
+      if(puppetDepth!==undefined)handle.depth=rigPose.depth;
       joints.set(Number(seg.segment_id), handle);
       const override = Number(obj.color_override_raw) >>> 0;
       const rgb =
@@ -773,7 +779,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
         angle,
         bend,
         length,
-        z: Number(seg.z_order ?? i + 1),
+        z: puppetDepth===undefined?Number(seg.z_order ?? i + 1):depthOrder(puppetDepth,Number(seg.z_order ?? i + 1)),
         thickness: Number(seg.thickness ?? 0) * Math.abs(scale) * (rigPose?.width ?? 1),
         rgb,
         alpha:
@@ -785,6 +791,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       };
       if(rigPose)render.authoredAngle=rigPose.authoredAngle;
       if(rigPose?.spatial)render.spatialFrame=rigPose.spatial;
+      if(puppetDepth!==undefined)render.puppetDepth=puppetDepth;
       if(rigPose?.connector){render.handle=handle;render.connector=true;render.attachmentPosition=rigPose.position;}
       if(rigPose?.space)render.rigSpace=rigPose.space;
       if(rigPose?.childSpace)render.rigChildSpace=rigPose.childSpace;
@@ -850,7 +857,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
         slot,
         index: i,
         points,
-        z:surface?.z??Number(poly.z_order??0),
+        z:surface?.z??(puppet?depthOrder(meanDepth(points),Number(poly.z_order??0)):Number(poly.z_order??0)),
         rgb: objectColor(poly.color_rgb ?? [0, 0, 0], obj),
         alpha:
           poly.alpha_raw === undefined
@@ -887,6 +894,7 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
       segments: renders.filter(Boolean),
       polys,
       ...(spatialMesh ? {spatialMesh, meshDrawables} : {}),
+      ...(piece ? {piece} : {}),
     };
     const renderSource=incremental?.renderSources?.get(slot);
     if (pose && poseAllowed) geometry.drawables = orderPoseDrawables(geometry, previous);
@@ -944,10 +952,14 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
   }
   }
   const order = frame.object_draw_order ?? frame.objects.map((_, i) => i),
-    orderedObjects = [];
+    orderedObjects = [], resolved = [];
   let collected = 0;
   for (const slot of order) {
-    const g = yield* objectAt(Number(slot));
+    resolved.push([Number(slot), yield* objectAt(Number(slot))]);
+    if ((resolved.length & 255) === 0) yield {phase: 'geometry', stage: 'resolved', completed: resolved.length, total: order.length};
+  }
+  const arranged = puppetDrawOrder(resolved, frame);
+  for (const [, g] of arranged) {
     if (!g) {
       yield {phase: 'geometry', stage: 'drawables', completed: ++collected, total: order.length};
       continue;
@@ -970,16 +982,22 @@ export function* buildGeometrySteps(report, frame, incremental = null) {
     yield {phase: 'geometry', stage: 'drawables', completed: ++collected, total: order.length};
   }
   return publishedGeometry(cache,orderedObjects,incremental?.previous?.token,
-    incremental?.dirtySlots ? new Set(incremental.dirtySlots) : null,warnings);
+    incremental?.dirtySlots ? new Set(incremental.dirtySlots) : null,warnings,arranged===resolved?null:arranged.map(([slot])=>slot));
 }
 
 // Build the lazy view in its own scope. A getter defined inside the generator
 // captures its shared context, including incremental.previous, and keeps every
 // earlier pose alive even though the returned fields only mention its token.
-function publishedGeometry(objects,orderedObjects,previousToken,changedSlots,warnings) {
+function publishedGeometry(objects,orderedObjects,previousToken,changedSlots,warnings,drawOrder=null) {
   let drawables;
   return { objects, orderedObjects, token: {}, previousToken, changedSlots,
-    get drawables() { return drawables ??= orderedObjects.flatMap(g => g.drawables); }, warnings };
+    get drawables() { return drawables ??= orderedObjects.flatMap(g => g.drawables); }, warnings, ...(drawOrder?{drawOrder}:{}) };
+}
+/** Mean bone depth of a puppet fill's corners; corners without depth count as the figure plane. */
+function meanDepth(points) {
+  let sum = 0, count = 0;
+  for (const p of points) if (p.depth !== undefined) { sum += p.depth; count++; }
+  return count ? sum / count : 0;
 }
 
 const yieldGeometryTask = globalThis.scheduler?.yield ? () => globalThis.scheduler.yield() : () => new Promise(resolve => {

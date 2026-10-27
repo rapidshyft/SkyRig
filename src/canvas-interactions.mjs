@@ -119,8 +119,8 @@ export function getPivotHandles(geometry, {
   viewScale = 1, autoSize = true, minDiameter = 4, maxDiameter = 10, descriptorCache,
 } = {}) {
   if (!geometry?.objects) return [];
-  const order = frame?.object_draw_order
-    ? frame.object_draw_order.map(slot => geometry.objects.get(Number(slot)))
+  const order = geometry.drawOrder || frame?.object_draw_order
+    ? (geometry.drawOrder || frame.object_draw_order).map(slot => geometry.objects.get(Number(slot)))
     : geometry.orderedObjects || [...geometry.objects.values()].sort((a, b) => (a?.slot ?? 0) - (b?.slot ?? 0));
   // Empty artwork is absent from geometry.orderedObjects but retains handles.
   // A frame argument places these at their authoritative native draw position.

@@ -72,8 +72,10 @@ export function* buildMovieclipGeometrySteps(fig,obj,root,slot,api) {
     drawing=rotatedDrawing(asset,obj,joint?.spatialFrame?.q,joint?.spatialFrame?drawingRotationReference(parent,joint,figureAngle):undefined),
     camera=drawing?projection(parent.obj,parent.root):null,
     depthScale=camera&&joint.start.rawPoint?1/Math.max(.05,1-camera.k*joint.start.rawPoint[2]):1,
-    scale=Number(obj.scale??1)*(drawing?joint.spatialFrame.stretch*depthScale:1),inheritedFlip=drawing&&parent.obj.image_text_flags?-1:1,
-    angle=Number(obj.angles?.[0]??0)+(drawing?drawing.roll*inheritedFlip+figureAngle:0),
+    // A puppet piece without a rotation-driven bank follows its bone instead.
+    piece=drawing?null:api.piece??null,
+    scale=Number(obj.scale??1)*(drawing?joint.spatialFrame.stretch*depthScale:piece?.scale??1),inheritedFlip=drawing&&parent.obj.image_text_flags?-1:1,
+    angle=Number(obj.angles?.[0]??0)+(drawing?drawing.roll*inheritedFlip+figureAngle:piece?.rotation??0),
     a=Math.cos(angle)*scale,b=Math.sin(angle)*scale,flip=(obj.image_text_flags?-1:1)*inheritedFlip;
   if(drawing)root={...joint.start};
   const point=p=>({x:root.x+a*(p.x-asset.pivot.x)-b*(p.y-asset.pivot.y)*flip,y:root.y+b*(p.x-asset.pivot.x)+a*(p.y-asset.pivot.y)*flip});
@@ -83,6 +85,7 @@ export function* buildMovieclipGeometrySteps(fig,obj,root,slot,api) {
   const geometry={obj,fig,root,slot,joints,segments:[handle],polys:[],drawables:[]};
   const local=obj._movieclipSample===null?null:drawing?.frame??obj._movieclipSample??playbackSettings(obj).offset;
   if(drawing){geometry.drawingView=drawing;geometry.drawingTransform={angle,scale,flip};}
+  if(piece)geometry.piece=piece;
   if(local===null)return geometry;
   const source=yield* sampleSteps(asset,local,api), owner={opacity:1-Number(obj.field28??0)/255,effects:source.sceneEffects?.length?[...source.sceneEffects,...(obj._stykVfx?.figure??[])]:obj._stykVfx?.figure,scale:Math.abs(scale)};
   // Generated effects inside the clip draw beside it, in its local transform.

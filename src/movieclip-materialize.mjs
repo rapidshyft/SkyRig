@@ -40,7 +40,7 @@ export function createMovieclipMaterializer(report,{allowCompositeOpacity=false}
   }
   function expand(document,frame,transform,path,output){
     const geometry=buildGeometry(document,frame),definitions=new Map(document.figure_types.map(f=>[f.figure_type_id,f])),anchors=new Map(),joined=[];
-    for(const slot of frame.object_draw_order??frame.objects.map((_,i)=>i)){
+    for(const slot of geometry.drawOrder??frame.object_draw_order??frame.objects.map((_,i)=>i)){
       const object=frame.objects[slot],figure=definitions.get(object.figure_type_id),g=geometry.objects.get(slot);
       if(!g||!layerVisible(document,object.unique_id))continue;
       const id=path?`${path}/${object.unique_id}`:String(object.unique_id);

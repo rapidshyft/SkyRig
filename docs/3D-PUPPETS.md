@@ -23,12 +23,38 @@ already 3D are not offered. A rigid bone ends at its straight tip, so a curved
 segment keeps its curve between the bone's joints; its end joint moves to the
 straight tip when the figure is converted.
 
+## Draw order follows depth
+
+A puppet draws its parts back to front by the depth of their bones, and so do
+the pieces joined to those bones: a far arm and the piece on it go behind the
+body, a near arm comes in front. Parts and pieces at the same depth keep their
+authored order, so a flat pose draws exactly as the figure did before it became
+a puppet. The order is derived from the evaluated pose on every frame; the
+document's layer and object order are unchanged, and ordinary figures, 3D
+figures from asset packs and older files keep their painter order.
+
+A piece follows the bone whose joint it is joined to, as a Pivot sprite does:
+join the piece to the elbow to put it on the upper arm. It hangs from that
+joint, turns with the bone's projected rotation when the bone swings in depth,
+and scales with the bone's stretch; its own angle, length and scale stay
+editable offsets, and flat posing keeps propagating to it as before. Pieces
+joined to the figure origin and nested joins keep their place. Pieces keep their
+drawn size when a bone points at the camera; use the view drawings for
+strongly foreshortened poses.
+
 ## Data
 
 `figure._styk.puppet = {version: 1}` marks the definition. Each original
 segment carries `_stykRig.spatial = {parent, origin, tip, turn, pitch}` in rest
 figure coordinates with `z = 0`, and two hidden static zero-length controls per
 bone (`<name> turn`, `<name> tilt`) hold the turn and tilt angle channels.
+Bones evaluate `depth` and `originDepth` (`src/rig-spatial.mjs`); a puppet's
+segments and fills take `z = depth × 65536 + native order` and joined pieces
+are regrouped by `puppetDrawOrder` in `src/puppet-geometry.mjs`, which publishes
+`geometry.drawOrder` for onion skins, handle picking and materialization.
+`puppetPiece` derives a joined piece's rotation and scale from its bone;
+figure and movieclip pieces apply it in their own geometry builders and expose
+it as `geometry.piece`.
 `src/puppet.mjs` owns the conversion and validation; `src/editor-puppet.mjs`
 exposes `makePuppet` through the ordinary topology history, so instances keep
 their poses and Undo is one step. `src/puppet-view.mjs` renders the Properties
@@ -44,4 +70,7 @@ the existing message.
 posed position, that a tilted bone moves in depth and projects onto its origin,
 that curves are kept, that Undo restores the exact flat document, that native
 round trips keep the marker and geometry, and that movieclips, rigged figures
-and already-3D figures are refused.
+and already-3D figures are refused. It also turns a puppet with two joined
+pieces and checks that far parts and pieces draw first, near ones last, that a
+flat pose keeps the native order, that incremental and fresh evaluation agree,
+and that plain joins and non-puppet figures keep their authored order.

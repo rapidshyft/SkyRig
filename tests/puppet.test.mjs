@@ -73,3 +73,65 @@ test('conversion is offered for plain figures only and old documents stay untouc
  assert.doesNotThrow(()=>validateScene(d));
  assert.equal(puppetToolsAvailable({}),true);assert.equal(puppetToolsAvailable({stykDesktop:{}}),false);
 });
+
+import {puppetDrawOrder,puppetBone} from '../src/puppet-geometry.mjs';
+function piece(id,uid,handle,x=0,y=0){
+ const figure={figure_type_id:id,name:'Piece '+handle,segment_count:1,segments:[{segment_id:1,parent_id:0,length:30,angle_rad:0,thickness:12,bend_rad:0,primitive_code:0,aux_code:0,flags:0,segment_type:'line',segment_kind:'line',color_rgb:[200,80,40],transparency:0,visible:true,z_order:1}],polyfills:[],image_assets:[],text_assets:[]};
+ return {figure,object:createObject(figure,uid,x,y,{join:{target_object_slot:0,target_unique_id:1,target_handle_id:handle}})};
+}
+function puppetWithPieces(){
+ const d=flatDocument(),right=piece(2,2,3),left=piece(3,3,5);
+ d.figure_types.push(right.figure,left.figure);d.keyframes=[createFrame([d.keyframes[0].objects[0],right.object,left.object])];
+ const e=new Editor({demo:false});e.load(d);e.select(1,-1);e.makePuppet();
+ return e;
+}
+test('a flat puppet keeps its authored draw order and a turned one sorts parts and pieces by depth',()=>{
+ const e=puppetWithPieces();
+ const slots=g=>g.orderedObjects.map(o=>o.slot);
+ assert.deepEqual(slots(e.geometry),[0,1,2]);
+ const flat=e.geometry.objects.get(0).drawables.map(s=>s.seg.segment_id);
+ assert.deepEqual(flat,flatDocument().figure_types[0].segments.map(s=>s.segment_id),'equal depth draws in the native order');
+ e.select(1,0);e.setSpatialPose({turn:rad(90)});
+ const g=e.geometry,body=g.objects.get(0),depthOf=id=>body.segments.find(s=>s.seg.segment_id===id).puppetDepth;
+ assert.ok(depthOf(3)<-10&&depthOf(5)>10,'the arms turn to opposite depths');
+ assert.ok(depthOf(4)<depthOf(3)&&depthOf(6)>depthOf(5));
+ const order=body.drawables.map(s=>s.seg.segment_id);
+ assert.ok(order.indexOf(4)<order.indexOf(3)&&order.indexOf(3)<order.indexOf(1)&&order.indexOf(1)<order.indexOf(5)&&order.indexOf(5)<order.indexOf(6),'far parts draw first, near parts last: '+order);
+ assert.deepEqual(slots(g),[1,0,2],'the far piece draws behind the puppet and the near piece in front');
+ assert.deepEqual(g.drawOrder,[1,0,2]);
+ const fresh=buildGeometry(e.report,e.evaluatedFrame);
+ assert.deepEqual(slots(fresh),[1,0,2]);assert.deepEqual(fresh.objects.get(0).drawables.map(s=>s.seg.segment_id),order);
+ e.setSpatialPose({turn:rad(-90)});assert.deepEqual(slots(e.geometry),[2,0,1]);
+ e.undo();e.undo();assert.deepEqual(slots(e.geometry),[0,1,2]);
+});
+test('pieces follow the bone they are joined to and plain joins keep their place',()=>{
+ const e=puppetWithPieces(),g=e.geometry;
+ assert.equal(puppetBone(g.objects.get(0),e.frame.objects[1]).seg.segment_id,3);
+ assert.equal(puppetBone(g.objects.get(0),{join:{target_object_slot:0,target_handle_id:0}}),null);
+ assert.equal(puppetBone(g.objects.get(1),e.frame.objects[2]),null,'a piece is not itself a puppet');
+ const resolved=[[0,g.objects.get(0)],[1,g.objects.get(1)],[2,g.objects.get(2)]];
+ assert.deepEqual(puppetDrawOrder(resolved,e.frame).map(([slot])=>slot),[0,1,2]);
+ const other={...e.frame,objects:e.frame.objects.map(o=>({...o,join:null}))};
+ assert.equal(puppetDrawOrder(resolved,other),resolved,'no puppet pieces: the authored order is returned as is');
+});
+test('pieces turn with the projected bone and scale with its stretch, for figures and movieclips alike',()=>{
+ const e=puppetWithPieces();
+ const inner={...emptyDocument(),figure_types:[defaultFigure(1)],keyframes:[createFrame([createObject(defaultFigure(1),1,0,0)])]};
+ const clip=movieclipFigure(4,'Clip piece',inner,{duration:1,pivot:{x:0,y:0}});
+ e.load({...e.serialize(),figure_types:[...e.report.figure_types,clip],keyframes:[createFrame([...e.frame.objects.map(o=>structuredClone(o)),createObject(clip,4,0,0,{join:{target_object_slot:0,target_unique_id:1,target_handle_id:4},_stykMovieclip:{mode:'single',offset:0}})])]});
+ e.select(1,0);
+ const before=e.geometry.objects.get(1);near(before.piece.rotation,0,1e-9);near(before.piece.scale,1,1e-9);
+ e.setSpatialPose({turn:rad(90)});
+ const g=e.geometry,body=g.objects.get(0),arm=body.segments.find(s=>s.seg.segment_id===3),forearm=body.segments.find(s=>s.seg.segment_id===4);
+ assert.ok(Math.abs(arm.rigRotation)>.1,'the turned arm projects at a different angle than its channel');
+ const pieceFigure=g.objects.get(1);
+ near(pieceFigure.piece.rotation,arm.rigRotation,1e-9);
+ near(pieceFigure.segments[0].angle,e.frame.objects[1].angles[0]+arm.rigRotation,1e-9);
+ assert.deepEqual([pieceFigure.root.x,pieceFigure.root.y],[arm.end.x,arm.end.y],'a piece hangs from the joint of its bone');
+ const pieceClip=g.objects.get(3);
+ near(pieceClip.piece.rotation,forearm.rigRotation,1e-9);near(pieceClip.segments[0].angle,forearm.rigRotation,1e-9);
+ e.select(1,2);e.setSpatialProportions({length:1.5});
+ near(e.geometry.objects.get(1).piece.scale,1.5,1e-6);near(e.geometry.objects.get(1).segments[0].length,45,1e-6);
+ const fresh=buildGeometry(e.report,e.evaluatedFrame);
+ for(const slot of [1,3])assert.deepEqual(fresh.objects.get(slot).segments[0].points,e.geometry.objects.get(slot).segments[0].points);
+});

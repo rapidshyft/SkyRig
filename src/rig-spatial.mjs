@@ -125,7 +125,7 @@ function viewCorrectedPoint(s,f){
 }
 export function evaluateSpatial(s,{segment,input,get,root,scale,figureAngle,restAngle,referenceRest,mirror=false,camera,shape}){
   const cs=Math.cos(figureAngle),sn=Math.sin(figureAngle),sign=mirror?-1:1,project=p=>camera?projectSpatial([root.x+(p[0]*cs-p[1]*sign*sn)*scale,root.y+(p[0]*sn+p[1]*sign*cs)*scale,p[2]*scale],camera):({x:root.x+(p[0]*cs-p[1]*sign*sn)*scale,y:root.y+(p[0]*sn+p[1]*sign*cs)*scale});
-  let point,start=input.start,spatial;
+  let point,start=input.start,spatial,originDepth;
   if(s.bindings)point=skinPoint(s,get);
   else{
     const parent=s.parent?get(s.parent).spatial:null,parentBend=parent?.nativeBend??0,parentAuthoredBend=parent?.authoredBend??parentBend,motion=s.motion;
@@ -153,12 +153,12 @@ export function evaluateSpatial(s,{segment,input,get,root,scale,figureAngle,rest
     // Ordinary bones retain axial stretching and their existing radial width.
     if(segment._stykPoseChoice?.hidden===0)spatial.choiceScale=stretch;
     if(shape&&(shape.width!==1||shape.taper!==0)){spatial.shape=shape;spatial.restLength=Math.max(EPS,length);}
-    point=spatialPoint(spatial,s.tip);start=project(origin);
+    point=spatialPoint(spatial,s.tip);start=project(origin);originDepth=origin[2]*scale;
   }
   const handle=project(point),dx=handle.x-start.x,dy=handle.y-start.y,angle=Math.hypot(dx,dy)<EPS?input.angle:Math.atan2(dy,dx);
   // Depth guides use the same figure rotation/scale as the surface reference X.
-  const depthOffset={x:point[2]*scale*cs,y:point[2]*scale*sn};handle.depthOffset=depthOffset;
-  return{start,handle,angle,authoredAngle:input.angle,restAngle:segment.angle_rad??0,length:Math.hypot(dx,dy),bend:0,width:1,rotation:angle-input.angle,ratio:1,impulseAngle:angle,depthOffset,spatial,space:{rotation:angle-input.angle,locked:Boolean(s.bindings),spatial:true}};
+  const depth=point[2]*scale,depthOffset={x:depth*cs,y:depth*sn};handle.depthOffset=depthOffset;
+  return{start,handle,angle,authoredAngle:input.angle,restAngle:segment.angle_rad??0,length:Math.hypot(dx,dy),bend:0,width:1,rotation:angle-input.angle,ratio:1,impulseAngle:angle,depthOffset,depth,originDepth:originDepth??depth,spatial,space:{rotation:angle-input.angle,locked:Boolean(s.bindings),spatial:true}};
 }
 
 const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));

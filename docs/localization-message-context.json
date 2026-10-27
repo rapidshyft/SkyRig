@@ -17967,25 +17967,25 @@
   },
   "errors.geometry.chooseANonnegativeGeometryPreparationSliceDuration": {
     "locations": [
-      "src/pivot/geometry.mjs:995"
+      "src/pivot/geometry.mjs:1013"
     ],
     "context": "if (!Number.isFinite(sliceMs) || sliceMs < 0) throw messageError(new Error(''), \"errors.geometry.chooseANonnegativeGeometryPreparationSliceDuration\", {});"
   },
   "errors.geometry.geometryPreparationWasCancelledOrSuperseded": {
     "locations": [
-      "src/pivot/geometry.mjs:998"
+      "src/pivot/geometry.mjs:1016"
     ],
     "context": "throw messageError(new DOMException('', 'AbortError'), \"errors.geometry.geometryPreparationWasCancelledOrSuperseded\", {});"
   },
   "errors.geometry.theTemporaryDrawingCanvasIsUnavailable": {
     "locations": [
-      "src/pivot/geometry.mjs:1109"
+      "src/pivot/geometry.mjs:1127"
     ],
     "context": "if (!temp || temp.isContextLost?.()) throw Object.assign(messageError(new Error(''), \"errors.geometry.theTemporaryDrawingCanvasIsUnavailable\", {}), { telemetryC"
   },
   "errors.geometry.theTemporaryDrawingCanvasWasLostWhileRendering": {
     "locations": [
-      "src/pivot/geometry.mjs:1115"
+      "src/pivot/geometry.mjs:1133"
     ],
     "context": "if (temp.isContextLost?.()) throw Object.assign(messageError(new Error(''), \"errors.geometry.theTemporaryDrawingCanvasWasLostWhileRendering\", {}), { telemetryCo"
   },

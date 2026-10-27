@@ -37,7 +37,7 @@ export function composeSceneGroups(geometry, onions = [], frame, report) {
   let current = objectGroups(geometry);
   if (anchored.size && frame?.objects) {
     const bySlot = new Map(current.map(group => [group.g.slot, group]));
-    current = (frame.object_draw_order || frame.objects.map((_, slot) => slot)).map(slot => {
+    current = (geometry.drawOrder || frame.object_draw_order || frame.objects.map((_, slot) => slot)).map(slot => {
       const g = geometry.objects.get(Number(slot));
       return bySlot.get(Number(slot)) || (g ? {g, items: [], opacity: 1, key: Number(g.obj.unique_id) >>> 0, isOnion: false} : null);
     }).filter(Boolean);
